@@ -22,13 +22,20 @@
 			<div id="content">
 			
 			
+			<h2>Evento</h2>
+			<!-- loop over and print our customers -->
+				<c:forEach var="tempEvent" items="${(empty eventos)? eventino : eventos}">
+					<h5> ${tempEvent.tipo} ${tempEvent.orario} ${tempEvent.luogo} ${tempEvent.struttura} </h5>
+				</c:forEach>
+			
+			
+			<h3>Partecipanti all'evento</h3>
 			<!-- add our html table here -->
 			
 			<table>
 				<tr>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Email</th>
+					<th>Nome &nbsp &nbsp &nbsp &nbsp &nbsp </th>
+					<th>Cognome</th>
 				</tr>
 				
 				<!-- loop over and print our customers -->
@@ -37,7 +44,6 @@
 					<tr>
 						<td> ${tempPerson.nome}</td>
 						<td> ${tempPerson.cognome}</td>
-						<td> ${tempPerson.email}</td>
 					</tr>
 				
 				
