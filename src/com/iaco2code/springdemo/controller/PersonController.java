@@ -59,6 +59,14 @@ public class PersonController {
 	@GetMapping("/ShowPrimaryPage")
 	public String ShowPrimaryPage (Model theModel) {
 		
+		//get list event from DAO 
+		List<Evento> events=personDAO.getEvents();
+		
+		
+
+		//add the list to the model  
+		theModel.addAttribute("eventi",events);
+		
 		return "primary-page";
 	}
 	
@@ -66,15 +74,13 @@ public class PersonController {
 	 @GetMapping("/search")
 	    public String searchCustomers(@RequestParam("theSearchName") String theSearchName,
 	                                    Model theModel) {
-		 System.out.println("Qui");
-
+		
+		//get event from the dao
 		 List<Evento> theEvent = personDAO.getEvent(theSearchName);
-			
-		  if(theEvent.isEmpty()) {
-			  theModel.addAttribute("eventos",theEvent);
-		  } 
-		  else theModel.addAttribute("eventos",theEvent);
-			//add the event to the model  
+	
+		 //add the event to the model  
+		 theModel.addAttribute("eventos",theEvent);
+	
 			
 			
 			

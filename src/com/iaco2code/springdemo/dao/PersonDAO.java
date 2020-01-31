@@ -12,4 +12,6 @@ public interface PersonDAO {
 	public List<Persona> getPersons(String evento);
 
 	public List<Evento> getEvent(String evento);
+
+	public List<Evento> getEvents();
 }

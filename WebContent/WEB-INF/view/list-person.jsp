@@ -14,7 +14,7 @@
 
  		<div id="wrapper">
  			<div id="header">
- 				<h2>CRM - Person Relationship Manager</h2>
+ 				<h2>Informazioni - Evento</h2>
  			</div>
  		</div>
 		
@@ -31,13 +31,13 @@
 				</c:if>
 				<c:if test="${not empty eventos}">
 					<c:forEach var="tempEvent" items="${eventos}">
-					<h5> ${tempEvent.tipo} ${tempEvent.orario} ${tempEvent.luogo} ${tempEvent.struttura} </h5>
+					 ${tempEvent.tipo} ${tempEvent.orario} ${tempEvent.luogo} ${tempEvent.struttura} 
 					</c:forEach>
-				</c:if>
-			
-			
-			
-			<h3>Partecipanti all'evento</h3>
+					
+					
+					
+					
+					<h3>Partecipanti all'evento</h3>
 			<!-- add our html table here -->
 			
 			<table>
@@ -58,6 +58,11 @@
 				</c:forEach>
 				
 			</table>
+				</c:if>
+			
+			
+			
+			
 			
 			</div>
 		</div>

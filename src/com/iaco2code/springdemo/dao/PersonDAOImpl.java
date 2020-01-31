@@ -61,4 +61,22 @@ public class PersonDAOImpl implements PersonDAO {
 		
 	}
 
+
+	@Override
+	@Transactional
+	public List<Evento> getEvents() {
+		//get the current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+			
+		//create query
+		Query<Evento> theQuery = currentSession.createQuery("from Evento");
+						
+				
+		//execute query and get result list
+		List<Evento> eventi = theQuery.getResultList();
+				
+		//return the result
+		return eventi;
+	}
+
 }
