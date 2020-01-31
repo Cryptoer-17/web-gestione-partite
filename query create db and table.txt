@@ -1,0 +1,48 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+CREATE SCHEMA IF NOT EXISTS `web-gestione-partite` DEFAULT CHARACTER SET utf8 ;
+
+CREATE TABLE IF NOT EXISTS `web-gestione-partite`.`evento` (
+  `idEvento` INT(11) NOT NULL AUTO_INCREMENT,
+  `Tipo` VARCHAR(45) NOT NULL,
+  `Orario` VARCHAR(45) NOT NULL,
+  `Luogo` VARCHAR(45) NOT NULL,
+  `Struttura` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idEvento`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `web-gestione-partite`.`persona` (
+  `idPersona` INT(11) NOT NULL AUTO_INCREMENT,
+  `Nome` VARCHAR(45) NOT NULL,
+  `Cognome` VARCHAR(45) NOT NULL,
+  `Email` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idPersona`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `web-gestione-partite`.`evento_has_persona` (
+  `idEvento` INT(11) NOT NULL,
+  `idPersona` INT(11) NOT NULL,
+  PRIMARY KEY (`idEvento`, `idPersona`),
+  INDEX `fk_evento_has_persona_persona1_idx` (`idPersona` ASC) VISIBLE,
+  INDEX `fk_evento_has_persona_evento_idx` (`idEvento` ASC) VISIBLE,
+  CONSTRAINT `fk_evento_has_persona_evento`
+    FOREIGN KEY (`idEvento`)
+    REFERENCES `web-gestione-partite`.`evento` (`idEvento`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_evento_has_persona_persona1`
+    FOREIGN KEY (`idPersona`)
+    REFERENCES `web-gestione-partite`.`persona` (`idPersona`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
