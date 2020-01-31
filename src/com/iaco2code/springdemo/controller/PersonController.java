@@ -1,5 +1,6 @@
 package com.iaco2code.springdemo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,9 +70,13 @@ public class PersonController {
 
 		 List<Evento> theEvent = personDAO.getEvent(theSearchName);
 			
-			
+		  if(theEvent.isEmpty()) {
+			  theModel.addAttribute("eventos",theEvent);
+		  } 
+		  else theModel.addAttribute("eventos",theEvent);
 			//add the event to the model  
-			theModel.addAttribute("eventos",theEvent);
+			
+			
 			
 			//get person from the dao
 			List<Persona> thePersons = personDAO.getPersons(theSearchName);

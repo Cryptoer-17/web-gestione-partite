@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE>
 
 <html>
@@ -24,9 +25,16 @@
 			
 			<h2>Evento</h2>
 			<!-- loop over and print our customers -->
-				<c:forEach var="tempEvent" items="${(empty eventos)? eventino : eventos}">
+				
+				<c:if test="${empty eventos}">
+				Non ci sono partecipanti all'evento
+				</c:if>
+				<c:if test="${not empty eventos}">
+					<c:forEach var="tempEvent" items="${eventos}">
 					<h5> ${tempEvent.tipo} ${tempEvent.orario} ${tempEvent.luogo} ${tempEvent.struttura} </h5>
-				</c:forEach>
+					</c:forEach>
+				</c:if>
+			
 			
 			
 			<h3>Partecipanti all'evento</h3>
