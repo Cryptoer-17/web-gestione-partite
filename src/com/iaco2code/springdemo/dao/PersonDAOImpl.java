@@ -97,7 +97,7 @@ public class PersonDAOImpl implements PersonDAO {
 
 	@Override
 	@Transactional
-	public boolean checkPerson(String theUserPers, String theUserPass) {
+	public Persona checkPerson(String theUserPers, String theUserPass) {
 		
 		//get current session
 		Session currentSession= sessionFactory.getCurrentSession();
@@ -109,10 +109,10 @@ public class PersonDAOImpl implements PersonDAO {
 		
 		try {
 		Persona thePerson = theQuery.getSingleResult();
-		return true;
+		return thePerson;
 		}
 		catch(NoResultException nre) {
-			return false;	
+			return null;	
 		}
 		
 		

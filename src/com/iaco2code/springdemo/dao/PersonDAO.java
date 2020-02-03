@@ -17,5 +17,5 @@ public interface PersonDAO {
 
 	public void savePerson(Persona thePerson);
 
-	public boolean checkPerson(String theUserPers, String theUserPass);
+	public Persona checkPerson(String theUserPers, String theUserPass);
 }

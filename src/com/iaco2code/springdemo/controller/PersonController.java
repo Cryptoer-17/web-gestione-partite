@@ -2,6 +2,7 @@ package com.iaco2code.springdemo.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -110,10 +111,7 @@ public class PersonController {
 		return "person-login";
 	}
 	
-	
-	
-	
-	
+
 	 @PostMapping("/confirmPerson")
 	    public String confirmPerson(@RequestParam("theUserPers") String theUserPers,
 	    								@RequestParam("theUserPass") String theUserPass,
@@ -121,13 +119,12 @@ public class PersonController {
 		
 	
 		//get event from the dao
-		boolean pers = personDAO.checkPerson(theUserPers,theUserPass);
-		if(pers) {
+		Persona thePers = personDAO.checkPerson(theUserPers,theUserPass);
+		if(thePers!=null) {
 			return "redirect:/person/ShowPrimaryPage";  
 		}
 		else {
-			//inserire messaggio errore
-			return "redirect:/person/showFormForLogin"; 
+			return "person-login"; 
 		}
 	    }
 	
