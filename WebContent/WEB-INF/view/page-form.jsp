@@ -23,7 +23,7 @@
 		 
 		<h3>Register Person</h3>&nbsp &nbsp 
 		
-		<form:form action="savePerson" modelAttribute="person" method="POST">
+		<form:form action="attendPerson" modelAttribute="person" method="POST">
 		
 		
 			

@@ -2,7 +2,6 @@ package com.iaco2code.springdemo.controller;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,6 +44,21 @@ public class PersonController {
 		personDAO.savePerson(thePerson);
 		
 		return "redirect:/person/ShowPrimaryPage";
+	}
+	
+	@PostMapping("/attendPerson")
+	public String attendPerson(@ModelAttribute("person") Persona thePerson) {
+		String email = thePerson.getEmail();
+		return "attend-person";
+	}
+	
+	@GetMapping("/confirmCode")
+	public String confirmCode(@RequestParam("theCodeUser") String theCodeUser,
+            Model theModel) {
+		
+		
+		
+		return "";
 	}
 	
 	 @GetMapping("/search")
