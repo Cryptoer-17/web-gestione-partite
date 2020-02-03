@@ -45,6 +45,12 @@ public class Persona {
 	@Column(name="Email")
 	private String email;
 	
+	@Column(name="Username")
+	private String username;
+	
+	@Column(name="Password")
+	private String password;
+	
 	@ManyToMany(fetch=FetchType.LAZY,
 			cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 			 CascadeType.DETACH, CascadeType.REFRESH})
@@ -59,10 +65,12 @@ public class Persona {
 	
 	}
 
-	public Persona(String nome, String cognome, String email) {
+	public Persona(String nome, String cognome, String email,String username,String password) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.email = email;
+		this.username=username;
+		this.password=password;
 	}
 
 	public int getIdPersona() {
@@ -104,12 +112,29 @@ public class Persona {
 	
 	
 	
-	// add a convenience method
 	
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public List<Evento> getEventi() {
 		return eventi;
 	}
 
+	// add a convenience method
 	public void addEvento(Evento theEvent) {
 		
 		if (eventi == null) {
@@ -122,8 +147,10 @@ public class Persona {
 	@Override
 	public String toString() {
 		return "Persona [idPersona=" + idPersona + ", nome=" + nome + ", cognome=" + cognome + ", email=" + email
-				+ ", eventi=" + eventi + "]";
+				+ ", username=" + username + ", password=" + password + "]";
 	}
+
+	
 	
 	
 	

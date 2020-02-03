@@ -41,6 +41,15 @@
 						<td><label>Email:</label><td>
 						<td><form:input path="email"/></td>
 					</tr>
+					<tr>
+						<td><label>Username:</label><td>
+						<td><form:input path="username"/></td>
+					</tr>
+						<tr>
+						<td><label>Password:</label><td>
+						<td><form:input path="password"/></td>
+					</tr>
+					
 					
 					<tr>
 						<td><label></label><td>

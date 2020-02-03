@@ -46,6 +46,20 @@ public class PersonController {
 		return "redirect:/person/ShowPrimaryPage";
 	}
 	
+	 @GetMapping("/search")
+	    public String search(@RequestParam("theSearchName") String theSearchName,
+	                                    Model theModel) {
+
+	        // search customers from the service
+	        List<Evento> theEvents = personDAO.getEvent(theSearchName);
+	                
+	        // add the customers to the model
+	       
+	        theModel.addAttribute("eventos", theEvents);
+
+	        return "list-person";        
+	    }
+	
 	@RequestMapping("/list")
 	public String listPerson(Model theModel) {
 		
@@ -70,7 +84,6 @@ public class PersonController {
 	}
 	
 	
-
 	
 	@GetMapping("/ShowPrimaryPage")
 	public String ShowPrimaryPage (Model theModel) {
@@ -97,26 +110,25 @@ public class PersonController {
 		return "person-login";
 	}
 	
-	 @GetMapping("/search")
-	    public String searchCustomers(@RequestParam("theSearchName") String theSearchName,
+	
+	
+	
+	
+	 @PostMapping("/confirmPerson")
+	    public String confirmPerson(@RequestParam("theUserPers") String theUserPers,
+	    								@RequestParam("theUserPass") String theUserPass,
 	                                    Model theModel) {
 		
+	
 		//get event from the dao
-		 List<Evento> theEvent = personDAO.getEvent(theSearchName);
-	
-		 //add the event to the model  
-		 theModel.addAttribute("eventos",theEvent);
-	
-			
-			
-			
-			//get person from the dao
-			List<Persona> thePersons = personDAO.getPersons(theSearchName);
-			
-			//add the person to the model
-			theModel.addAttribute("persons",thePersons);
-
-	        return "list-person";        
+		boolean pers = personDAO.checkPerson(theUserPers,theUserPass);
+		if(pers) {
+			return "redirect:/person/ShowPrimaryPage";  
+		}
+		else {
+			//inserire messaggio errore
+			return "redirect:/person/showFormForLogin"; 
+		}
 	    }
 	
 	

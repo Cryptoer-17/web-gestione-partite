@@ -2,6 +2,7 @@ package com.iaco2code.springdemo.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 
 
@@ -92,5 +93,32 @@ public class PersonDAOImpl implements PersonDAO {
 		
 		
 	}
+
+
+	@Override
+	@Transactional
+	public boolean checkPerson(String theUserPers, String theUserPass) {
+		
+		//get current session
+		Session currentSession= sessionFactory.getCurrentSession();
+		
+		//retrive the person with query
+		Query<Persona> theQuery = currentSession.createQuery("from Persona where Username=:user AND Password =:pass");
+		theQuery.setParameter("user", theUserPers);
+		theQuery.setParameter("pass", theUserPass);
+		
+		try {
+		Persona thePerson = theQuery.getSingleResult();
+		return true;
+		}
+		catch(NoResultException nre) {
+			return false;	
+		}
+		
+		
+	}
+
+
+	
 
 }

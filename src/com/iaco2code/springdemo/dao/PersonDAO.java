@@ -16,4 +16,6 @@ public interface PersonDAO {
 	public List<Evento> getEvents();
 
 	public void savePerson(Persona thePerson);
+
+	public boolean checkPerson(String theUserPers, String theUserPass);
 }
