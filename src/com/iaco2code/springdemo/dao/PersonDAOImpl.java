@@ -79,4 +79,18 @@ public class PersonDAOImpl implements PersonDAO {
 		return eventi;
 	}
 
+
+	@Override
+	@Transactional
+	public void savePerson(Persona thePerson) {
+		//get current session
+		Session currentSession= sessionFactory.getCurrentSession();
+		
+		//save the person finally LOL
+		currentSession.saveOrUpdate(thePerson);
+		
+		
+		
+	}
+
 }

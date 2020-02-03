@@ -25,6 +25,8 @@
 		<div id="content">
 		
 		
+	
+		
 		 <br>
 		 <!--  add a search box -->
             <form:form action="search" method="GET">
@@ -60,6 +62,9 @@
 		
 		
 		</div>
+		<p>
+			<a href="${pageContext.request.contextPath}/person/pageForm">Torna indietro</a>
+		</p>
 	</div>
 
 

@@ -1,12 +1,13 @@
 package com.iaco2code.springdemo.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -25,12 +26,25 @@ public class PersonController {
 	private PersonDAO personDAO;
 		
 	
-	@RequestMapping("/pageForm")
+	@GetMapping("/pageForm")
 	public String pageForm(Model theModel) {
+		
+		//create model attrubute to bind form data
+				Persona thePerson = new Persona();
+				theModel.addAttribute("person",thePerson);
 		
 		return "page-form";
 	}
 	
+	
+	
+	@PostMapping("/savePerson")
+	public String savePerson(@ModelAttribute("person") Persona thePerson) {
+		
+		personDAO.savePerson(thePerson);
+		
+		return "redirect:/person/ShowPrimaryPage";
+	}
 	
 	@RequestMapping("/list")
 	public String listPerson(Model theModel) {
@@ -56,6 +70,8 @@ public class PersonController {
 	}
 	
 	
+
+	
 	@GetMapping("/ShowPrimaryPage")
 	public String ShowPrimaryPage (Model theModel) {
 		
@@ -70,6 +86,16 @@ public class PersonController {
 		return "primary-page";
 	}
 	
+	
+	@GetMapping("/showFormForLogin")
+	public String showFormForLogin (Model theModel) {
+		
+		Persona thePerson = new Persona();
+		
+		theModel.addAttribute("person",thePerson);
+		
+		return "person-login";
+	}
 	
 	 @GetMapping("/search")
 	    public String searchCustomers(@RequestParam("theSearchName") String theSearchName,

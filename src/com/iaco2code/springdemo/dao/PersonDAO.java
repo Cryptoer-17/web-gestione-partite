@@ -14,4 +14,6 @@ public interface PersonDAO {
 	public List<Evento> getEvent(String evento);
 
 	public List<Evento> getEvents();
+
+	public void savePerson(Persona thePerson);
 }
