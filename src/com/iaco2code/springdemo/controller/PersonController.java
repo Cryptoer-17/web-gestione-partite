@@ -60,7 +60,6 @@ public class PersonController {
 	public String confirmCode(@ModelAttribute("person") Persona thePerson,@RequestParam("theCodeUser") String theCodeUser,Model theModel) {
 		if(theCodeUser.equals("123456")) {
 			//salva la persona nel db e ritorna la pagina primaria
-			System.out.println(thePerson.getCognome());
 			personDAO.savePerson(thePerson);
 			return "redirect:/person/ShowPrimaryPage";
 		}
@@ -84,23 +83,21 @@ public class PersonController {
 	    }
 	
 	@RequestMapping("/listPerson")
-	public String listPerson(Model theModel) {
+	public String listPerson(@RequestParam("theSearchName") String theSearchName,Model theModel) {
 		
 		
 		//get the event grom the dao
-		List<Evento> theEvent = personDAO.getEvent("Calcio");
+		List<Evento> theEvent = personDAO.getEvent(theSearchName);
 		
 		
 		//add the event to the model  
 		theModel.addAttribute("eventos",theEvent);
 		
 		//get person from the dao
-		List<Persona> thePersons = personDAO.getPersons("Calcio");
+		List<Persona> thePersons = personDAO.getPersons(theSearchName);
 		
 		//add the person to the model
-		theModel.addAttribute("persons",thePersons);
-		
-		
+		theModel.addAttribute("persons",thePersons);		
 		
 		
 		return "list-person";

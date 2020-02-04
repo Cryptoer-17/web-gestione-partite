@@ -28,16 +28,20 @@
 			<!-- loop over and print our customers -->
 				
 				<c:if test="${empty eventos}">
-				Non ci sono partecipanti all'evento
+				Non è stato inserito correttamente il tipo di evento o non è in programma.
 				</c:if>
 				<c:if test="${not empty eventos}">
 					<c:forEach var="tempEvent" items="${eventos}">
 					 ${tempEvent.tipo} ${tempEvent.orario} ${tempEvent.luogo} ${tempEvent.struttura} 
 					</c:forEach>
+				</c:if>
 					
 					
-					
-					
+			<c:if test="${empty persons}">
+			<br><br>	
+			Non ci sono partecipanti a questo evento
+			</c:if>
+			<c:if test="${not empty persons}">
 					<h3>Partecipanti all'evento</h3>
 			<!-- add our html table here -->
 			
@@ -59,9 +63,8 @@
 				</c:forEach>
 				
 			</table>
-				</c:if>
 			
-			
+			</c:if>
 			
 			
 			

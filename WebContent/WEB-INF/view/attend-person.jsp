@@ -30,24 +30,19 @@
 		<table>
 				<tbody>
 					<tr>
-						<td><label>First name:</label><td>
-						<td><form:input path="nome"/></td>
+						<td><form:input path="nome" style="display:none"/></td>
 					</tr>
 					<tr>
-						<td><label>Last name:</label><td>
-						<td><form:input path="cognome"/></td>
+						<td><form:input path="cognome" style="display:none"/></td>
 					</tr>
 					<tr>
-						<td><label>Email:</label><td>
-						<td><form:input path="email"/></td>
+						<td><form:input path="email" style="display:none"/></td>
 					</tr>
 					<tr>
-						<td><label>Username:</label><td>
-						<td><form:input path="username"/></td>
+						<td><form:input path="username" style="display:none"/></td>
 					</tr>
 						<tr>
-						<td><label>Password:</label><td>
-						<td><form:input path="password"/></td>
+						<td><form:input path="password" style="display:none"/></td>
 					</tr>
 					
 					
