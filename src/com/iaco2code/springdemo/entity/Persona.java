@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="persona")
@@ -36,18 +38,28 @@ public class Persona {
 	@Column(name="idPersona")
 	private int idPersona;
 	
+	@NotNull(message="is required")
+	@Size(min=1,message="is required")
 	@Column(name="Nome")
 	private String nome;
 	
+	@NotNull(message="is required")
+	@Size(min=1,message="is required")
 	@Column(name="Cognome")
 	private String cognome;
 	
+	@NotNull(message="is required")
+	@Size(min=1,message="is required")
 	@Column(name="Email")
 	private String email;
 	
+	@NotNull(message="is required")
+	@Size(min=1,message="is required")
 	@Column(name="Username")
 	private String username;
 	
+	@NotNull(message="is required")
+	@Size(min=1,message="is required")
 	@Column(name="Password")
 	private String password;
 	

@@ -1,17 +1,18 @@
 package com.iaco2code.springdemo.controller;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.iaco2code.springdemo.dao.PersonDAO;
 import com.iaco2code.springdemo.entity.Evento;
@@ -48,12 +49,21 @@ public class PersonController {
 	}
 	
 	@PostMapping("/attendPerson")
-	public String attendPerson(@ModelAttribute("person") Persona thePerson,Model theModel) {
+	public String attendPerson(
+			@Valid @ModelAttribute("person") Persona thePerson,
+			BindingResult theBindingResult,
+			Model theModel) {
+		
+		if(theBindingResult.hasErrors()) {
+			return "page-form";
+		}
+		else {
 		String email = thePerson.getEmail();
 		System.out.println(thePerson.getNome());
-	//	JavaMail.send_email(email,"123456");
+		JavaMail.send_email(email,"123456");
 		theModel.addAttribute("person",thePerson);
 		return "attend-person";
+		}
 	}
 	
 	@PostMapping("/confirmCode")

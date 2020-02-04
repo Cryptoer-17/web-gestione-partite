@@ -4,7 +4,9 @@
 
 <head>
 	<title>Register Person</title>
-			
+			<style>
+				.error {color:red}
+			</style>
 </head>
 
 <body>
@@ -23,6 +25,7 @@
 		 
 		<h3>Register Person</h3>&nbsp &nbsp 
 		
+		<i>Riempi il form.<br> Asterisco (*) significa che è richiesto</i>
 		<form:form action="attendPerson" modelAttribute="person" method="POST">
 		
 		
@@ -30,24 +33,29 @@
 			<table>
 				<tbody>
 					<tr>
-						<td><label>First name:</label><td>
-						<td><form:input path="nome"/></td>
+						<label>First name:(*)</label>
+						<form:input path="nome"/>
+						<form:errors path="nome" cssClass="error" />
 					</tr>
 					<tr>
 						<td><label>Last name:</label><td>
-						<td><form:input path="cognome"/></td>
+						<form:input path="cognome" />
+						<form:errors path="cognome" cssClass="error" />
 					</tr>
 					<tr>
 						<td><label>Email:</label><td>
-						<td><form:input path="email"/></td>
+						<form:input path="email" />
+						<form:errors path="email" cssClass="error" />
 					</tr>
 					<tr>
 						<td><label>Username:</label><td>
-						<td><form:input path="username"/></td>
+						<form:input path="username" />
+						<form:errors path="username" cssClass="error" />
 					</tr>
-						<tr>
+					<tr>
 						<td><label>Password:</label><td>
-						<td><form:input path="password"/></td>
+						<form:input path="password" />
+						<form:errors path="password" cssClass="error" />
 					</tr>
 					
 					
