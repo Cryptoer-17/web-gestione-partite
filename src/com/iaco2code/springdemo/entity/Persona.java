@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="persona")
@@ -48,10 +49,10 @@ public class Persona {
 	@Column(name="Cognome")
 	private String cognome;
 	
-	@NotNull(message="is required")
-	@Size(min=1,message="is required")
+	@Pattern(regexp="^([a-zA-Z0-9_\\-\\.]+)@scaiconsulting.it",message="only mail scaiconsulting")
 	@Column(name="Email")
 	private String email;
+	
 	
 	@NotNull(message="is required")
 	@Size(min=1,message="is required")
