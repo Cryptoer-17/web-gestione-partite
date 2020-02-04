@@ -1,5 +1,6 @@
 package com.iaco2code.springdemo.controller;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.iaco2code.springdemo.dao.PersonDAO;
 import com.iaco2code.springdemo.entity.Evento;
 import com.iaco2code.springdemo.entity.Persona;
-
+import com.iaco2code.springdemo.sendemail.JavaMail;
 
 @Controller
 @RequestMapping("/person")
@@ -32,33 +34,39 @@ public class PersonController {
 		//create model attrubute to bind form data
 				Persona thePerson = new Persona();
 				theModel.addAttribute("person",thePerson);
-		
+				
 		return "page-form";
 	}
 	
 	
 	
-	@PostMapping("/savePerson")
+	@GetMapping("/savePerson")
 	public String savePerson(@ModelAttribute("person") Persona thePerson) {
-		
 		personDAO.savePerson(thePerson);
 		
 		return "redirect:/person/ShowPrimaryPage";
 	}
 	
 	@PostMapping("/attendPerson")
-	public String attendPerson(@ModelAttribute("person") Persona thePerson) {
+	public String attendPerson(@ModelAttribute("person") Persona thePerson,Model theModel) {
 		String email = thePerson.getEmail();
+		System.out.println(thePerson.getNome());
+	//	JavaMail.send_email(email,"123456");
+		theModel.addAttribute("person",thePerson);
 		return "attend-person";
 	}
 	
-	@GetMapping("/confirmCode")
-	public String confirmCode(@RequestParam("theCodeUser") String theCodeUser,
-            Model theModel) {
-		
-		
-		
-		return "";
+	@PostMapping("/confirmCode")
+	public String confirmCode(@ModelAttribute("person") Persona thePerson,@RequestParam("theCodeUser") String theCodeUser,Model theModel) {
+		if(theCodeUser.equals("123456")) {
+			//salva la persona nel db e ritorna la pagina primaria
+			System.out.println(thePerson.getCognome());
+			personDAO.savePerson(thePerson);
+			return "redirect:/person/ShowPrimaryPage";
+		}
+		else //messaggio di errore e rimani in quella pagina per ora
+			return "attend-person";
+	
 	}
 	
 	 @GetMapping("/search")
@@ -66,16 +74,16 @@ public class PersonController {
 	                                    Model theModel) {
 
 	        // search customers from the service
-	        List<Evento> theEvents = personDAO.getEvent(theSearchName);
+	    /*    List<Evento> theEvents = personDAO.getEvent(theSearchName);
 	                
 	        // add the customers to the model
 	       
-	        theModel.addAttribute("eventos", theEvents);
+	        theModel.addAttribute("eventos", theEvents);*/
 
 	        return "list-person";        
 	    }
 	
-	@RequestMapping("/list")
+	@RequestMapping("/listPerson")
 	public String listPerson(Model theModel) {
 		
 		
@@ -107,7 +115,7 @@ public class PersonController {
 		List<Evento> events=personDAO.getEvents();
 		
 		
-
+			
 		//add the list to the model  
 		theModel.addAttribute("eventi",events);
 		

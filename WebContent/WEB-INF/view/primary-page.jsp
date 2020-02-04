@@ -29,7 +29,7 @@
 		
 		 <br>
 		 <!--  add a search box -->
-            <form:form action="search" method="GET">
+            <form:form action="listPerson" method="GET">
                 Cerca informazioni sull'evento che desideri, inserendo il "Tipo": <input type="text" name="theSearchName" />
 		 <input type="submit" value="Search" class="add-button" />
             </form:form>
