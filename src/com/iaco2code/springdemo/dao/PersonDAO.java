@@ -18,4 +18,6 @@ public interface PersonDAO {
 	public void savePerson(Persona thePerson);
 
 	public Persona checkPerson(String theUserPers, String theUserPass);
+
+	public List<Persona> getPersonsId(int theId);
 }

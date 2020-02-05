@@ -120,6 +120,14 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 
 
+	@Override
+	@Transactional
+	public List<Persona> getPersonsId(int theId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	
 
 }

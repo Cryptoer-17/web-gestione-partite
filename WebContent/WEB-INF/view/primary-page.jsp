@@ -26,25 +26,18 @@
 		
 		
 	
-		
+		<form:form action="listPerson" modelAttribute="person" method="POST">
 		 <br>
-		 <!--  add a search box -->
-            <form:form action="listPerson" method="GET">
+		 <!--  add a search box -->     
                 Cerca informazioni sull'evento a cui desideri partecipare, inserendo il "Tipo": <input type="text" name="theSearchName" />
-		 <input type="submit" value="Search" class="add-button" />
-            </form:form>
-		
-		
-		
+		 <input type="submit" value="Submit" class="add-button" />
 		<table>
 				<tr>
 					<th >Tipo &nbsp &nbsp &nbsp &nbsp &nbsp </th>
 					<th>Orario &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</th>
 					<th>Luogo &nbsp &nbsp  </th>
-					<th>Struttura</th>
-					
-				</tr>
-				
+					<th>Struttura</th>				
+				</tr>				
 				<!-- loop over and print our customers -->
 				<c:forEach var="tempEvent" items="${eventi}">
 				
@@ -53,12 +46,25 @@
 						<td> ${tempEvent.orario}</td>
 						<td> ${tempEvent.luogo}</td>
 						<td> ${tempEvent.struttura}</td>
-					</tr>
-				
-				
-				</c:forEach>
-				
-			</table>
+					</tr>		
+				</c:forEach>		
+		</table>
+		
+		
+			<c:forEach var="tempPers" items="${person}">
+					
+					<input type="text" value="${tempPers.idPersona}" name="theId"/>
+				</c:forEach>	
+		
+		
+		
+	
+	</form:form>
+		
+		
+		
+		
+	
 		
 		
 		</div>

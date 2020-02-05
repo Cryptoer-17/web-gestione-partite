@@ -1,5 +1,6 @@
 package com.iaco2code.springdemo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.iaco2code.springdemo.dao.PersonDAO;
 import com.iaco2code.springdemo.entity.Evento;
@@ -98,18 +101,21 @@ public class PersonController {
 	                                    Model theModel) {
 
 	        // search customers from the service
-	    /*    List<Evento> theEvents = personDAO.getEvent(theSearchName);
+	        List<Evento> theEvents = personDAO.getEvent(theSearchName);
 	                
 	        // add the customers to the model
-	       
-	        theModel.addAttribute("eventos", theEvents);*/
+	      
+	        theModel.addAttribute("eventos", theEvents);
 
 	        return "list-person";        
 	    }
 	
-	@RequestMapping("/listPerson")
-	public String listPerson(@RequestParam("theSearchName") String theSearchName,Model theModel) {
+	@PostMapping("/listPerson")
+	public String listPerson(@RequestParam("theId") int theId,@RequestParam("theSearchName") String theSearchName,Model theModel) {
 		
+		
+		System.out.println(theId);
+		List<Persona> thePers = personDAO.getPersonsId(theId);
 		
 		//get the event grom the dao
 		List<Evento> theEvent = personDAO.getEvent(theSearchName);
@@ -132,7 +138,10 @@ public class PersonController {
 	
 	@GetMapping("/ShowPrimaryPage")
 	public String ShowPrimaryPage (Model theModel) {
-		
+	    List<Persona> thePers = (List<Persona>) theModel.asMap().get("some");
+	  
+	    theModel.addAttribute("person",thePers);
+
 		//get list event from DAO 
 		List<Evento> events=personDAO.getEvents();
 		
@@ -159,13 +168,16 @@ public class PersonController {
 	 @PostMapping("/confirmPerson")
 	    public String confirmPerson(@RequestParam("theUserPers") String theUserPers,
 	    								@RequestParam("theUserPass") String theUserPass,
+	    								RedirectAttributes redirectAttrs,
 	                                    Model theModel) {
 		
 	
 		//get event from the dao
 		Persona thePers = personDAO.checkPerson(theUserPers,theUserPass);
+		List<Persona> list = new ArrayList<Persona>();
+		list.add(thePers);
 		if(thePers!=null) {
-			theModel.addAttribute("person",thePers);
+			redirectAttrs.addFlashAttribute("some", list);
 			return "redirect:/person/ShowPrimaryPage";  
 		}
 		else {
