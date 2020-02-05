@@ -66,7 +66,10 @@
 			
 			</c:if>
 			
-			
+			<br><br>
+			<p>
+			<a href="${pageContext.request.contextPath}/person/ShowPrimaryPage">Torna indietro</a>
+			</p>
 			
 			</div>
 		</div>

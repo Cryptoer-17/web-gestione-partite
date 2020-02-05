@@ -165,6 +165,7 @@ public class PersonController {
 		//get event from the dao
 		Persona thePers = personDAO.checkPerson(theUserPers,theUserPass);
 		if(thePers!=null) {
+			theModel.addAttribute("person",thePers);
 			return "redirect:/person/ShowPrimaryPage";  
 		}
 		else {

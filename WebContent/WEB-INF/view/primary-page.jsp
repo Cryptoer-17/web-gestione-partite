@@ -30,7 +30,7 @@
 		 <br>
 		 <!--  add a search box -->
             <form:form action="listPerson" method="GET">
-                Cerca informazioni sull'evento che desideri, inserendo il "Tipo": <input type="text" name="theSearchName" />
+                Cerca informazioni sull'evento a cui desideri partecipare, inserendo il "Tipo": <input type="text" name="theSearchName" />
 		 <input type="submit" value="Search" class="add-button" />
             </form:form>
 		
@@ -62,9 +62,7 @@
 		
 		
 		</div>
-		<p>
-			<a href="${pageContext.request.contextPath}/person/pageForm">Torna indietro</a>
-		</p>
+		
 	</div>
 
 

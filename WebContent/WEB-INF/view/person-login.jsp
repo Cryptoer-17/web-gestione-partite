@@ -39,7 +39,7 @@
 	</form:form>
 
 	<p> Inserire correttamente i dati.</p>
-	<p> Se non siete inviati alla pagina principali username o password non corretti.</p>	
+	<p> Se non siete inviati alla pagina, controllare che username o password siano corretti.</p>	
 
 
 	
