@@ -118,26 +118,18 @@ public class PersonController {
 		Persona thePers = personDAO.getPersonsId(theId);
 		List<Persona> thePerson = new ArrayList<Persona>();
 		thePerson.add(thePers);
-		
-		
-		
-		
 		//add the person to the model
 		theModel.addAttribute("person",thePerson);
 		
+
 		//get the event grom the dao
-		List<Evento> theEvent = personDAO.getEvent(theSearchName);
-		
-		
+		List<Evento> theEvent = personDAO.getEvent(theSearchName);	
 		//add the event to the model  
 		theModel.addAttribute("eventos",theEvent);
 		
-		//add the event for id to the model with same list of event
-		theModel.addAttribute("evento",theEvent);
 		
 		//get person from the dao
 		List<Persona> thePersons = personDAO.getPersons(theSearchName);
-		
 		//add the person-event to the model
 		theModel.addAttribute("persons",thePersons);		
 		
@@ -176,15 +168,34 @@ public class PersonController {
 		return "person-login";
 	}
 	
-	@GetMapping("/partecipatePerson")
+	@PostMapping("/partecipatePerson")
 	public String partecipatePerson(@RequestParam("theIdPers") int idPers ,
 									@RequestParam("theIdEvent") int idEvent,
 									Model theModel) {
 		System.out.println(idPers);
 		System.out.println(idEvent);
-/*		personDAO.assocPersEvent(idPers,idEvent);*/
+		personDAO.assocPersEvent(idPers,idEvent);
 		
-		return "redirect:/person/listPerson";
+		Persona thePers = personDAO.getPersonsId(idPers);
+		List<Persona> person = new ArrayList<Persona>();
+		person.add(thePers);
+		theModel.addAttribute("person",person);
+		
+		String tipo = personDAO.getTipoEvent(idEvent);
+		System.out.println(tipo);
+		
+		List<Evento> theEvent = personDAO.getEvent(tipo);	
+		//add the event to the model  
+		theModel.addAttribute("eventos",theEvent);
+		
+		
+		//get person from the dao
+		List<Persona> thePersons = personDAO.getPersons(tipo);
+		//add the person-event to the model
+		theModel.addAttribute("persons",thePersons);
+				
+		
+		return "list-person";
 	}
 	
 

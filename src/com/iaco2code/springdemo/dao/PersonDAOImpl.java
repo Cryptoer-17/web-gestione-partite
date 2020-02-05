@@ -44,6 +44,8 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 
 
+	
+	
 	@Override
 	@Transactional
 	public List<Evento> getEvent(String evento) {
@@ -123,7 +125,6 @@ public class PersonDAOImpl implements PersonDAO {
 	@Override
 	@Transactional
 	public Persona getPersonsId(int theId) {
-		// TODO Auto-generated method stub
 		Session currentSession= sessionFactory.getCurrentSession();		
 		Query<Persona> theQuery = currentSession.createQuery("from Persona where idPersona=:theId");
 		theQuery.setParameter("theId", theId);
@@ -145,10 +146,52 @@ public class PersonDAOImpl implements PersonDAO {
 		Session currentSession= sessionFactory.getCurrentSession();		
 		Persona thePers = currentSession.get(Persona.class, idPers);
 		Evento theEvent = currentSession.get(Evento.class, idEvent);
+		System.out.println(idPers+","+idEvent);
 		thePers.addEvento(theEvent);
 		currentSession.save(thePers);
 		
 	}
+
+
+	@Override
+	@Transactional
+	public Evento getEventId(int idEvent) {
+		Session currentSession= sessionFactory.getCurrentSession();		
+		Query<Evento> theQuery = currentSession.createQuery("from Evento where idEvento=:idEvent");
+		theQuery.setParameter("idEvent", idEvent);
+		
+		try {
+			Evento theEvent = theQuery.getSingleResult();
+			return theEvent;
+			}
+			catch(NoResultException nre) {
+				return null;	
+			}
+	}
+
+
+
+
+	@Override
+	@Transactional
+	public String getTipoEvent(int idEvent) {
+		Session currentSession= sessionFactory.getCurrentSession();		
+		Query<Evento> theQuery = currentSession.createQuery("from Evento where idEvento=:idEvent");
+		theQuery.setParameter("idEvent", idEvent);
+		
+		try {
+			Evento theEvent = theQuery.getSingleResult();
+			return theEvent.getTipo();
+			}
+			catch(NoResultException nre) {
+				return null;	
+			}
+	}
+
+
+
+
+	
 
 
 	

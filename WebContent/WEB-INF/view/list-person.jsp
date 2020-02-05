@@ -36,13 +36,14 @@
 					 ${tempEvent.tipo} ${tempEvent.orario} ${tempEvent.luogo} ${tempEvent.struttura} 
 					</c:forEach>
 				</c:if>
+				
 					
 					
 			<c:if test="${empty persons}">
 			<br><br>	
 			Non ci sono partecipanti a questo evento
 			</c:if>
-			<form:form action="partecipatePerson" method="GET">
+			<form:form action="partecipatePerson" method="POST">
 			<c:if test="${not empty persons}">
 					<h3>Partecipanti all'evento</h3>
 					

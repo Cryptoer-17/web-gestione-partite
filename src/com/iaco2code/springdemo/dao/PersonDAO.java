@@ -22,4 +22,10 @@ public interface PersonDAO {
 	public Persona getPersonsId(int theId);
 
 	public void assocPersEvent(int idPers, int idEvent);
+
+	public Evento getEventId(int idEvent);
+
+	public String getTipoEvent(int idEvent);
+
+	
 }
