@@ -179,7 +179,6 @@ public class PersonController {
 		theModel.addAttribute("person",person);
 		
 		String tipo = personDAO.getTipoEvent(idEvent);
-		System.out.println(tipo);
 		
 		List<Evento> theEvent = personDAO.getEvent(tipo);	
 		//add the event to the model  
@@ -207,7 +206,24 @@ public class PersonController {
 		Persona tempPers= new Persona(thePers.getNome(),thePers.getCognome(),thePers.getEmail(),thePers.getUsername(),thePers.getPassword());
 		personDAO.savePerson(tempPers);
 		
-		return "page-form";
+		
+		List<Persona> person = new ArrayList<Persona>();
+		person.add(thePers);
+		theModel.addAttribute("person",person);
+		
+		String tipo = personDAO.getTipoEvent(idEvent);
+		
+		List<Evento> theEvent = personDAO.getEvent(tipo);	
+		//add the event to the model  
+		theModel.addAttribute("eventos",theEvent);
+		
+		//get person from the dao
+		List<Persona> thePersons = personDAO.getPersons(tipo);
+		//add the person-event to the model
+		theModel.addAttribute("persons",thePersons);
+		
+		
+		return "list-person";
 	}
 	
 	 @PostMapping("/confirmPerson")

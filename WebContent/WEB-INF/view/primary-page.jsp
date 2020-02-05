@@ -50,6 +50,9 @@
 				</c:forEach>		
 		</table>
 		
+		<p>
+			<a href="${pageContext.request.contextPath}/person/showFormForLogin">Torna indietro</a>
+		</p>	
 		
 			<c:forEach var="tempPers" items="${person}">
 					
