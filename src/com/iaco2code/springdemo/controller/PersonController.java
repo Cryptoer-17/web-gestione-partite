@@ -115,7 +115,17 @@ public class PersonController {
 		
 		
 		System.out.println(theId);
-		List<Persona> thePers = personDAO.getPersonsId(theId);
+		
+		//get person id session from the dao
+		Persona thePers = personDAO.getPersonsId(theId);
+		List<Persona> thePerson = new ArrayList<Persona>();
+		thePerson.add(thePers);
+		
+		
+		
+		
+		//add the person to the model
+		theModel.addAttribute("person",thePerson);
 		
 		//get the event grom the dao
 		List<Evento> theEvent = personDAO.getEvent(theSearchName);
@@ -124,12 +134,16 @@ public class PersonController {
 		//add the event to the model  
 		theModel.addAttribute("eventos",theEvent);
 		
+		//add the event for id to the model with same list of event
+		theModel.addAttribute("evento",theEvent);
+		
 		//get person from the dao
 		List<Persona> thePersons = personDAO.getPersons(theSearchName);
 		
-		//add the person to the model
+		//add the person-event to the model
 		theModel.addAttribute("persons",thePersons);		
 		
+	
 		
 		return "list-person";
 	}
@@ -162,6 +176,12 @@ public class PersonController {
 		theModel.addAttribute("person",thePerson);
 		
 		return "person-login";
+	}
+	
+	@GetMapping("/partecipatePerson")
+	public String partecipatePerson(Model theModel) {
+		
+		return "";
 	}
 	
 

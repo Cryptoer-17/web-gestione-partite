@@ -19,5 +19,5 @@ public interface PersonDAO {
 
 	public Persona checkPerson(String theUserPers, String theUserPass);
 
-	public List<Persona> getPersonsId(int theId);
+	public Persona getPersonsId(int theId);
 }

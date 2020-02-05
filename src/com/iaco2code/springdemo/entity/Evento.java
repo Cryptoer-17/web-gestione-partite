@@ -75,6 +75,12 @@ public class Evento {
 		this.struttura = struttura;
 	}
 	
+	
+	
+	public int getIdEvento() {
+		return idEvento;
+	}
+
 	public String getTipo() {
 		return tipo;
 	}

@@ -43,6 +43,13 @@
 			</c:if>
 			<c:if test="${not empty persons}">
 					<h3>Partecipanti all'evento</h3>
+					
+			<!-- Button to partecipate at the event and non partecipate -->
+			
+			
+				 <input type="submit" onclick="window.location='/person/partecipatePerson';" value="Partecipa all'evento" class="add-button" />
+				<input type="submit" value="Non Partecipare piu'" class="add-button" />	
+					
 			<!-- add our html table here -->
 			
 			<table>
@@ -71,6 +78,14 @@
 			<a href="${pageContext.request.contextPath}/person/ShowPrimaryPage">Torna indietro</a>
 			</p>
 			
+			
+			<c:forEach var="tempPers" items="${person}">	
+					<input type="text" value="${tempPers.idPersona}" name="theIdPers"/>
+			</c:forEach>	
+			<c:if test="${not empty evento}">
+			<br><br>	
+			Non c'è evento ${evento.idEvento}
+			</c:if>
 			</div>
 		</div>
 

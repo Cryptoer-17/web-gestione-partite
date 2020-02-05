@@ -30,7 +30,7 @@
 		 <br>
 		 <!--  add a search box -->     
                 Cerca informazioni sull'evento a cui desideri partecipare, inserendo il "Tipo": <input type="text" name="theSearchName" />
-		 <input type="submit" value="Submit" class="add-button" />
+		 <input type="submit" value="Cerca" class="add-button" />
 		<table>
 				<tr>
 					<th >Tipo &nbsp &nbsp &nbsp &nbsp &nbsp </th>

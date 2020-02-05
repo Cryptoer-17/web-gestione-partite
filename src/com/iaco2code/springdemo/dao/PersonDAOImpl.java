@@ -122,9 +122,20 @@ public class PersonDAOImpl implements PersonDAO {
 
 	@Override
 	@Transactional
-	public List<Persona> getPersonsId(int theId) {
+	public Persona getPersonsId(int theId) {
 		// TODO Auto-generated method stub
-		return null;
+		Session currentSession= sessionFactory.getCurrentSession();		
+		Query<Persona> theQuery = currentSession.createQuery("from Persona where idPersona=:theId");
+		theQuery.setParameter("theId", theId);
+		
+		try {
+			Persona thePerson = theQuery.getSingleResult();
+			return thePerson;
+			}
+			catch(NoResultException nre) {
+				return null;	
+			}
+
 	}
 
 
