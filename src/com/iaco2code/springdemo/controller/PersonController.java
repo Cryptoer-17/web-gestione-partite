@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.iaco2code.springdemo.dao.PersonDAO;
@@ -172,8 +171,6 @@ public class PersonController {
 	public String partecipatePerson(@RequestParam("theIdPers") int idPers ,
 									@RequestParam("theIdEvent") int idEvent,
 									Model theModel) {
-		System.out.println(idPers);
-		System.out.println(idEvent);
 		personDAO.assocPersEvent(idPers,idEvent);
 		
 		Persona thePers = personDAO.getPersonsId(idPers);
@@ -199,7 +196,17 @@ public class PersonController {
 	}
 	
 
-	
+	@PostMapping("/nonPartecipatePerson")
+	public String nonPartecipatePerson(@RequestParam("theIdPers") int idPers,
+										@RequestParam("theIdEvent") int idEvent,
+										Model theModel){
+		
+		Persona thePers = personDAO.getPersonsId(idPers);
+		personDAO.deleteAssocEventPers(idPers);
+		personDAO.savePerson(thePers);
+		
+		return "page-form";
+	}
 	
 	 @PostMapping("/confirmPerson")
 	    public String confirmPerson(@RequestParam("theUserPers") String theUserPers,

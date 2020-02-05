@@ -146,7 +146,6 @@ public class PersonDAOImpl implements PersonDAO {
 		Session currentSession= sessionFactory.getCurrentSession();		
 		Persona thePers = currentSession.get(Persona.class, idPers);
 		Evento theEvent = currentSession.get(Evento.class, idEvent);
-		System.out.println(idPers+","+idEvent);
 		thePers.addEvento(theEvent);
 		currentSession.save(thePers);
 		
@@ -189,6 +188,13 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 
 
+	@Override
+	@Transactional
+	public void deleteAssocEventPers(int idPers) {
+		Session currentSession= sessionFactory.getCurrentSession();		
+		Persona thePers = currentSession.get(Persona.class, idPers);
+		currentSession.delete(thePers);
+	}
 
 
 	

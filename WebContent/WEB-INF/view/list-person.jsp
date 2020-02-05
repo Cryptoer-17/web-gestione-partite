@@ -54,7 +54,7 @@
 			
 			
 				<input type="submit" value="Partecipa all'evento" onclick="form.action='partecipatePerson';" class="add-button" name="partecipate" method="POST"/>		
-				<input type="submit" value="Non Partecipare piu'" onclick="form.action='nonPartecipatePerson';" class="add-button" name="nonpartecipate"/>
+				<input type="submit" value="Non Partecipare piu'" onclick="form.action='nonPartecipatePerson';" class="add-button" name="nonpartecipate" method="GET"/>
 					
 			<!-- add our html table here -->
 			
