@@ -84,15 +84,20 @@ public class PersonController {
 	}
 	
 	@PostMapping("/confirmCode")
-	public String confirmCode(@ModelAttribute("person") Persona thePerson,@RequestParam("theCodeUser") String theCodeUser,Model theModel) {
+	public String confirmCode(@ModelAttribute("person") Persona thePerson,
+								@RequestParam("theCodeUser") String theCodeUser,
+								RedirectAttributes redirectAttrs,
+								Model theModel) {
 		if(theCodeUser.equals("123456")) {
 			//salva la persona nel db e ritorna la pagina primaria
 			personDAO.savePerson(thePerson);
+			List<Persona> persons = new ArrayList<Persona>();
+			persons.add(thePerson);
+			redirectAttrs.addFlashAttribute("some",persons);
 			return "redirect:/person/ShowPrimaryPage";
 		}
 		else //messaggio di errore e rimani in quella pagina per ora
-			return "attend-person";
-	
+			return "attend-person";	
 	}
 	
 	 @GetMapping("/search")

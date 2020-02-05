@@ -50,6 +50,7 @@ public class Persona {
 	@Column(name="Cognome")
 	private String cognome;
 	
+	@NotNull(message = "is required")
 	@Pattern(regexp="^([a-zA-Z0-9_\\-\\.]+)@scaiconsulting.it",message="only mail scaiconsulting")
 	@Column(name="Email")
 	private String email;
