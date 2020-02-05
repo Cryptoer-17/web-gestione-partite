@@ -43,16 +43,19 @@
 			<br><br>	
 			Non ci sono partecipanti a questo evento
 			</c:if>
-			<form:form action="partecipatePerson" method="POST">
+			
+			
+			
 			<c:if test="${not empty persons}">
-					<h3>Partecipanti all'evento</h3>
-					
+			<h3>Partecipanti all'evento</h3>
+			<p>
+			<form:form ></p>					
 			<!-- Button to partecipate at the event and non partecipate -->
 			
 			
-				<input type="submit" value="Partecipa all'evento" class="add-button" />	
-				<input type="submit" value="Non Partecipare piu'" class="add-button" />	
-				
+				<input type="submit" value="Partecipa all'evento" onclick="form.action='partecipatePerson';" class="add-button" name="partecipate" method="POST"/>		
+				<input type="submit" value="Non Partecipare piu'" onclick="form.action='nonPartecipatePerson';" class="add-button" name="nonpartecipate"/>
+					
 			<!-- add our html table here -->
 			
 				<table>
@@ -71,7 +74,7 @@
 				
 				</table>
 			
-			</c:if>
+			
 			
 			<br><br>
 			<p>
@@ -85,7 +88,9 @@
 				<input type="text" value="${tempEvent.idEvento}" name="theIdEvent"/>
 			</c:forEach>
 			</form:form>
-				
+			</c:if>
+			
+			
 			</div>
 		</div>
 
