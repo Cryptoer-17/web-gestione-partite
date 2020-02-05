@@ -190,10 +190,13 @@ public class PersonDAOImpl implements PersonDAO {
 
 	@Override
 	@Transactional
-	public void deleteAssocEventPers(int idPers) {
+	public void deleteAssocEventPers(Persona person,Evento theEvent) {
 		Session currentSession= sessionFactory.getCurrentSession();		
-		Persona thePers = currentSession.get(Persona.class, idPers);
-		currentSession.delete(thePers);
+		theEvent.removePerson(person);
+		person.getEventi().clear();
+		currentSession.flush();
+		currentSession.delete(person);
+		
 	}
 
 

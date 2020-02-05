@@ -1,7 +1,9 @@
 package com.iaco2code.springdemo.entity;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -63,7 +65,7 @@ public class Persona {
 	@Column(name="Password")
 	private String password;
 	
-	@ManyToMany(fetch=FetchType.LAZY,
+	@ManyToMany(fetch=FetchType.EAGER,
 			cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 			 CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinTable(
@@ -72,7 +74,7 @@ public class Persona {
 			inverseJoinColumns=@JoinColumn(name="idEvento")
 			)
 	private List<Evento> eventi;
-	
+		
 	public Persona() {
 	
 	}
@@ -116,16 +118,16 @@ public class Persona {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	
+	public List<Evento> getEventi() {
+		return eventi;
+	}
 
 	public void setEventi(List<Evento> eventi) {
 		this.eventi = eventi;
 	}
 
-	
-	
-	
-	
-	
 	public String getUsername() {
 		return username;
 	}
@@ -142,19 +144,17 @@ public class Persona {
 		this.password = password;
 	}
 
-	public List<Evento> getEventi() {
-		return eventi;
-	}
 
 	// add a convenience method
-	public void addEvento(Evento theEvent) {
-		
+	public void addEvento(Evento theEvent) {	
 		if (eventi == null) {
-			eventi = new ArrayList<>();
+			this.eventi = new ArrayList<>();
 		}
 		
-		eventi.add(theEvent);
+		this.eventi.add(theEvent);
 	}
+	
+	
 
 	@Override
 	public String toString() {

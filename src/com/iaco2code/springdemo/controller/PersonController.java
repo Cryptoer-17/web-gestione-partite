@@ -202,8 +202,10 @@ public class PersonController {
 										Model theModel){
 		
 		Persona thePers = personDAO.getPersonsId(idPers);
-		personDAO.deleteAssocEventPers(idPers);
-		personDAO.savePerson(thePers);
+		Evento thEvent = personDAO.getEventId(idEvent);
+		personDAO.deleteAssocEventPers(thePers,thEvent);
+		Persona tempPers= new Persona(thePers.getNome(),thePers.getCognome(),thePers.getEmail(),thePers.getUsername(),thePers.getPassword());
+		personDAO.savePerson(tempPers);
 		
 		return "page-form";
 	}

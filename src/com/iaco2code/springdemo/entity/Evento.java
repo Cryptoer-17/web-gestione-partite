@@ -1,7 +1,9 @@
 package com.iaco2code.springdemo.entity;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -53,7 +55,7 @@ public class Evento {
 	@Column(name="Struttura")
 	private String struttura;
 	
-	@ManyToMany(fetch=FetchType.LAZY,
+	@ManyToMany(fetch=FetchType.EAGER,
 			cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 			 CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinTable(
@@ -113,6 +115,9 @@ public class Evento {
 		this.struttura = struttura;
 	}
 
+
+	
+	
 	public List<Persona> getPersone() {
 		return persone;
 	}
@@ -120,15 +125,17 @@ public class Evento {
 	public void setPersone(List<Persona> persone) {
 		this.persone = persone;
 	}
-	
-	
+
 	public void addPersona(Persona thePerson) {
-		
-		if (persone == null) {
-			persone = new ArrayList<>();
+		if(this.persone == null) {
+			this.persone = new ArrayList<Persona>();
 		}
-		
-		persone.add(thePerson);
+		this.persone.add(thePerson);
+	}
+	
+	public void removePerson(Persona person) {
+		this.persone.remove(person);
+		person.getEventi().remove(this);
 	}
 
 

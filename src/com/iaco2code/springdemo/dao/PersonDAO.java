@@ -27,5 +27,5 @@ public interface PersonDAO {
 
 	public String getTipoEvent(int idEvent);
 
-	public void deleteAssocEventPers(int idPers);
+	public void deleteAssocEventPers(Persona idPers,Evento theEvent);
 }
