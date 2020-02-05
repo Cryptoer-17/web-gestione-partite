@@ -114,8 +114,6 @@ public class PersonController {
 	public String listPerson(@RequestParam("theId") int theId,@RequestParam("theSearchName") String theSearchName,Model theModel) {
 		
 		
-		System.out.println(theId);
-		
 		//get person id session from the dao
 		Persona thePers = personDAO.getPersonsId(theId);
 		List<Persona> thePerson = new ArrayList<Persona>();
@@ -179,9 +177,14 @@ public class PersonController {
 	}
 	
 	@GetMapping("/partecipatePerson")
-	public String partecipatePerson(Model theModel) {
+	public String partecipatePerson(@RequestParam("theIdPers") int idPers ,
+									@RequestParam("theIdEvent") int idEvent,
+									Model theModel) {
+		System.out.println(idPers);
+		System.out.println(idEvent);
+/*		personDAO.assocPersEvent(idPers,idEvent);*/
 		
-		return "";
+		return "redirect:/person/listPerson";
 	}
 	
 

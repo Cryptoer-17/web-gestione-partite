@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE>
 
@@ -41,51 +42,49 @@
 			<br><br>	
 			Non ci sono partecipanti a questo evento
 			</c:if>
+			<form:form action="partecipatePerson" method="GET">
 			<c:if test="${not empty persons}">
 					<h3>Partecipanti all'evento</h3>
 					
 			<!-- Button to partecipate at the event and non partecipate -->
 			
 			
-				 <input type="submit" onclick="window.location='/person/partecipatePerson';" value="Partecipa all'evento" class="add-button" />
+				<input type="submit" value="Partecipa all'evento" class="add-button" />	
 				<input type="submit" value="Non Partecipare piu'" class="add-button" />	
-					
+				
 			<!-- add our html table here -->
 			
-			<table>
-				<tr>
-					<th>Nome &nbsp &nbsp &nbsp &nbsp &nbsp </th>
-					<th>Cognome</th>
-				</tr>
-				
-				<!-- loop over and print our customers -->
-				<c:forEach var="tempPerson" items="${persons}">
-				
+				<table>
 					<tr>
-						<td> ${tempPerson.nome}</td>
-						<td> ${tempPerson.cognome}</td>
+						<th>Nome &nbsp &nbsp &nbsp &nbsp &nbsp </th>
+						<th>Cognome</th>
 					</tr>
+					
+					<!-- loop over and print our customers -->
+					<c:forEach var="tempPerson" items="${persons}">
+						<tr>
+							<td> ${tempPerson.nome}</td>
+							<td> ${tempPerson.cognome}</td>
+						</tr>	
+					</c:forEach>
 				
-				
-				</c:forEach>
-				
-			</table>
+				</table>
 			
 			</c:if>
 			
 			<br><br>
 			<p>
 			<a href="${pageContext.request.contextPath}/person/ShowPrimaryPage">Torna indietro</a>
-			</p>
-			
+			</p>		
 			
 			<c:forEach var="tempPers" items="${person}">	
-					<input type="text" value="${tempPers.idPersona}" name="theIdPers"/>
+				<input type="text" value="${tempPers.idPersona}" name="theIdPers"/>
 			</c:forEach>	
-			<c:if test="${not empty evento}">
-			<br><br>	
-			Non c'è evento ${evento.idEvento}
-			</c:if>
+			<c:forEach var="tempEvent" items="${eventos}">	
+				<input type="text" value="${tempEvent.idEvento}" name="theIdEvent"/>
+			</c:forEach>
+			</form:form>
+				
 			</div>
 		</div>
 

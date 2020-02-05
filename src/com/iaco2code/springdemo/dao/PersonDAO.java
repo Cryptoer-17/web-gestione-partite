@@ -20,4 +20,6 @@ public interface PersonDAO {
 	public Persona checkPerson(String theUserPers, String theUserPass);
 
 	public Persona getPersonsId(int theId);
+
+	public void assocPersEvent(int idPers, int idEvent);
 }

@@ -139,6 +139,18 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 
 
+	@Override
+	@Transactional
+	public void assocPersEvent(int idPers, int idEvent) {
+		Session currentSession= sessionFactory.getCurrentSession();		
+		Persona thePers = currentSession.get(Persona.class, idPers);
+		Evento theEvent = currentSession.get(Evento.class, idEvent);
+		thePers.addEvento(theEvent);
+		currentSession.save(thePers);
+		
+	}
+
+
 	
 
 }
