@@ -23,6 +23,7 @@ import com.iaco2code.springdemo.dao.PersonDAO;
 import com.iaco2code.springdemo.daoevent.EventDAO;
 import com.iaco2code.springdemo.entity.Evento;
 import com.iaco2code.springdemo.entity.Persona;
+import com.iaco2code.springdemo.sendemail.Code;
 import com.iaco2code.springdemo.sendemail.JavaMail;
 
 @Controller
@@ -100,7 +101,9 @@ public class PersonController {
 			if (validPerson.isEmpty()) {
 			String email = thePerson.getEmail();
 			System.out.println(thePerson.getNome());
-			JavaMail.send_email(email,"123456");
+			String codice = Code.generateCode();
+			JavaMail.send_email(email,codice);
+			theModel.addAttribute("prova",codice);
 			theModel.addAttribute("person",thePerson);
 			return "attend-person";
 			}
@@ -115,9 +118,10 @@ public class PersonController {
 	@PostMapping("/confirmCode")
 	public String confirmCode(@ModelAttribute("person") Persona thePerson,
 								@RequestParam("theCodeUser") String theCodeUser,
+								@RequestParam ("theCode") String trueCode,
 								RedirectAttributes redirectAttrs,
 								Model theModel) {
-		if(theCodeUser.equals("123456")) {
+		if(theCodeUser.equals(trueCode)) {
 			//salva la persona nel db e ritorna la pagina primaria
 			thePerson.setAdmin(0);
 			personDAO.savePerson(thePerson);
