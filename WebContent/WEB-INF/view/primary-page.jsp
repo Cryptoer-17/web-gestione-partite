@@ -50,14 +50,20 @@
 				</c:forEach>		
 		</table>
 		
+		<c:if test="${person.admin==1}">
+			<input type="submit" value="Crea l'evento" onclick="form.action='createEvent';" class="add-button" name="partecipate" method="GET"/>		
+		</c:if>
+	
+		
+		
+		<br><br>
 		<p>
 			<a href="${pageContext.request.contextPath}/person/showFormForLogin">Torna indietro</a>
 		</p>	
 		
-			<c:forEach var="tempPers" items="${person}">
-					
-					<input type="text" value="${tempPers.idPersona}" name="theId"/>
-				</c:forEach>	
+			
+					<input type="text" value="${person.idPersona}" name="theId"/>
+				
 		
 		
 		

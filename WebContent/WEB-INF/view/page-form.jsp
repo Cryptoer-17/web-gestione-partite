@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
 
@@ -69,11 +70,13 @@
 				</tbody>
 			</table>
 		
+			
+		
 		</form:form>
 		
 		
-		<c:if test="${not empty person}">
-				Non è stato inserito correttamente il tipo di evento o non è in programma.
+		<c:if test="${not empty lista}">
+		L'username è gia presente oppure l'email è già stata usata in precedenza.
 		</c:if>
 		
 		<div style="clear; both;"></div>

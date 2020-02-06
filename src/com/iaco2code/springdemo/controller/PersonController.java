@@ -76,7 +76,7 @@ public class PersonController {
 		}
 		else {
 		List<Persona> validPerson = personDAO.checkIfExistEmailOrUser(thePerson.getEmail(),thePerson.getUsername());
-			if (validPerson == null) {
+			if (validPerson.isEmpty()) {
 			String email = thePerson.getEmail();
 			System.out.println(thePerson.getNome());
 			JavaMail.send_email(email,"123456");
@@ -85,8 +85,8 @@ public class PersonController {
 			}
 			else 
 			{
-				theModel.addAttribute("person",thePerson);
-				return "redirect:/person/pageForm";
+				theModel.addAttribute("lista",validPerson);
+				return "page-form";
 			}
 		}
 	}
@@ -155,7 +155,7 @@ public class PersonController {
 	
 	@GetMapping("/ShowPrimaryPage")
 	public String ShowPrimaryPage (Model theModel) {
-	    List<Persona> thePers = (List<Persona>) theModel.asMap().get("some");
+	    Persona thePers = (Persona) theModel.asMap().get("some");
 	  
 	    theModel.addAttribute("person",thePers);
 
@@ -252,7 +252,7 @@ public class PersonController {
 		List<Persona> list = new ArrayList<Persona>();
 		list.add(thePers);
 		if(thePers!=null) {
-			redirectAttrs.addFlashAttribute("some", list);
+			redirectAttrs.addFlashAttribute("some", thePers);
 			return "redirect:/person/ShowPrimaryPage";  
 		}
 		else {
