@@ -26,11 +26,11 @@
 		
 		
 	
-		<form:form action="listPerson" modelAttribute="person" method="POST">
+		<form:form>
 		 <br>
 		 <!--  add a search box -->     
                 Cerca informazioni sull'evento a cui desideri partecipare, inserendo il "Tipo": <input type="text" name="theSearchName" />
-		 <input type="submit" value="Cerca" class="add-button" />
+		 <input type="submit" value="Cerca" class="add-button" method="POST"/>
 		<table>
 				<tr>
 					<th >Tipo &nbsp &nbsp &nbsp &nbsp &nbsp </th>
@@ -50,10 +50,40 @@
 				</c:forEach>		
 		</table>
 		
+		<br>
 		<c:if test="${person.admin==1}">
-			<input type="submit" value="Crea l'evento" onclick="form.action='createEvent';" class="add-button" name="partecipate" method="GET"/>		
+			<input type="submit" value="Crea un evento"  onclick="form.action='createEvent';" class="add-button" name="partecipate" method="POST"/>		
 		</c:if>
-	
+		<br>
+		<c:if test="${not empty listcreatevent}">
+			<form:form action="saveEvent" modelAttribute="evento" method="POST">
+					<table>
+				<tbody>
+				<tr>
+					<td>
+						<label>Tipo:(*)</label>
+						<form:input path="tipo"/>&nbsp&nbsp&nbsp&nbsp&nbsp
+										
+						<label>Orario:(*)</label>
+						<form:input path="orario" />
+					</td>
+				</tr>
+				<tr>
+					<td>						
+						<label>Luogo :(*)</label>
+						<form:input path="luogo" />&nbsp
+								
+						<label>Struttura:(*)</label>
+						<form:input path="struttura" />
+					</td>				
+				</tr>							
+				</tbody>
+			</table>
+			
+			<input type="submit" value="Salva il nuovo evento" onclick="form.action='saveEvent';" class="save"/>
+			
+			</form:form>		
+		</c:if>
 		
 		
 		<br><br>

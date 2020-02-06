@@ -74,7 +74,7 @@
 		
 		</form:form>
 		
-		
+		<br>
 		<c:if test="${not empty lista}">
 		L'username è gia presente oppure l'email è già stata usata in precedenza.
 		</c:if>

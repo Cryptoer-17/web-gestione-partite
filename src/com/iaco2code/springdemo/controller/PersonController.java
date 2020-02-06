@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.iaco2code.springdemo.dao.PersonDAO;
+import com.iaco2code.springdemo.daoevent.EventDAO;
 import com.iaco2code.springdemo.entity.Evento;
 import com.iaco2code.springdemo.entity.Persona;
 import com.iaco2code.springdemo.sendemail.JavaMail;
@@ -44,7 +45,11 @@ public class PersonController {
 	//need to inject the person DAO
 	@Autowired
 	private PersonDAO personDAO;
-		
+	
+	@Autowired
+	private EventDAO eventDAO;
+	
+	
 	
 	@GetMapping("/pageForm")
 	public String pageForm(Model theModel) {
@@ -63,6 +68,14 @@ public class PersonController {
 		personDAO.savePerson(thePerson);
 		
 		return "redirect:/person/ShowPrimaryPage";
+	}
+	
+	@PostMapping("/saveEvent")
+	public String saveEvent(@ModelAttribute("evento") Evento theEvent,
+							Model theModel) {
+		System.out.println(theEvent);
+		eventDAO.saveEvent(theEvent);
+		return "";
 	}
 	
 	@PostMapping("/attendPerson")
@@ -260,5 +273,37 @@ public class PersonController {
 		}
 	    }
 	
+	 
+	 @PostMapping("/createEvent")
+	 public String createEvent(Model theModel,@RequestParam("theId") int theId) {
+		 
+		//get person id session from the dao
+			Persona thePers = personDAO.getPersonsId(theId);
+			
+			//add the person to the model
+			 theModel.addAttribute("person",thePers);
+			 
+			 
+			//get list event from DAO 
+			List<Evento> events=personDAO.getEvents();
+			
+			
+			//add the list to the model  
+			theModel.addAttribute("eventi",events);
+			
+			List<Persona> nullPerson= new ArrayList<Persona>();
+			nullPerson.add(thePers);
+			
+			//add the list to the model  
+			theModel.addAttribute("listcreatevent",nullPerson);
+			
+			//create model attrubute to bind form data
+			Evento theEvent = new Evento();
+			theModel.addAttribute("evento",theEvent);
+			
+			
+			
+		 return "primary-page";
+	 }
 	
 }

@@ -91,10 +91,7 @@ public class PersonDAOImpl implements PersonDAO {
 		Session currentSession= sessionFactory.getCurrentSession();
 		
 		//save the person finally LOL
-		currentSession.saveOrUpdate(thePerson);
-		
-		
-		
+		currentSession.saveOrUpdate(thePerson);			
 	}
 
 
