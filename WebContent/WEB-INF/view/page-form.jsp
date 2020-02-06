@@ -71,6 +71,11 @@
 		
 		</form:form>
 		
+		
+		<c:if test="${not empty person}">
+				Non è stato inserito correttamente il tipo di evento o non è in programma.
+		</c:if>
+		
 		<div style="clear; both;"></div>
 
 		

@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
-
+import javax.validation.Valid;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -197,6 +197,29 @@ public class PersonDAOImpl implements PersonDAO {
 		currentSession.flush();
 		currentSession.delete(person);
 		
+	}
+
+
+
+
+	@Override
+	@Transactional
+	public List<Persona> checkIfExistEmailOrUser(String email,String username) {
+		
+		//get current session
+				Session currentSession= sessionFactory.getCurrentSession();
+				
+				//retrive the person with query
+				Query<Persona> theQuery = currentSession.createQuery("from Persona where Email =:email OR Username=:user");
+				theQuery.setParameter("email", email);
+				theQuery.setParameter("user", username);
+				try {
+				List<Persona> thePerson = theQuery.getResultList();
+				return thePerson;
+				}
+				catch(NoResultException nre) {
+					return null;	
+				}
 	}
 
 

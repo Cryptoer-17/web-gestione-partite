@@ -2,6 +2,8 @@ package com.iaco2code.springdemo.dao;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.iaco2code.springdemo.entity.Evento;
 import com.iaco2code.springdemo.entity.Persona;
 
@@ -28,4 +30,6 @@ public interface PersonDAO {
 	public String getTipoEvent(int idEvent);
 
 	public void deleteAssocEventPers(Persona idPers,Evento theEvent);
+
+	public List<Persona> checkIfExistEmailOrUser(String email,String username);
 }

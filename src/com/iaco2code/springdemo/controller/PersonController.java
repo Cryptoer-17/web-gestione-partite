@@ -75,11 +75,19 @@ public class PersonController {
 			return "page-form";
 		}
 		else {
-		String email = thePerson.getEmail();
-		System.out.println(thePerson.getNome());
-		JavaMail.send_email(email,"123456");
-		theModel.addAttribute("person",thePerson);
-		return "attend-person";
+		List<Persona> validPerson = personDAO.checkIfExistEmailOrUser(thePerson.getEmail(),thePerson.getUsername());
+			if (validPerson == null) {
+			String email = thePerson.getEmail();
+			System.out.println(thePerson.getNome());
+			JavaMail.send_email(email,"123456");
+			theModel.addAttribute("person",thePerson);
+			return "attend-person";
+			}
+			else 
+			{
+				theModel.addAttribute("person",thePerson);
+				return "redirect:/person/pageForm";
+			}
 		}
 	}
 	
