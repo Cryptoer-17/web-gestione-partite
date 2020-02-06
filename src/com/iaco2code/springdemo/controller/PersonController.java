@@ -121,9 +121,7 @@ public class PersonController {
 			//salva la persona nel db e ritorna la pagina primaria
 			thePerson.setAdmin(0);
 			personDAO.savePerson(thePerson);
-			List<Persona> persons = new ArrayList<Persona>();
-			persons.add(thePerson);
-			redirectAttrs.addFlashAttribute("some",persons);
+			redirectAttrs.addFlashAttribute("some",thePerson);
 			return "redirect:/person/ShowPrimaryPage";
 		}
 		else //messaggio di errore e rimani in quella pagina per ora
