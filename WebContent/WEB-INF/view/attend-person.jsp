@@ -43,6 +43,9 @@
 					</tr>
 						<td><form:input path="password" style="display:none"/></td>
 					</tr>
+					</tr>
+						<td><form:input path="admin" style="display:none"/></td>
+					</tr>
 					
 					
 				</tbody>

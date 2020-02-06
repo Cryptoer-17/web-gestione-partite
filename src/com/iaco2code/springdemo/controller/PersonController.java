@@ -90,6 +90,7 @@ public class PersonController {
 								Model theModel) {
 		if(theCodeUser.equals("123456")) {
 			//salva la persona nel db e ritorna la pagina primaria
+			thePerson.setAdmin(0);
 			personDAO.savePerson(thePerson);
 			List<Persona> persons = new ArrayList<Persona>();
 			persons.add(thePerson);
@@ -208,7 +209,7 @@ public class PersonController {
 		Persona thePers = personDAO.getPersonsId(idPers);
 		Evento thEvent = personDAO.getEventId(idEvent);
 		personDAO.deleteAssocEventPers(thePers,thEvent);
-		Persona tempPers= new Persona(thePers.getNome(),thePers.getCognome(),thePers.getEmail(),thePers.getUsername(),thePers.getPassword());
+		Persona tempPers= new Persona(thePers.getNome(),thePers.getCognome(),thePers.getEmail(),thePers.getUsername(),thePers.getPassword(),thePers.getAdmin());
 		personDAO.savePerson(tempPers);
 		
 		

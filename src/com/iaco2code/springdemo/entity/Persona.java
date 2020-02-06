@@ -66,6 +66,9 @@ public class Persona {
 	@Column(name="Password")
 	private String password;
 	
+	@Column(name="Administ")
+	private int admin; 
+	
 	@ManyToMany(fetch=FetchType.EAGER,
 			cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 			 CascadeType.DETACH, CascadeType.REFRESH})
@@ -86,6 +89,17 @@ public class Persona {
 		this.email = email;
 		this.username=username;
 		this.password=password;
+	}
+	
+	
+
+	public Persona(String nome, String cognome, String email,String username,String password, int admin) {
+		this.nome = nome;
+		this.cognome = cognome;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+		this.admin = admin;
 	}
 
 	public int getIdPersona() {
@@ -145,6 +159,16 @@ public class Persona {
 		this.password = password;
 	}
 
+	
+	
+
+	public int getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(int admin) {
+		this.admin = admin;
+	}
 
 	// add a convenience method
 	public void addEvento(Evento theEvent) {	
