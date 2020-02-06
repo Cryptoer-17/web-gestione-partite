@@ -135,7 +135,7 @@ public class PersonController {
 	                                    Model theModel) {
 
 	        // search customers from the service
-	        List<Evento> theEvents = personDAO.getEvent(theSearchName);
+	        List<Evento> theEvents = eventDAO.getEvent(theSearchName);
 	                
 	        // add the customers to the model
 	      
@@ -157,7 +157,7 @@ public class PersonController {
 		
 
 		//get the event grom the dao
-		List<Evento> theEvent = personDAO.getEvent(theSearchName);	
+		List<Evento> theEvent = eventDAO.getEvent(theSearchName);	
 		//add the event to the model  
 		theModel.addAttribute("eventos",theEvent);
 		
@@ -181,7 +181,7 @@ public class PersonController {
 	    theModel.addAttribute("person",thePers);
 
 		//get list event from DAO 
-		List<Evento> events=personDAO.getEvents();
+		List<Evento> events=eventDAO.getEvents();
 		
 		
 			
@@ -215,7 +215,7 @@ public class PersonController {
 		
 		String tipo = eventDAO.getTipoEvent(idEvent);
 		
-		List<Evento> theEvent = personDAO.getEvent(tipo);	
+		List<Evento> theEvent = eventDAO.getEvent(tipo);	
 		//add the event to the model  
 		theModel.addAttribute("eventos",theEvent);
 		
@@ -248,7 +248,7 @@ public class PersonController {
 		
 		String tipo = eventDAO.getTipoEvent(idEvent);
 		
-		List<Evento> theEvent = personDAO.getEvent(tipo);	
+		List<Evento> theEvent = eventDAO.getEvent(tipo);	
 		//add the event to the model  
 		theModel.addAttribute("eventos",theEvent);
 		
@@ -293,7 +293,7 @@ public class PersonController {
 			 
 			 
 			//get list event from DAO 
-			List<Evento> events=personDAO.getEvents();
+			List<Evento> events=eventDAO.getEvents();
 			
 			
 			//add the list to the model  
@@ -330,7 +330,7 @@ public class PersonController {
 			 
 			 
 			//get list event from DAO 
-			List<Evento> events=personDAO.getEvents();
+			List<Evento> events=eventDAO.getEvents();
 			
 			
 			//add the list to the model  
@@ -338,7 +338,7 @@ public class PersonController {
 		 
 		 
 			//get list event from DAO 
-			List<Evento> evento=personDAO.getEvents();
+			List<Evento> evento=eventDAO.getEvents();
 			theModel.addAttribute("evento",evento);
 			
 			

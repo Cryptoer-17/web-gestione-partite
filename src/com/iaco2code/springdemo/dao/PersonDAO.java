@@ -13,10 +13,6 @@ public interface PersonDAO {
 
 	public List<Persona> getPersons(String evento);
 
-	public List<Evento> getEvent(String evento);
-
-	public List<Evento> getEvents();
-
 	public void savePerson(Persona thePerson);
 
 	public Persona checkPerson(String theUserPers, String theUserPass);

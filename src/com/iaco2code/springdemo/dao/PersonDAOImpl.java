@@ -44,46 +44,6 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 
 
-	
-	
-	@Override
-	@Transactional
-	public List<Evento> getEvent(String evento) {
-		
-		//get the current hibernate session
-		Session currentSession = sessionFactory.getCurrentSession();
-		
-		//create query
-		Query<Evento> theQuery = currentSession.createQuery("from Evento where Tipo='"+evento+"'");
-		
-		
-		//execute query and get result list
-		List<Evento> eventi = theQuery.getResultList();
-		
-		//return the result
-		return eventi;
-		
-	}
-
-
-	@Override
-	@Transactional
-	public List<Evento> getEvents() {
-		//get the current hibernate session
-		Session currentSession = sessionFactory.getCurrentSession();
-			
-		//create query
-		Query<Evento> theQuery = currentSession.createQuery("from Evento");
-						
-				
-		//execute query and get result list
-		List<Evento> eventi = theQuery.getResultList();
-				
-		//return the result
-		return eventi;
-	}
-
-
 	@Override
 	@Transactional
 	public void savePerson(Persona thePerson) {
@@ -114,10 +74,8 @@ public class PersonDAOImpl implements PersonDAO {
 		catch(NoResultException nre) {
 			return null;	
 		}
-		
-		
+			
 	}
-
 
 	@Override
 	@Transactional
