@@ -213,7 +213,7 @@ public class PersonController {
 		
 		
 		List<Persona> person = new ArrayList<Persona>();
-		person.add(thePers);
+		person.add(tempPers);
 		theModel.addAttribute("person",person);
 		
 		String tipo = personDAO.getTipoEvent(idEvent);
