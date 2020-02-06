@@ -30,7 +30,7 @@
 		 <br>
 		 <!--  add a search box -->     
                 Cerca informazioni sull'evento a cui desideri partecipare, inserendo il "Tipo": <input type="text" name="theSearchName" onclick="form.action='listPerson';"  />
-		 <input type="submit" value="Cerca" onclick="form.action='listPerson';" class="add-button" method="POST"/>
+		 <input type="submit" value="Cerca" onclick="form.action='listEventSearch';" class="add-button" method="POST"/>
 		<table>
 				<tr>
 					<th >Tipo &nbsp &nbsp &nbsp &nbsp &nbsp </th>
@@ -94,7 +94,7 @@
 			</tbody>
 		</table>
 		<br>
-		<input type="submit" value="ELIMINA L'EVENTO" onclick="form.action='removeEvent';"  class="save"/>
+		<input type="submit" value="ELIMINA L'EVENTO" onclick="form.action='removeDaoEvent';"  class="save"/>
 		</c:if>
 		</c:if>
 		<br><br>

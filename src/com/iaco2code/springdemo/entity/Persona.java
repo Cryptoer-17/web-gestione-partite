@@ -66,6 +66,7 @@ public class Persona {
 	@Column(name="Password")
 	private String password;
 	
+	@NotNull(message="is required")
 	@Column(name="Administ")
 	private int admin; 
 	
@@ -178,15 +179,16 @@ public class Persona {
 		
 		this.eventi.add(theEvent);
 	}
-	
-	
 
 	@Override
 	public String toString() {
 		return "Persona [idPersona=" + idPersona + ", nome=" + nome + ", cognome=" + cognome + ", email=" + email
-				+ ", username=" + username + ", password=" + password + "]";
+				+ ", username=" + username + ", password=" + password + ", admin=" + admin + "]";
 	}
+	
+	
 
+	
 	
 	
 	
