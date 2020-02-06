@@ -72,10 +72,18 @@ public class PersonController {
 	
 	@PostMapping("/saveEvent")
 	public String saveEvent(@ModelAttribute("evento") Evento theEvent,
+							@RequestParam("theId") int theId,
+							RedirectAttributes redirectAttrs,
 							Model theModel) {
+		
+		
 		System.out.println(theEvent);
 		eventDAO.saveEvent(theEvent);
-		return "";
+		
+		Persona thePers = personDAO.getPersonsId(theId);
+		redirectAttrs.addFlashAttribute("some", thePers);
+		return "redirect:/person/ShowPrimaryPage";  
+		
 	}
 	
 	@PostMapping("/attendPerson")

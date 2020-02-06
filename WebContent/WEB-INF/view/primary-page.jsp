@@ -26,11 +26,11 @@
 		
 		
 	
-		<form:form>
+		<form:form modelAttribute="evento">
 		 <br>
 		 <!--  add a search box -->     
-                Cerca informazioni sull'evento a cui desideri partecipare, inserendo il "Tipo": <input type="text" name="theSearchName" />
-		 <input type="submit" value="Cerca" class="add-button" method="POST"/>
+                Cerca informazioni sull'evento a cui desideri partecipare, inserendo il "Tipo": <input type="text" name="theSearchName" onclick="form.action='listPerson';"  />
+		 <input type="submit" value="Cerca" onclick="form.action='listPerson';" class="add-button" method="POST"/>
 		<table>
 				<tr>
 					<th >Tipo &nbsp &nbsp &nbsp &nbsp &nbsp </th>
@@ -52,11 +52,10 @@
 		
 		<br>
 		<c:if test="${person.admin==1}">
-			<input type="submit" value="Crea un evento"  onclick="form.action='createEvent';" class="add-button" name="partecipate" method="POST"/>		
-		</c:if>
+			<input type="submit" value="Crea un evento"  onclick="form.action='createEvent';" class="add-button" name="partecipate" method="POST"/>			
 		<br>
 		<c:if test="${not empty listcreatevent}">
-			<form:form action="saveEvent" modelAttribute="evento" method="POST">
+		
 					<table>
 				<tbody>
 				<tr>
@@ -80,23 +79,21 @@
 				</tbody>
 			</table>
 			
-			<input type="submit" value="Salva il nuovo evento" onclick="form.action='saveEvent';" class="save"/>
+			<input type="submit" value="Salva il nuovo evento" onclick="form.action='saveEvent';"  class="save"/>
 			
-			</form:form>		
+			
+			
+			
+			
 		</c:if>
-		
-		
+		</c:if>
 		<br><br>
-		<p>
-			<a href="${pageContext.request.contextPath}/person/showFormForLogin">Torna indietro</a>
-		</p>	
+			<p>
+				<a href="${pageContext.request.contextPath}/person/showFormForLogin">Torna indietro</a>
+			</p>	
+			<input type="text" value="${person.idPersona}" name="theId"/>
 		
-			
-					<input type="text" value="${person.idPersona}" name="theId"/>
-				
-		
-		
-		
+	
 	
 	</form:form>
 		
