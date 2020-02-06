@@ -25,10 +25,6 @@ public interface PersonDAO {
 
 	public void assocPersEvent(int idPers, int idEvent);
 
-	public Evento getEventId(int idEvent);
-
-	public String getTipoEvent(int idEvent);
-
 	public void deleteAssocEventPers(Persona idPers,Evento theEvent);
 
 	public List<Persona> checkIfExistEmailOrUser(String email,String username);

@@ -6,4 +6,9 @@ public interface EventDAO {
 
 	void saveEvent(Evento theEvent);
 
+	void deleteEvent(Evento theEvent);
+
+	Evento getEventId(int idEvent);
+	
+	String getTipoEvent(int idEvent);
 }

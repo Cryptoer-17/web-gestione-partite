@@ -149,41 +149,6 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 
 
-	@Override
-	@Transactional
-	public Evento getEventId(int idEvent) {
-		Session currentSession= sessionFactory.getCurrentSession();		
-		Query<Evento> theQuery = currentSession.createQuery("from Evento where idEvento=:idEvent");
-		theQuery.setParameter("idEvent", idEvent);
-		
-		try {
-			Evento theEvent = theQuery.getSingleResult();
-			return theEvent;
-			}
-			catch(NoResultException nre) {
-				return null;	
-			}
-	}
-
-
-
-
-	@Override
-	@Transactional
-	public String getTipoEvent(int idEvent) {
-		Session currentSession= sessionFactory.getCurrentSession();		
-		Query<Evento> theQuery = currentSession.createQuery("from Evento where idEvento=:idEvent");
-		theQuery.setParameter("idEvent", idEvent);
-		
-		try {
-			Evento theEvent = theQuery.getSingleResult();
-			return theEvent.getTipo();
-			}
-			catch(NoResultException nre) {
-				return null;	
-			}
-	}
-
 
 	@Override
 	@Transactional
