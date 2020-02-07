@@ -29,61 +29,46 @@ public class PersonDAOImpl implements PersonDAO {
 	@Override
 	@Transactional
 	public List<Persona> getPersons(String event) {
-		
 		//get the current hibernate session
-		Session currentSession= sessionFactory.getCurrentSession();
-		
+		Session currentSession= sessionFactory.getCurrentSession();		
 		//create query
-		Query<Persona> theQuery = currentSession.createQuery("select p from Persona p join p.eventi e where Tipo='"+event+"'",Persona.class);
-		
+		Query<Persona> theQuery = currentSession.createQuery("select p from Persona p join p.eventi e where Tipo='"+event+"'",Persona.class);		
 		//execute query and get result list 
 		List<Persona> persone = theQuery.getResultList();
-
 		//return the result
 		return persone;
 	}
-
-
 	@Override
 	@Transactional
 	public void savePerson(Persona thePerson) {
 		//get current session
-		Session currentSession= sessionFactory.getCurrentSession();
-		
+		Session currentSession= sessionFactory.getCurrentSession();		
 		//save the person finally LOL
 		currentSession.saveOrUpdate(thePerson);			
 	}
-
-
 	@Override
 	@Transactional
-	public Persona checkPerson(String theUserPers, String theUserPass) {
-		
+	public Persona checkPerson(String theUserPers, String theUserPass) {	
 		//get current session
-		Session currentSession= sessionFactory.getCurrentSession();
-		
+		Session currentSession= sessionFactory.getCurrentSession();		
 		//retrive the person with query
 		Query<Persona> theQuery = currentSession.createQuery("from Persona where Username=:user AND Password =:pass");
 		theQuery.setParameter("user", theUserPers);
-		theQuery.setParameter("pass", theUserPass);
-		
+		theQuery.setParameter("pass", theUserPass);		
 		try {
 		Persona thePerson = theQuery.getSingleResult();
 		return thePerson;
 		}
 		catch(NoResultException nre) {
 			return null;	
-		}
-			
+		}			
 	}
-
 	@Override
 	@Transactional
 	public Persona getPersonsId(int theId) {
 		Session currentSession= sessionFactory.getCurrentSession();		
 		Query<Persona> theQuery = currentSession.createQuery("from Persona where idPersona=:theId");
-		theQuery.setParameter("theId", theId);
-		
+		theQuery.setParameter("theId", theId);		
 		try {
 			Persona thePerson = theQuery.getSingleResult();
 			return thePerson;
@@ -91,10 +76,7 @@ public class PersonDAOImpl implements PersonDAO {
 			catch(NoResultException nre) {
 				return null;	
 			}
-
 	}
-
-
 	@Override
 	@Transactional
 	public void assocPersEvent(int idPers, int idEvent) {
@@ -102,12 +84,8 @@ public class PersonDAOImpl implements PersonDAO {
 		Persona thePers = currentSession.get(Persona.class, idPers);
 		Evento theEvent = currentSession.get(Evento.class, idEvent);
 		thePers.addEvento(theEvent);
-		currentSession.save(thePers);
-		
+		currentSession.save(thePers);	
 	}
-
-
-
 	@Override
 	@Transactional
 	public void deleteAssocEventPers(Persona person,Evento theEvent) {
@@ -115,20 +93,13 @@ public class PersonDAOImpl implements PersonDAO {
 		theEvent.removePerson(person);
 		person.getEventi().clear();
 		currentSession.flush();
-		currentSession.delete(person);
-		
+		currentSession.delete(person);		
 	}
-
-
-
-
 	@Override
 	@Transactional
-	public List<Persona> checkIfExistEmailOrUser(String email,String username) {
-		
+	public List<Persona> checkIfExistEmailOrUser(String email,String username) {		
 		//get current session
-				Session currentSession= sessionFactory.getCurrentSession();
-				
+				Session currentSession= sessionFactory.getCurrentSession();				
 				//retrive the person with query
 				Query<Persona> theQuery = currentSession.createQuery("from Persona where Email =:email OR Username=:user");
 				theQuery.setParameter("email", email);
@@ -141,8 +112,6 @@ public class PersonDAOImpl implements PersonDAO {
 					return null;	
 				}
 	}
-
-
 	@Override
 	@Transactional
 	public List<Persona> getPersonsAssocEventId(int idEvento) {
@@ -157,6 +126,21 @@ public class PersonDAOImpl implements PersonDAO {
 
 				//return the result
 				return persone;
+	}
+	
+	@Override
+	@Transactional
+	public List<Persona> getAllPerson() {	
+		//get the current hibernate session
+		Session currentSession= sessionFactory.getCurrentSession();
+		//create query
+		Query<Persona> theQuery = currentSession.createQuery("from Persona");
+		
+		//execute query and get result list 
+		List<Persona> persone = theQuery.getResultList();
+
+		//return the result
+		return persone;
 	}
 
 

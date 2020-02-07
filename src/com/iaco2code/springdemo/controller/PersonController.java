@@ -14,6 +14,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -202,19 +203,24 @@ public class PersonController {
 	
 	
 	
-	@GetMapping("/ShowPrimaryPage")
-	public String ShowPrimaryPage (Model theModel) {
+	@GetMapping("/ShowPrimaryPage/{person}")
+	public String ShowPrimaryPage (Model theModel,@PathVariable("person") int person) {
+		
+		System.out.println(person);
+		
 	    Persona thePers = (Persona) theModel.asMap().get("some");
-	  
 	    theModel.addAttribute("person",thePers);
 
 		//get list event from DAO 
-		List<Evento> events=eventDAO.getEvents();
-		
-		
-			
+		List<Evento> events=eventDAO.getEvents();	
 		//add the list to the model  
 		theModel.addAttribute("eventi",events);
+
+		
+		//get list person from DAO
+		List<Persona> persons = personDAO.getAllPerson();
+		//add the list to the model
+		theModel.addAttribute("allPerson",persons);
 		
 		return "primary-page";
 	}
@@ -297,15 +303,15 @@ public class PersonController {
 	    								@RequestParam("theUserPass") String theUserPass,
 	    								RedirectAttributes redirectAttrs,
 	                                    Model theModel) {
-		
-	
+
+		 
 		//get event from the dao
 		Persona thePers = personDAO.checkPerson(theUserPers,theUserPass);
 		List<Persona> list = new ArrayList<Persona>();
 		list.add(thePers);
 		if(thePers!=null) {
 			redirectAttrs.addFlashAttribute("some", thePers);
-			return "redirect:/person/ShowPrimaryPage";  
+			return "redirect:/person/ShowPrimaryPage/"+thePers.getIdPersona()+"";  
 		}
 		else {
 			return "person-login"; 

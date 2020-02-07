@@ -31,6 +31,7 @@
 		 <!--  add a search box -->     
                 Cerca informazioni sull'evento a cui desideri partecipare, inserendo il "Tipo": <input type="text" name="theSearchName" onclick="form.action='listPerson';"  />
 		 <input type="submit" value="Cerca" onclick="form.action='listEventSearch';" class="add-button" method="POST"/>
+		 <div id="left" style="width:400px;float:left" >
 		<table>
 				<tr>
 					<th >Tipo &nbsp &nbsp &nbsp &nbsp &nbsp </th>
@@ -106,8 +107,32 @@
 	
 	
 	</form:form>
-		
-		
+	</div>	
+	
+	
+	<div id="right" style="overflow:hidden">
+	
+				<table>
+				<tbody>
+				<tr><h6 style="font-family:cursive">Diventa amico di persone</h6></tr>
+				<tr><h6 style="font-family:cursive">per organizzare eventi</h6></tr>
+				<tr></tr>
+				<tr>
+					<th>Nome</th>
+					<th>Cognome</th>
+				</tr>
+				<c:forEach var="tempallPers" items="${allPerson}">
+				
+					<tr>
+						<td > ${tempallPers.nome}&nbsp</td>
+						<td> ${tempallPers.cognome}</td>
+					</tr>		
+				</c:forEach>	
+				</tbody>
+			</table>
+			
+	
+	</div>
 		
 		
 	

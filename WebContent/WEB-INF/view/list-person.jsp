@@ -83,6 +83,7 @@
 			
 			<c:forEach var="tempPers" items="${person}">	
 				<input type="text" value="${tempPers.idPersona}" name="theIdPers"/>
+				<a href="${pageContext.request.contextPath}/person/ShowPrimaryPage/${tempPers.idPersona}">Torna indietro</a>
 			</c:forEach>	
 			<c:forEach var="tempEvent" items="${eventos}">	
 				<input type="text" value="${tempEvent.idEvento}" name="theIdEvent"/>

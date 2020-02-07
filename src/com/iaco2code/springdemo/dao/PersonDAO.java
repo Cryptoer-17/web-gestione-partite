@@ -26,4 +26,6 @@ public interface PersonDAO {
 	public List<Persona> checkIfExistEmailOrUser(String email,String username);
 
 	public List<Persona> getPersonsAssocEventId(int idEvento);
+
+	public List<Persona> getAllPerson();
 }

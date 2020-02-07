@@ -80,6 +80,24 @@ public class Persona {
 			)
 	private List<Evento> eventi;
 		
+	
+	@ManyToMany
+	@JoinTable(name="persona_has_persona",
+	 joinColumns=@JoinColumn(name="idPersona"),
+	 inverseJoinColumns=@JoinColumn(name="idPersona2")
+	)
+	private List<Persona> persone;
+	
+	
+	@ManyToMany
+	@JoinTable(name="persona_has_persona",
+	 joinColumns=@JoinColumn(name="idPersona2"),
+	 inverseJoinColumns=@JoinColumn(name="idPersona")
+	)
+	private List<Persona> personaDi;
+	
+	
+	
 	public Persona() {
 	
 	}
@@ -180,6 +198,14 @@ public class Persona {
 		this.eventi.add(theEvent);
 	}
 
+	
+	public void addPersona(Persona persona) {
+		if(persona == null) {
+			this.persone = new ArrayList<Persona>();
+		}
+		this.persone.add(persona);
+	}
+	
 	@Override
 	public String toString() {
 		return "Persona [idPersona=" + idPersona + ", nome=" + nome + ", cognome=" + cognome + ", email=" + email
