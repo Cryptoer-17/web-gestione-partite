@@ -171,6 +171,8 @@ public class PersonController {
 	@PostMapping("/listPerson")
 	public String listPerson(@RequestParam("theIdEvent") int theIdEvent,@RequestParam("theId") int theId,Model theModel) {
 		
+		System.out.println(theIdEvent);
+		
 		
 		//get person id session from the dao
 		Persona thePers = personDAO.getPersonsId(theId);
@@ -234,6 +236,7 @@ public class PersonController {
 									Model theModel) {
 		personDAO.assocPersEvent(idPers,idEvent);
 		
+		
 		Persona thePers = personDAO.getPersonsId(idPers);
 		List<Persona> person = new ArrayList<Persona>();
 		person.add(thePers);
@@ -241,7 +244,12 @@ public class PersonController {
 		
 		String tipo = eventDAO.getTipoEvent(idEvent);
 		
-		List<Evento> theEvent = eventDAO.getEvent(tipo);	
+		List<Evento> theEvent = eventDAO.getSingleEvent(idEvent,tipo);	
+		
+		for(Evento tempEv : theEvent) {
+			System.out.println(tempEv);
+		}
+
 		//add the event to the model  
 		theModel.addAttribute("eventos",theEvent);
 		
@@ -274,7 +282,7 @@ public class PersonController {
 		
 		String tipo = eventDAO.getTipoEvent(idEvent);
 		
-		List<Evento> theEvent = eventDAO.getEvent(tipo);	
+		List<Evento> theEvent = eventDAO.getSingleEvent(idEvent, tipo);	
 		//add the event to the model  
 		theModel.addAttribute("eventos",theEvent);
 		

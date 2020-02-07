@@ -115,4 +115,32 @@ public class EventDAOImpl implements EventDAO {
 		//return the result
 		return eventi;
 	}
+
+
+	@Override
+	@Transactional
+	public List<Evento> getSingleEvent(int idEvent, String tipo) {
+		//get the current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		//create query
+		Query<Evento> theQuery = currentSession.createQuery("from Evento where Tipo='"+tipo+"' AND idEvento='"+idEvent+"'");
+		
+		
+		//execute query and get result list
+		List<Evento> eventi = theQuery.getResultList();
+		
+		//return the result
+		return eventi;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
