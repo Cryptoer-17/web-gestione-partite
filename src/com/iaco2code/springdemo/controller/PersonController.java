@@ -354,6 +354,11 @@ public class PersonController {
 			Evento theEvent = new Evento();
 			theModel.addAttribute("evento",theEvent);
 				
+			
+			//get list of person how can know
+			List<Persona> persons = personDAO.getAllPerson();
+			theModel.addAttribute("allPerson",persons);
+			
 		 return "primary-page";
 	 }
 	 

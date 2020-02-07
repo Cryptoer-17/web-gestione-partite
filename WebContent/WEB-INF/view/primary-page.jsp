@@ -26,7 +26,7 @@
 		
 		
 	
-		<form:form method="GET" modelAttribute="evento"><
+		<form:form method="GET" modelAttribute="evento">
 		 <br>
 		 <!--  add a search box -->     
                 Cerca informazioni sull'evento a cui desideri partecipare, inserendo il "Tipo": <input type="text" name="theSearchName"  />
@@ -115,7 +115,7 @@
 	</form:form>
 	
 	<div id="right" style="overflow:hidden">
-	
+		<div id="list-person" style="margin-left:30px">
 				<table>
 				<tbody>
 				<tr><h6 style="font-family:cursive">Diventa amico di persone</h6></tr>
@@ -135,7 +135,7 @@
 				</tbody>
 			</table>
 		
-	
+		</div>
 	
 	</div>
 		
