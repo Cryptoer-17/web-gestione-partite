@@ -87,6 +87,9 @@
 			<c:forEach var="tempEvent" items="${eventos}">	
 				<input type="text" value="${tempEvent.idEvento}" name="theIdEvent"/>
 			</c:forEach>
+			<c:if test="${empty eventos}">
+			Nessun evento corrispondente
+			</c:if>
 			</form:form>
 			</c:if>
 			
