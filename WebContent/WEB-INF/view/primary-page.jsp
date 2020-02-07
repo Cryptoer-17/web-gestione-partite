@@ -26,7 +26,7 @@
 		
 		
 	
-		<form:form method="GET" ><!-- modelAttribute="evento"  -->
+		<form:form method="GET" modelAttribute="evento"><
 		 <br>
 		 <!--  add a search box -->     
                 Cerca informazioni sull'evento a cui desideri partecipare, inserendo il "Tipo": <input type="text" name="theSearchName"  />
