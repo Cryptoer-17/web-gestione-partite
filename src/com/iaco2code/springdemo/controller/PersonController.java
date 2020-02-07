@@ -23,6 +23,7 @@ import com.iaco2code.springdemo.dao.PersonDAO;
 import com.iaco2code.springdemo.daoevent.EventDAO;
 import com.iaco2code.springdemo.entity.Evento;
 import com.iaco2code.springdemo.entity.Persona;
+import com.iaco2code.springdemo.sendemail.Code;
 import com.iaco2code.springdemo.sendemail.JavaMail;
 
 @Controller
@@ -100,7 +101,9 @@ public class PersonController {
 			if (validPerson.isEmpty()) {
 			String email = thePerson.getEmail();
 			System.out.println(thePerson.getNome());
-			JavaMail.send_email(email,"123456");
+			String codice = Code.generateCode();
+			JavaMail.send_email(email,codice);
+			theModel.addAttribute("prova",codice);
 			theModel.addAttribute("person",thePerson);
 			return "attend-person";
 			}
@@ -115,15 +118,14 @@ public class PersonController {
 	@PostMapping("/confirmCode")
 	public String confirmCode(@ModelAttribute("person") Persona thePerson,
 								@RequestParam("theCodeUser") String theCodeUser,
+								@RequestParam ("theCode") String trueCode,
 								RedirectAttributes redirectAttrs,
 								Model theModel) {
-		if(theCodeUser.equals("123456")) {
+		if(theCodeUser.equals(trueCode)) {
 			//salva la persona nel db e ritorna la pagina primaria
 			thePerson.setAdmin(0);
 			personDAO.savePerson(thePerson);
-			List<Persona> persons = new ArrayList<Persona>();
-			persons.add(thePerson);
-			redirectAttrs.addFlashAttribute("some",persons);
+			redirectAttrs.addFlashAttribute("some",thePerson);
 			return "redirect:/person/ShowPrimaryPage";
 		}
 		else //messaggio di errore e rimani in quella pagina per ora
@@ -135,7 +137,7 @@ public class PersonController {
 	                                    Model theModel) {
 
 	        // search customers from the service
-	        List<Evento> theEvents = personDAO.getEvent(theSearchName);
+	        List<Evento> theEvents = eventDAO.getEvent(theSearchName);
 	                
 	        // add the customers to the model
 	      
@@ -144,29 +146,53 @@ public class PersonController {
 	        return "list-person";        
 	    }
 	
+	 
+	 @PostMapping("/listEventSearch")
+		public String listEventSearch(@RequestParam("theId") int theId,@RequestParam("theSearchName") String theSearchName,Model theModel) {
+			
+			
+			//get person id session from the dao
+			Persona thePers = personDAO.getPersonsId(theId);
+			//add the person to the model
+			theModel.addAttribute("person",thePers);
+			
+
+			//get the event grom the dao
+			List<Evento> theEvents = eventDAO.getEvent(theSearchName);	
+			//add the event to the model  
+			theModel.addAttribute("eventos",theEvents);
+
+			Evento theEvent = new Evento();
+			theModel.addAttribute("evento",theEvent);
+			return "list-event-search";
+		}
+	 
+	 
 	@PostMapping("/listPerson")
-	public String listPerson(@RequestParam("theId") int theId,@RequestParam("theSearchName") String theSearchName,Model theModel) {
+	public String listPerson(@RequestParam("theIdEvent") int theIdEvent,@RequestParam("theId") int theId,Model theModel) {
 		
 		
 		//get person id session from the dao
 		Persona thePers = personDAO.getPersonsId(theId);
 		List<Persona> thePerson = new ArrayList<Persona>();
 		thePerson.add(thePers);
+		
+		
 		//add the person to the model
 		theModel.addAttribute("person",thePerson);
 		
-
-		//get the event grom the dao
-		List<Evento> theEvent = personDAO.getEvent(theSearchName);	
-		//add the event to the model  
-		theModel.addAttribute("eventos",theEvent);
 		
+		//add the event to the model
+		Evento theEvent = eventDAO.getEventId(theIdEvent);
+		List<Evento> theEventList = new ArrayList<Evento>();
+		theEventList.add(theEvent);
+		theModel.addAttribute("eventos",theEventList);
 		
-		//get person from the dao
-		List<Persona> thePersons = personDAO.getPersons(theSearchName);
-		//add the person-event to the model
-		theModel.addAttribute("persons",thePersons);		
+		System.out.println(theEvent);
 		
+		//get person from dao associate that id
+		List<Persona> thePersons = personDAO.getPersonsAssocEventId(theIdEvent);
+		theModel.addAttribute("persons",thePersons);
 	
 		
 		return "list-person";
@@ -181,7 +207,7 @@ public class PersonController {
 	    theModel.addAttribute("person",thePers);
 
 		//get list event from DAO 
-		List<Evento> events=personDAO.getEvents();
+		List<Evento> events=eventDAO.getEvents();
 		
 		
 			
@@ -213,9 +239,9 @@ public class PersonController {
 		person.add(thePers);
 		theModel.addAttribute("person",person);
 		
-		String tipo = personDAO.getTipoEvent(idEvent);
+		String tipo = eventDAO.getTipoEvent(idEvent);
 		
-		List<Evento> theEvent = personDAO.getEvent(tipo);	
+		List<Evento> theEvent = eventDAO.getEvent(tipo);	
 		//add the event to the model  
 		theModel.addAttribute("eventos",theEvent);
 		
@@ -236,7 +262,7 @@ public class PersonController {
 										Model theModel){
 		
 		Persona thePers = personDAO.getPersonsId(idPers);
-		Evento thEvent = personDAO.getEventId(idEvent);
+		Evento thEvent = eventDAO.getEventId(idEvent);
 		personDAO.deleteAssocEventPers(thePers,thEvent);
 		Persona tempPers= new Persona(thePers.getNome(),thePers.getCognome(),thePers.getEmail(),thePers.getUsername(),thePers.getPassword(),thePers.getAdmin());
 		personDAO.savePerson(tempPers);
@@ -246,9 +272,9 @@ public class PersonController {
 		person.add(tempPers);
 		theModel.addAttribute("person",person);
 		
-		String tipo = personDAO.getTipoEvent(idEvent);
+		String tipo = eventDAO.getTipoEvent(idEvent);
 		
-		List<Evento> theEvent = personDAO.getEvent(tipo);	
+		List<Evento> theEvent = eventDAO.getEvent(tipo);	
 		//add the event to the model  
 		theModel.addAttribute("eventos",theEvent);
 		
@@ -293,7 +319,7 @@ public class PersonController {
 			 
 			 
 			//get list event from DAO 
-			List<Evento> events=personDAO.getEvents();
+			List<Evento> events=eventDAO.getEvents();
 			
 			
 			//add the list to the model  
@@ -308,7 +334,44 @@ public class PersonController {
 			//create model attrubute to bind form data
 			Evento theEvent = new Evento();
 			theModel.addAttribute("evento",theEvent);
+				
+		 return "primary-page";
+	 }
+	 
+	 @PostMapping("/removeDaoEvent")
+	 public String removeDaoEvent(Model thModel,
+			 						@RequestParam("removeEvent") int theIdEvent,
+			 						@RequestParam("theId") int theId,
+			 						RedirectAttributes redirectAttrs) {
+		 
+		 Evento theEvent = eventDAO.getEventId(theIdEvent);
+		 eventDAO.deleteEvent(theEvent); 
+		 Persona thePers = personDAO.getPersonsId(theId);
+			redirectAttrs.addFlashAttribute("some", thePers);
+			return "redirect:/person/ShowPrimaryPage";  
+	 }
+	 
+	 @PostMapping("/removeEvent")
+	 public String removeEvent(Model theModel,@RequestParam("theId") int theId) {
+		 
+		//get person id session from the dao
+			Persona thePers = personDAO.getPersonsId(theId);
 			
+			//add the person to the model
+			 theModel.addAttribute("person",thePers);
+			 
+			 
+			//get list event from DAO 
+			List<Evento> events=eventDAO.getEvents();
+			
+			
+			//add the list to the model  
+			theModel.addAttribute("eventi",events);
+		 
+		 
+			//get list event from DAO 
+			List<Evento> evento=eventDAO.getEvents();
+			theModel.addAttribute("evento",evento);
 			
 			
 		 return "primary-page";

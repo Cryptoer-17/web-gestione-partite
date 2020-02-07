@@ -44,46 +44,6 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 
 
-	
-	
-	@Override
-	@Transactional
-	public List<Evento> getEvent(String evento) {
-		
-		//get the current hibernate session
-		Session currentSession = sessionFactory.getCurrentSession();
-		
-		//create query
-		Query<Evento> theQuery = currentSession.createQuery("from Evento where Tipo='"+evento+"'");
-		
-		
-		//execute query and get result list
-		List<Evento> eventi = theQuery.getResultList();
-		
-		//return the result
-		return eventi;
-		
-	}
-
-
-	@Override
-	@Transactional
-	public List<Evento> getEvents() {
-		//get the current hibernate session
-		Session currentSession = sessionFactory.getCurrentSession();
-			
-		//create query
-		Query<Evento> theQuery = currentSession.createQuery("from Evento");
-						
-				
-		//execute query and get result list
-		List<Evento> eventi = theQuery.getResultList();
-				
-		//return the result
-		return eventi;
-	}
-
-
 	@Override
 	@Transactional
 	public void savePerson(Persona thePerson) {
@@ -114,10 +74,8 @@ public class PersonDAOImpl implements PersonDAO {
 		catch(NoResultException nre) {
 			return null;	
 		}
-		
-		
+			
 	}
-
 
 	@Override
 	@Transactional
@@ -148,41 +106,6 @@ public class PersonDAOImpl implements PersonDAO {
 		
 	}
 
-
-	@Override
-	@Transactional
-	public Evento getEventId(int idEvent) {
-		Session currentSession= sessionFactory.getCurrentSession();		
-		Query<Evento> theQuery = currentSession.createQuery("from Evento where idEvento=:idEvent");
-		theQuery.setParameter("idEvent", idEvent);
-		
-		try {
-			Evento theEvent = theQuery.getSingleResult();
-			return theEvent;
-			}
-			catch(NoResultException nre) {
-				return null;	
-			}
-	}
-
-
-
-
-	@Override
-	@Transactional
-	public String getTipoEvent(int idEvent) {
-		Session currentSession= sessionFactory.getCurrentSession();		
-		Query<Evento> theQuery = currentSession.createQuery("from Evento where idEvento=:idEvent");
-		theQuery.setParameter("idEvent", idEvent);
-		
-		try {
-			Evento theEvent = theQuery.getSingleResult();
-			return theEvent.getTipo();
-			}
-			catch(NoResultException nre) {
-				return null;	
-			}
-	}
 
 
 	@Override
@@ -217,6 +140,23 @@ public class PersonDAOImpl implements PersonDAO {
 				catch(NoResultException nre) {
 					return null;	
 				}
+	}
+
+
+	@Override
+	@Transactional
+	public List<Persona> getPersonsAssocEventId(int idEvento) {
+		//get the current hibernate session
+				Session currentSession= sessionFactory.getCurrentSession();
+				
+				//create query
+				Query<Persona> theQuery = currentSession.createQuery("select p from Persona p join p.eventi e where e.idEvento='"+idEvento+"'",Persona.class);
+				
+				//execute query and get result list 
+				List<Persona> persone = theQuery.getResultList();
+
+				//return the result
+				return persone;
 	}
 
 

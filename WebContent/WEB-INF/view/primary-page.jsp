@@ -30,7 +30,7 @@
 		 <br>
 		 <!--  add a search box -->     
                 Cerca informazioni sull'evento a cui desideri partecipare, inserendo il "Tipo": <input type="text" name="theSearchName" onclick="form.action='listPerson';"  />
-		 <input type="submit" value="Cerca" onclick="form.action='listPerson';" class="add-button" method="POST"/>
+		 <input type="submit" value="Cerca" onclick="form.action='listEventSearch';" class="add-button" method="POST"/>
 		<table>
 				<tr>
 					<th >Tipo &nbsp &nbsp &nbsp &nbsp &nbsp </th>
@@ -52,7 +52,8 @@
 		
 		<br>
 		<c:if test="${person.admin==1}">
-			<input type="submit" value="Crea un evento"  onclick="form.action='createEvent';" class="add-button" name="partecipate" method="POST"/>			
+			<input type="submit" value="Crea un evento"  onclick="form.action='createEvent';" class="add-button"  method="POST"/>	
+			<input type="submit" value="Rimuovi un evento"  onclick="form.action='removeEvent';" class="add-button" method="POST"/>			
 		<br>
 		<c:if test="${not empty listcreatevent}">
 		
@@ -80,11 +81,20 @@
 			</table>
 			
 			<input type="submit" value="Salva il nuovo evento" onclick="form.action='saveEvent';"  class="save"/>
-			
-			
-			
-			
-			
+	
+		</c:if>
+		
+		
+		<c:if test="${not empty evento}">
+		<br>
+		<table>
+			<tbody>				
+				Inserisci l'indice dell'evento che vuoi eliminare : <input type="text" name="removeEvent" onclick="form.action='removeDaoEvent';"  />				
+												
+			</tbody>
+		</table>
+		<br>
+		<input type="submit" value="ELIMINA L'EVENTO" onclick="form.action='removeDaoEvent';"  class="save"/>
 		</c:if>
 		</c:if>
 		<br><br>

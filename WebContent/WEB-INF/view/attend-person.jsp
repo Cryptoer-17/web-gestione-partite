@@ -46,8 +46,9 @@
 					</tr>
 						<td><form:input path="admin" style="display:none"/></td>
 					</tr>
-					
-					
+					<tr>
+						<td><input type="text" value="${prova}" name="theCode" style="display: none"/></td>
+					</tr>
 				</tbody>
 			</table>
 		
