@@ -26,11 +26,11 @@
 		
 		
 	
-		<form:form action="listEventSearch" modelAttribute="evento" method="GET">
+		<form:form method="GET" ><!-- modelAttribute="evento"  -->
 		 <br>
 		 <!--  add a search box -->     
                 Cerca informazioni sull'evento a cui desideri partecipare, inserendo il "Tipo": <input type="text" name="theSearchName"  />
-		 <input type="submit" value="Cerca" class="add-button" />
+		 <input type="submit" value="Cerca" class="add-button" onclick="form.action='listEventSearch';" />
 		 <div id="left" style="width:400px;float:left" >
 		<table>
 				<tr>
@@ -101,16 +101,18 @@
 		</c:if>
 		</c:if>
 		<br><br>
+				
+		    <c:url var="addNewDistribution" value="/person/showFormForLogin">
+		    	<c:param name="theId" value="${person.idPersona}" />  
+		    </c:url>
 			<p>
-				<a href="${pageContext.request.contextPath}/person/showFormForLogin">Torna indietro</a>
-			</p>	
-			<input type="text" value="${person.idPersona}" name="theId" style="height:1px"/>
-		
+				<a href="${addNewDistribution}">Torna indietro</a>
+			</p>
 	
 	
-	</form:form>
+	<input type="text" value="${person.idPersona}" name="theId"/>	
 	</div>	
-	
+	</form:form>
 	
 	<div id="right" style="overflow:hidden">
 	
@@ -132,7 +134,8 @@
 				</c:forEach>	
 				</tbody>
 			</table>
-			
+		
+	
 	
 	</div>
 		

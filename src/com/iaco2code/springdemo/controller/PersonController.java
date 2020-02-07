@@ -14,7 +14,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -202,8 +201,17 @@ public class PersonController {
 	}
 	
 	
+	@GetMapping("/linkListEventPrimary")
+	public String linkListEventPrimary (@RequestParam("theId") int idPers,
+										Model theModel,
+										RedirectAttributes redirectAttributes) {
+		Persona thePers = personDAO.getPersonsId(idPers);
+		redirectAttributes.addFlashAttribute("some", thePers);
+		return "redirect:/person/ShowPrimaryPage";
+	}
 	
-	@GetMapping("/ShowPrimaryPage"/*/{person}"*/)
+	
+	@GetMapping("/ShowPrimaryPage")
 	public String ShowPrimaryPage (Model theModel/*,@PathVariable("person") int person*/) {
 		
 
@@ -311,7 +319,7 @@ public class PersonController {
 		list.add(thePers);
 		if(thePers!=null) {
 			redirectAttrs.addFlashAttribute("some", thePers);
-			return "redirect:/person/ShowPrimaryPage"/*/"+thePers.getIdPersona()+""*/;  
+			return "redirect:/person/ShowPrimaryPage";  
 		}
 		else {
 			return "person-login"; 
