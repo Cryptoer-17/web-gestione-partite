@@ -31,11 +31,11 @@
 				</c:if>
 				<c:if test="${not empty eventos}">
 					<c:forEach var="tempEvent" items="${eventos}">
-					<form:form >
+					<form:form action="listPerson" method="GET" style="height:30px;">
 						 ${tempEvent.tipo} &nbsp ${tempEvent.orario} &nbsp ${tempEvent.luogo} &nbsp ${tempEvent.struttura}
-						 <input type="submit" value="maggiori info"  onclick="form.action='listPerson';" class="add-button"  method="POST"/><br>
-						 <input type="text" value="${tempEvent.idEvento}" name="theIdEvent"/>
-						 <input type="text" value="${person.idPersona}" name="theId"/>
+						 <input type="submit" value="maggiori info"  class="add-button"/><br>
+						 <input type="text" value="${tempEvent.idEvento}" name="theIdEvent" style="height:1px;"/>
+						 <input type="text" value="${person.idPersona}" name="theId" style="height:1px;"/>
 					</form:form>
 					</c:forEach>
 				</c:if>

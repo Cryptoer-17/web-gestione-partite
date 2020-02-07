@@ -26,11 +26,11 @@
 		
 		
 	
-		<form:form modelAttribute="evento">
+		<form:form action="listEventSearch" modelAttribute="evento" method="GET">
 		 <br>
 		 <!--  add a search box -->     
-                Cerca informazioni sull'evento a cui desideri partecipare, inserendo il "Tipo": <input type="text" name="theSearchName" onclick="form.action='listPerson';"  />
-		 <input type="submit" value="Cerca" onclick="form.action='listEventSearch';" class="add-button" method="POST"/>
+                Cerca informazioni sull'evento a cui desideri partecipare, inserendo il "Tipo": <input type="text" name="theSearchName"  />
+		 <input type="submit" value="Cerca" class="add-button" />
 		 <div id="left" style="width:400px;float:left" >
 		<table>
 				<tr>
@@ -53,8 +53,8 @@
 		
 		<br>
 		<c:if test="${person.admin==1}">
-			<input type="submit" value="Crea un evento"  onclick="form.action='createEvent';" class="add-button"  method="POST"/>	
-			<input type="submit" value="Rimuovi un evento"  onclick="form.action='removeEvent';" class="add-button" method="POST"/>			
+			<input type="submit" value="Crea un evento"  onclick="form.action='createEvent';" class="add-button"  method="GET"/>	
+			<input type="submit" value="Rimuovi un evento"  onclick="form.action='removeEvent';" class="add-button" method="GET"/>			
 		<br>
 		<c:if test="${not empty listcreatevent}">
 		
@@ -63,8 +63,9 @@
 				<tr>
 					<td>
 						<label>Tipo:(*)</label>
-						<form:input path="tipo"/>&nbsp&nbsp&nbsp&nbsp&nbsp
-										
+						<form:input path="tipo"/>
+					</td>
+					<td>					
 						<label>Orario:(*)</label>
 						<form:input path="orario" />
 					</td>
@@ -72,8 +73,9 @@
 				<tr>
 					<td>						
 						<label>Luogo :(*)</label>
-						<form:input path="luogo" />&nbsp
-								
+						<form:input path="luogo" />
+					</td>
+					<td>			
 						<label>Struttura:(*)</label>
 						<form:input path="struttura" />
 					</td>				
@@ -102,7 +104,7 @@
 			<p>
 				<a href="${pageContext.request.contextPath}/person/showFormForLogin">Torna indietro</a>
 			</p>	
-			<input type="text" value="${person.idPersona}" name="theId"/>
+			<input type="text" value="${person.idPersona}" name="theId" style="height:1px"/>
 		
 	
 	

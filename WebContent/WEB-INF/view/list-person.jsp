@@ -48,16 +48,30 @@
 			
 			<c:if test="${not empty persons}">
 			<h3>Partecipanti all'evento</h3>
-			<p>
-			<form:form ></p>					
+			<form:form action="partecipatePerson"  method="GET" style="float:left;height:30px;">				
 			<!-- Button to partecipate at the event and non partecipate -->
-			
-			
-				<input type="submit" value="Partecipa all'evento" onclick="form.action='partecipatePerson';" class="add-button" name="partecipate" method="POST"/>		
-				<input type="submit" value="Non Partecipare piu'" onclick="form.action='nonPartecipatePerson';" class="add-button" name="nonpartecipate" method="GET"/>
-					
+				<input type="submit" value="Partecipa all'evento" class="add-button" name="partecipate"/>	
+						
+			<c:forEach var="tempPers" items="${person}">	
+			<br><input type="text" value="${tempPers.idPersona}" name="theIdPers" style="height:1px"/>
+			</c:forEach>	
+			<c:forEach var="tempEvent" items="${eventos}">	
+			<br><input type="text" value="${tempEvent.idEvento}" name="theIdEvent" style="height:1px"/><br>
+			</c:forEach>  	
+	
+			</form:form >	
+			<form:form action="nonPartecipatePerson" method="GET" style="height:30px">
+				<input type="submit" value="Non Partecipare piu'" class="add-button" name="nonpartecipate" />
+		
+				<c:forEach var="tempPers" items="${person}">	
+					<br><input type="text" value="${tempPers.idPersona}" name="theIdPers" style="height:1px"/>
+				</c:forEach>	
+				<c:forEach var="tempEvent" items="${eventos}">	
+					<br><input type="text" value="${tempEvent.idEvento}" name="theIdEvent" style="height:1px"/><br>
+				</c:forEach>  	
+			</form:form>	
 			<!-- add our html table here -->
-			
+			<div id="table-list">
 				<table>
 					<tr>
 						<th>Nome &nbsp &nbsp &nbsp &nbsp &nbsp </th>
@@ -73,29 +87,28 @@
 					</c:forEach>
 				
 				</table>
-			
-			
+			</div>
+			</div>
 			
 			<br><br>
 			<p>
 			<a href="${pageContext.request.contextPath}/person/ShowPrimaryPage">Torna indietro</a>
 			</p>		
 			
-			<c:forEach var="tempPers" items="${person}">	
+		<!-- <c:forEach var="tempPers" items="${person}">	
 				<input type="text" value="${tempPers.idPersona}" name="theIdPers"/>
-				<a href="${pageContext.request.contextPath}/person/ShowPrimaryPage/${tempPers.idPersona}">Torna indietro</a>
-			</c:forEach>	
+				<a href="${pageContext.request.contextPath}/person/ShowPrimaryPage<!-- /${tempPers.idPersona} --><!-- ">Torna indietro</a> -->
+		<!-- </c:forEach>	
 			<c:forEach var="tempEvent" items="${eventos}">	
 				<input type="text" value="${tempEvent.idEvento}" name="theIdEvent"/>
-			</c:forEach>
+			</c:forEach> -->	 	
 			<c:if test="${empty eventos}">
 			Nessun evento corrispondente
 			</c:if>
-			</form:form>
 			</c:if>
 			
 			
-			</div>
+			
 		</div>
 
 

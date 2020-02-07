@@ -72,7 +72,7 @@ public class PersonController {
 		return "redirect:/person/ShowPrimaryPage";
 	}
 	
-	@PostMapping("/saveEvent")
+	@GetMapping("/saveEvent")
 	public String saveEvent(@ModelAttribute("evento") Evento theEvent,
 							@RequestParam("theId") int theId,
 							RedirectAttributes redirectAttrs,
@@ -148,10 +148,10 @@ public class PersonController {
 	    }
 	
 	 
-	 @PostMapping("/listEventSearch")
+	 	@GetMapping("/listEventSearch")
 		public String listEventSearch(@RequestParam("theId") int theId,@RequestParam("theSearchName") String theSearchName,Model theModel) {
 			
-			
+			System.out.println("stampa");
 			//get person id session from the dao
 			Persona thePers = personDAO.getPersonsId(theId);
 			//add the person to the model
@@ -169,10 +169,10 @@ public class PersonController {
 		}
 	 
 	 
-	@PostMapping("/listPerson")
+	@GetMapping("/listPerson")
 	public String listPerson(@RequestParam("theIdEvent") int theIdEvent,@RequestParam("theId") int theId,Model theModel) {
 		
-		System.out.println(theIdEvent);
+	
 		
 		
 		//get person id session from the dao
@@ -203,10 +203,10 @@ public class PersonController {
 	
 	
 	
-	@GetMapping("/ShowPrimaryPage/{person}")
-	public String ShowPrimaryPage (Model theModel,@PathVariable("person") int person) {
+	@GetMapping("/ShowPrimaryPage"/*/{person}"*/)
+	public String ShowPrimaryPage (Model theModel/*,@PathVariable("person") int person*/) {
 		
-		System.out.println(person);
+
 		
 	    Persona thePers = (Persona) theModel.asMap().get("some");
 	    theModel.addAttribute("person",thePers);
@@ -236,7 +236,7 @@ public class PersonController {
 		return "person-login";
 	}
 	
-	@PostMapping("/partecipatePerson")
+	@GetMapping("/partecipatePerson")
 	public String partecipatePerson(@RequestParam("theIdPers") int idPers ,
 									@RequestParam("theIdEvent") int idEvent,
 									Model theModel) {
@@ -267,7 +267,7 @@ public class PersonController {
 	}
 	
 
-	@PostMapping("/nonPartecipatePerson")
+	@GetMapping("/nonPartecipatePerson")
 	public String nonPartecipatePerson(@RequestParam("theIdPers") int idPers,
 										@RequestParam("theIdEvent") int idEvent,
 										Model theModel){
@@ -311,7 +311,7 @@ public class PersonController {
 		list.add(thePers);
 		if(thePers!=null) {
 			redirectAttrs.addFlashAttribute("some", thePers);
-			return "redirect:/person/ShowPrimaryPage/"+thePers.getIdPersona()+"";  
+			return "redirect:/person/ShowPrimaryPage"/*/"+thePers.getIdPersona()+""*/;  
 		}
 		else {
 			return "person-login"; 
@@ -319,7 +319,7 @@ public class PersonController {
 	    }
 	
 	 
-	 @PostMapping("/createEvent")
+	 @GetMapping("/createEvent")
 	 public String createEvent(Model theModel,@RequestParam("theId") int theId) {
 		 
 		//get person id session from the dao
@@ -349,7 +349,7 @@ public class PersonController {
 		 return "primary-page";
 	 }
 	 
-	 @PostMapping("/removeDaoEvent")
+	 @GetMapping("/removeDaoEvent")
 	 public String removeDaoEvent(Model thModel,
 			 						@RequestParam("removeEvent") int theIdEvent,
 			 						@RequestParam("theId") int theId,
@@ -362,7 +362,7 @@ public class PersonController {
 			return "redirect:/person/ShowPrimaryPage";  
 	 }
 	 
-	 @PostMapping("/removeEvent")
+	 @GetMapping("/removeEvent")
 	 public String removeEvent(Model theModel,@RequestParam("theId") int theId) {
 		 
 		//get person id session from the dao
