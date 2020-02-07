@@ -246,10 +246,7 @@ public class PersonController {
 		
 		List<Evento> theEvent = eventDAO.getSingleEvent(idEvent,tipo);	
 		
-		for(Evento tempEv : theEvent) {
-			System.out.println(tempEv);
-		}
-
+		
 		//add the event to the model  
 		theModel.addAttribute("eventos",theEvent);
 		
