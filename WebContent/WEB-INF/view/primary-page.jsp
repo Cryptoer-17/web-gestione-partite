@@ -85,7 +85,7 @@
 		</c:if>
 		
 		
-		<c:if test="${not empty evento}">
+		<c:if test="${not empty eventone}">
 		<br>
 		<table>
 			<tbody>				

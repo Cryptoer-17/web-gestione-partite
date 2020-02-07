@@ -376,7 +376,7 @@ public class PersonController {
 		 
 			//get list event from DAO 
 			List<Evento> evento=eventDAO.getEvents();
-			theModel.addAttribute("evento",evento);
+			theModel.addAttribute("eventone",evento);
 			
 			
 		 return "primary-page";
