@@ -310,6 +310,21 @@ public class PersonController {
 		return "list-person";
 	}
 	
+	@GetMapping("sendRequest")
+	public String sendRequest(@RequestParam("theId1") int theId1, 
+							  @RequestParam("theId2") int theId2,
+							  RedirectAttributes redirectAttributes,
+							  Model theModel) {
+		
+		Persona thePers1 = personDAO.getPersonsId(theId2); 
+		Persona thePers2 = personDAO.getPersonsId(theId1);
+		thePers1.getPersone().add(thePers2);
+		personDAO.savePerson(thePers1);
+		redirectAttributes.addFlashAttribute("some", thePers1);
+		return "redirect:/person/ShowPrimaryPage";  
+	}
+	
+	
 	 @PostMapping("/confirmPerson")
 	    public String confirmPerson(@RequestParam("theUserPers") String theUserPers,
 	    								@RequestParam("theUserPass") String theUserPass,

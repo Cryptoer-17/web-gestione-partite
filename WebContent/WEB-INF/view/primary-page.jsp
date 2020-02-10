@@ -116,7 +116,7 @@
 	
 	<div id="right" style="overflow:hidden">
 		<div id="list-person" style="margin-left:30px">
-		<form:form>
+		<form:form action="sendRequest" method="GET">
 				<table>
 				<tbody>
 				<tr><h6 style="font-family:cursive">Diventa amico di persone</h6></tr>
@@ -131,7 +131,9 @@
 						<td > ${tempallPers.nome}&nbsp</td>
 						<td> ${tempallPers.cognome}</td>
 						<td><input type="submit" value="invia richiesta"  class="add-button"/></td>
-					</tr>		
+						<td><input type="text" value="${tempallPers.idPersona}" name="theId1" style="width:1px;"/><td>
+						<td><input type="text" value="${person.idPersona}" name="theId2" style="width:1px;"/></td>
+					</tr>				
 				</c:forEach>	
 				</tbody>
 			</table>
