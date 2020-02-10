@@ -255,8 +255,10 @@ public class PersonController {
 	public String partecipatePerson(@RequestParam("theIdPers") int idPers ,
 									@RequestParam("theIdEvent") int idEvent,
 									Model theModel) {
+		boolean present = personDAO.checkifPersonIsAssoc(idPers,idEvent);
+		if(!present) {
 		personDAO.assocPersEvent(idPers,idEvent);
-		
+		}
 		System.out.println(idPers);
 		
 		Persona thePers = personDAO.getPersonsId(idPers);
@@ -284,21 +286,23 @@ public class PersonController {
 		
 		Persona thePers = personDAO.getPersonsId(idPers);
 		Evento thEvent = eventDAO.getEventId(idEvent);
+		
+		boolean present = personDAO.checkifPersonIsAssoc(idPers,idEvent);
+		if(present) {
 		personDAO.deleteAssocEventPers(thePers,thEvent);
 		Persona tempPers= new Persona(thePers.getNome(),thePers.getCognome(),thePers.getEmail(),thePers.getUsername(),thePers.getPassword(),thePers.getAdmin());
 		personDAO.savePerson(tempPers);
 		
 
 		theModel.addAttribute("person",tempPers);
+		}
+		else theModel.addAttribute("person",thePers);
 		
-		String tipo = eventDAO.getTipoEvent(idEvent);
 		
-		Evento theEvent = eventDAO.getSingleEvent(idEvent, tipo);	
-		//add the event to the model  
-		theModel.addAttribute("eventos",theEvent);
+		theModel.addAttribute("eventos",thEvent);
 		
 		//get person from the dao
-		List<Persona> thePersons = personDAO.getPersonsAssocEventId(theEvent.getIdEvento());
+		List<Persona> thePersons = personDAO.getPersonsAssocEventId(thEvent.getIdEvento());
 		//add the person-event to the model
 		theModel.addAttribute("persons",thePersons);
 		

@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Repository;
 
 import com.iaco2code.springdemo.entity.Evento;
 import com.iaco2code.springdemo.entity.Persona;
-import com.mysql.cj.xdevapi.Expression;
 
 
 
@@ -141,6 +139,22 @@ public class PersonDAOImpl implements PersonDAO {
 
 		//return the result
 		return persone;
+	}
+	@Override
+	@Transactional
+	public boolean checkifPersonIsAssoc(int idPers, int idEvent) {
+		//get the current hibernate session
+		Session currentSession= sessionFactory.getCurrentSession();
+		
+		//create query
+		Query<Persona> theQuery = currentSession.createQuery("select p from Persona p join p.eventi e where e.idEvento='"+idEvent+"' AND p.idPersona='"+idPers+"'",Persona.class);
+		
+		//execute query and get result list 
+		List<Persona> persone = theQuery.getResultList();
+				
+		if(persone.isEmpty())
+			return false;
+		else return true;
 	}
 
 
