@@ -233,7 +233,7 @@ public class PersonController {
 
 		
 		//get list person from DAO
-		List<Persona> persons = personDAO.getAllPerson();
+		List<Persona> persons = personDAO.getPersonSendRequest(thePers.getIdPersona());
 		//add the list to the model
 		theModel.addAttribute("allPerson",persons);
 		
@@ -360,7 +360,7 @@ public class PersonController {
 				
 			
 			//get list of person how can know
-			List<Persona> persons = personDAO.getAllPerson();
+			List<Persona> persons = personDAO.getPersonSendRequest(theId);
 			theModel.addAttribute("allPerson",persons);
 			
 		 return "primary-page";
@@ -403,7 +403,7 @@ public class PersonController {
 			
 			
 			//get list people from DAO
-			List<Persona> persone = personDAO.getAllPerson();	
+			List<Persona> persone = personDAO.getPersonSendRequest(theId);	
 			//add to the list at the model
 			theModel.addAttribute("allPerson",persone); 
 			

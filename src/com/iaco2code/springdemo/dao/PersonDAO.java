@@ -30,4 +30,6 @@ public interface PersonDAO {
 	public List<Persona> getAllPerson();
 
 	public boolean checkifPersonIsAssoc(int idPers, int idEvent);
+
+	public List<Persona> getPersonSendRequest(int idCurrentPers);
 }

@@ -116,6 +116,7 @@
 	
 	<div id="right" style="overflow:hidden">
 		<div id="list-person" style="margin-left:30px">
+		<form:form>
 				<table>
 				<tbody>
 				<tr><h6 style="font-family:cursive">Diventa amico di persone</h6></tr>
@@ -126,15 +127,15 @@
 					<th>Cognome</th>
 				</tr>
 				<c:forEach var="tempallPers" items="${allPerson}">
-				
 					<tr>
 						<td > ${tempallPers.nome}&nbsp</td>
 						<td> ${tempallPers.cognome}</td>
+						<td><input type="submit" value="invia richiesta"  class="add-button"/></td>
 					</tr>		
 				</c:forEach>	
 				</tbody>
 			</table>
-		
+		</form:form>
 		</div>
 	
 	</div>
