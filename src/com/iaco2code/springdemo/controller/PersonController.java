@@ -260,21 +260,15 @@ public class PersonController {
 		System.out.println(idPers);
 		
 		Persona thePers = personDAO.getPersonsId(idPers);
-		List<Persona> person = new ArrayList<Persona>();
-		person.add(thePers);
-		theModel.addAttribute("person",person);
-		
-		String tipo = eventDAO.getTipoEvent(idEvent);
-		
-		Evento theEvent = eventDAO.getSingleEvent(idEvent,tipo);	
-		
-		
+		theModel.addAttribute("person",thePers);
+	
+		Evento theEvent = eventDAO.getEventId(idEvent);	
+	
 		//add the event to the model  
-		theModel.addAttribute("eventos",theEvent);
-		
+		theModel.addAttribute("eventos",theEvent);	
 		
 		//get person from the dao
-		List<Persona> thePersons = personDAO.getPersons(tipo);
+		List<Persona> thePersons = personDAO.getPersonsAssocEventId(theEvent.getIdEvento());
 		//add the person-event to the model
 		theModel.addAttribute("persons",thePersons);
 				
@@ -294,12 +288,7 @@ public class PersonController {
 		Persona tempPers= new Persona(thePers.getNome(),thePers.getCognome(),thePers.getEmail(),thePers.getUsername(),thePers.getPassword(),thePers.getAdmin());
 		personDAO.savePerson(tempPers);
 		
-		
-		
-		
-		
-		List<Persona> person = new ArrayList<Persona>();
-		person.add(tempPers);
+
 		theModel.addAttribute("person",tempPers);
 		
 		String tipo = eventDAO.getTipoEvent(idEvent);
