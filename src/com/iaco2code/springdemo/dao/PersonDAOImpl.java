@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
-import javax.validation.Valid;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -14,6 +14,8 @@ import org.springframework.stereotype.Repository;
 
 import com.iaco2code.springdemo.entity.Evento;
 import com.iaco2code.springdemo.entity.Persona;
+import com.mysql.cj.xdevapi.Expression;
+
 
 
 
@@ -52,9 +54,7 @@ public class PersonDAOImpl implements PersonDAO {
 		//get current session
 		Session currentSession= sessionFactory.getCurrentSession();		
 		//retrive the person with query
-		Query<Persona> theQuery = currentSession.createQuery("from Persona where Username=:user AND Password =:pass");
-		theQuery.setParameter("user", theUserPers);
-		theQuery.setParameter("pass", theUserPass);		
+		Query<Persona> theQuery = currentSession.createQuery("from Persona where Username = binary('"+theUserPers+"') AND Password = binary('"+theUserPass+"')");
 		try {
 		Persona thePerson = theQuery.getSingleResult();
 		return thePerson;

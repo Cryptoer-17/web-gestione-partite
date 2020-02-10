@@ -202,7 +202,6 @@ public class PersonController {
 		//get person from dao associate that id
 		List<Persona> thePersons = personDAO.getPersonsAssocEventId(theIdEvent);
 		theModel.addAttribute("persons",thePersons);
-	
 		
 		return "list-person";
 	}
