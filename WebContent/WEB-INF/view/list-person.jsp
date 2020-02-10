@@ -32,9 +32,7 @@
 				Non è stato inserito correttamente il tipo di evento o non è in programma.
 				</c:if>
 				<c:if test="${not empty eventos}">
-					<c:forEach var="tempEvent" items="${eventos}">
-					 ${tempEvent.tipo} ${tempEvent.orario} ${tempEvent.luogo} ${tempEvent.struttura} 
-					</c:forEach>
+					 ${eventos.tipo} ${eventos.orario} ${eventos.luogo} ${eventos.struttura} 
 				</c:if>
 				
 					
@@ -51,24 +49,16 @@
 			<form:form action="partecipatePerson"  method="GET" style="float:left;height:30px;">				
 			<!-- Button to partecipate at the event and non partecipate -->
 				<input type="submit" value="Partecipa all'evento" class="add-button" name="partecipate"/>	
-						
-			<c:forEach var="tempPers" items="${person}">	
-			<br><input type="text" value="${tempPers.idPersona}" name="theIdPers" style="height:1px"/>
-			</c:forEach>	
-			<c:forEach var="tempEvent" items="${eventos}">	
-			<br><input type="text" value="${tempEvent.idEvento}" name="theIdEvent" style="height:1px"/><br>
-			</c:forEach>  	
+							
+			<br><input type="text" value="${person.idPersona}" name="theIdPers" style="height:15x"/>	
+			<br><input type="text" value="${eventos.idEvento}" name="theIdEvent" style="height:15px"/><br>	
 	
 			</form:form >	
 			<form:form action="nonPartecipatePerson" method="GET" style="height:30px">
 				<input type="submit" value="Non Partecipare piu'" class="add-button" name="nonpartecipate" />
-		
-				<c:forEach var="tempPers" items="${person}">	
-					<br><input type="text" value="${tempPers.idPersona}" name="theIdPers" style="height:1px"/>
-				</c:forEach>	
-				<c:forEach var="tempEvent" items="${eventos}">	
-					<br><input type="text" value="${tempEvent.idEvento}" name="theIdEvent" style="height:1px"/><br>
-				</c:forEach>  	
+			
+					<br><input type="text" value="${person.idPersona}" name="theIdPers" style="height:15px"/>	
+					<br><input type="text" value="${eventos.idEvento}" name="theIdEvent" style="height:15px"/><br>
 			</form:form>	
 			<!-- add our html table here -->
 			<div id="table-list">
@@ -90,23 +80,22 @@
 			</div>
 			</div>
 			
-			<br><br>
-			<p>
-			<a href="${pageContext.request.contextPath}/person/ShowPrimaryPage">Torna indietro</a>
-			</p>		
-			
-		<!-- <c:forEach var="tempPers" items="${person}">	
-				<input type="text" value="${tempPers.idPersona}" name="theIdPers"/>
-				<a href="${pageContext.request.contextPath}/person/ShowPrimaryPage<!-- /${tempPers.idPersona} --><!-- ">Torna indietro</a> -->
-		<!-- </c:forEach>	
-			<c:forEach var="tempEvent" items="${eventos}">	
-				<input type="text" value="${tempEvent.idEvento}" name="theIdEvent"/>
-			</c:forEach> -->	 	
+			<br><br>	
+	
 			<c:if test="${empty eventos}">
 			Nessun evento corrispondente
 			</c:if>
 			</c:if>
 			
+			
+			<c:url var="addNewDistribution" value="/person/listEventSearch">
+		    	<c:param name="theId" value="${person.idPersona}" /> 
+		    	<c:param name="theSearchName" value="${eventos.idEvento}" /> 
+		    </c:url>
+			<p>
+				<a href="${addNewDistribution}">Torna indietro</a>
+			</p>
+	
 			
 			
 		</div>

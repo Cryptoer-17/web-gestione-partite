@@ -39,9 +39,11 @@
 					</form:form>
 					</c:forEach>
 				</c:if>
+				
+				
 			<c:url var="addNewDistribution" value="/person/linkListEventPrimary">
-		    	<c:param name="theId" value="${person.idPersona}" />  
-		    </c:url>
+		    	<c:param name="theId" value="${person.idPersona}" /> 
+		    </c:url>			
 			<p>
 				<a href="${addNewDistribution}">Torna indietro</a>
 			</p>

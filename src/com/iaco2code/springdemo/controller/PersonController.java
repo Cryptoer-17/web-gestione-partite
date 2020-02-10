@@ -181,14 +181,14 @@ public class PersonController {
 		
 		
 		//add the person to the model
-		theModel.addAttribute("person",thePerson);
+		theModel.addAttribute("person",thePers);
 		
 		
 		//add the event to the model
 		Evento theEvent = eventDAO.getEventId(theIdEvent);
 		List<Evento> theEventList = new ArrayList<Evento>();
 		theEventList.add(theEvent);
-		theModel.addAttribute("eventos",theEventList);
+		theModel.addAttribute("eventos",theEvent);
 		
 		System.out.println(theEvent);
 		
