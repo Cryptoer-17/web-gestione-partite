@@ -50,15 +50,15 @@
 			<!-- Button to partecipate at the event and non partecipate -->
 				<input type="submit" value="Partecipa all'evento" class="add-button" name="partecipate"/>	
 							
-			<br><input type="text" value="${person.idPersona}" name="theIdPers" style="height:15x"/>	
-			<br><input type="text" value="${eventos.idEvento}" name="theIdEvent" style="height:15px"/><br>	
+			<br><input type="text" value="${person.idPersona}" name="theIdPers" style="height:1px"/>	
+			<br><input type="text" value="${eventos.idEvento}" name="theIdEvent" style="height:1px"/><br>	
 	
 			</form:form >	
 			<form:form action="nonPartecipatePerson" method="GET" style="height:30px">
 				<input type="submit" value="Non Partecipare piu'" class="add-button" name="nonpartecipate" />
 			
-					<br><input type="text" value="${person.idPersona}" name="theIdPers" style="height:15px"/>	
-					<br><input type="text" value="${eventos.idEvento}" name="theIdEvent" style="height:15px"/><br>
+					<br><input type="text" value="${person.idPersona}" name="theIdPers" style="height:1px"/>	
+					<br><input type="text" value="${eventos.idEvento}" name="theIdEvent" style="height:1px"/><br>
 			</form:form>	
 			<!-- add our html table here -->
 			<div id="table-list">
@@ -90,7 +90,7 @@
 			
 			<c:url var="addNewDistribution" value="/person/listEventSearch">
 		    	<c:param name="theId" value="${person.idPersona}" /> 
-		    	<c:param name="theSearchName" value="${eventos.idEvento}" /> 
+		    	<c:param name="theSearchName" value="${eventos.tipo}" /> 
 		    </c:url>
 			<p>
 				<a href="${addNewDistribution}">Torna indietro</a>

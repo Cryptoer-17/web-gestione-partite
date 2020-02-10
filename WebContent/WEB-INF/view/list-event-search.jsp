@@ -34,8 +34,8 @@
 					<form:form action="listPerson" method="GET" style="height:30px;">
 						 ${tempEvent.tipo} &nbsp ${tempEvent.orario} &nbsp ${tempEvent.luogo} &nbsp ${tempEvent.struttura}
 						 <input type="submit" value="maggiori info"  class="add-button"/><br>
-						 <input type="text" value="${tempEvent.idEvento}" name="theIdEvent" style="height:1px;"/>
-						 <input type="text" value="${person.idPersona}" name="theId" style="height:1px;"/>
+						 <input type="text" value="${tempEvent.idEvento}" name="theIdEvent" style="height:15px;"/>
+						 <input type="text" value="${person.idPersona}" name="theId" style="height:15px;"/>
 					</form:form>
 					</c:forEach>
 				</c:if>

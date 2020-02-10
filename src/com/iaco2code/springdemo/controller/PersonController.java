@@ -157,11 +157,18 @@ public class PersonController {
 			theModel.addAttribute("person",thePers);
 			
 
+			System.out.println(theSearchName);
+			
 			//get the event grom the dao
 			List<Evento> theEvents = eventDAO.getEvent(theSearchName);	
 			//add the event to the model  
 			theModel.addAttribute("eventos",theEvents);
 
+			for(Evento tempEv : theEvents) {
+				System.out.println(tempEv);
+				
+			}
+			
 			Evento theEvent = new Evento();
 			theModel.addAttribute("evento",theEvent);
 			return "list-event-search";
@@ -199,6 +206,7 @@ public class PersonController {
 		
 		return "list-person";
 	}
+	
 	
 	
 	@GetMapping("/linkListEventPrimary")
@@ -397,6 +405,11 @@ public class PersonController {
 			List<Evento> evento=eventDAO.getEvents();
 			theModel.addAttribute("eventone",evento);
 			
+			
+			//get list people from DAO
+			List<Persona> persone = personDAO.getAllPerson();	
+			//add to the list at the model
+			theModel.addAttribute("allPerson",persone); 
 			
 		 return "primary-page";
 	 }
