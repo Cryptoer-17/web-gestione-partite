@@ -119,7 +119,7 @@ public class EventDAOImpl implements EventDAO {
 
 	@Override
 	@Transactional
-	public List<Evento> getSingleEvent(int idEvent, String tipo) {
+	public Evento getSingleEvent(int idEvent, String tipo) {
 		//get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 		
@@ -128,10 +128,10 @@ public class EventDAOImpl implements EventDAO {
 		
 		
 		//execute query and get result list
-		List<Evento> eventi = theQuery.getResultList();
+		Evento evento = theQuery.getSingleResult();
 		
 		//return the result
-		return eventi;
+		return evento;
 	}
 	
 	

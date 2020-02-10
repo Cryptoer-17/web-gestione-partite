@@ -31,6 +31,7 @@
 				<c:if test="${empty eventos}">
 				Non è stato inserito correttamente il tipo di evento o non è in programma.
 				</c:if>
+				
 				<c:if test="${not empty eventos}">
 					 ${eventos.tipo} ${eventos.orario} ${eventos.luogo} ${eventos.struttura} 
 				</c:if>
@@ -47,7 +48,6 @@
 			<c:if test="${not empty persons}">
 			<h3>Partecipanti all'evento</h3>
 			<form:form action="partecipatePerson"  method="GET" style="float:left;height:30px;">				
-			<!-- Button to partecipate at the event and non partecipate -->
 				<input type="submit" value="Partecipa all'evento" class="add-button" name="partecipate"/>	
 							
 			<br><input type="text" value="${person.idPersona}" name="theIdPers" style="height:1px"/>	

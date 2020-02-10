@@ -18,6 +18,6 @@ public interface EventDAO {
 	
 	public List<Evento> getEvents();
 
-	public List<Evento> getSingleEvent(int idEvent, String tipo);
+	public Evento getSingleEvent(int idEvent, String tipo);
 
 }
