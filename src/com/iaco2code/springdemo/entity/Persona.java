@@ -81,16 +81,7 @@ public class Persona {
 	private List<Evento> eventi;
 		
 	
-	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
-	@JoinTable(name="persona_has_persona",
-	 joinColumns=@JoinColumn(name="idPersona"),
-	 inverseJoinColumns=@JoinColumn(name="idPersona2")
-	)
-	private List<Persona> persone ;
 	
-
-	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE, mappedBy = "persone")
-	private List<Persona> children; 
 	
 	
 	public Persona() {
@@ -194,30 +185,8 @@ public class Persona {
 	}
 
 	
-	public void addPersona(Persona persona) {
-		 if (this.persone == null) {
-	            this.persone = new ArrayList<Persona>();
-	        }
-	        this.persone.add(persona);
-	}
-	
-	
-	
-	public List<Persona> getPersone() {
-		return persone;
-	}
 
-	public void setPersone(List<Persona> persone) {
-		this.persone = persone;
-	}
 
-	public List<Persona> getChildren() {
-		return children;
-	}
-
-	public void setChildren(List<Persona> children) {
-		this.children = children;
-	}
 
 	@Override
 	public String toString() {
