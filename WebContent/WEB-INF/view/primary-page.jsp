@@ -23,7 +23,7 @@
 	
 	<div id="container">
 		<div id="content">
-		
+
 		
 	
 		<form:form method="GET" modelAttribute="evento">
@@ -116,7 +116,7 @@
 	
 	<div id="right" style="overflow:hidden">
 		<div id="list-person" style="margin-left:30px">
-		<form:form action="sendRequest" method="GET">
+		
 				<table>
 				<tbody>
 				<tr><h6 style="font-family:cursive">Diventa amico di persone</h6></tr>
@@ -127,17 +127,19 @@
 					<th>Cognome</th>
 				</tr>
 				<c:forEach var="tempallPers" items="${allPerson}">
+				<form:form action="sendRequest" method="GET">
 					<tr>
 						<td > ${tempallPers.nome}&nbsp</td>
 						<td> ${tempallPers.cognome}</td>
 						<td><input type="submit" value="invia richiesta"  class="add-button"/></td>
-						<td><input type="text" value="${tempallPers.idPersona}" name="theId1" style="width:1px;"/><td>
-						<td><input type="text" value="${person.idPersona}" name="theId2" style="width:1px;"/></td>
-					</tr>				
+						<td><input type="text" value="${person.idPersona}" name="theId1" style="width:25px;"/></td>
+						<td><input type="text" value="${tempallPers.idPersona}" name="theId2" style="width:25px;"/><td>
+					</tr>	
+					</form:form>			
 				</c:forEach>	
 				</tbody>
 			</table>
-		</form:form>
+		
 		</div>
 	
 	</div>

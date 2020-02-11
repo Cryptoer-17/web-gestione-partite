@@ -291,8 +291,7 @@ public class PersonController {
 		if(present) {
 		personDAO.deleteAssocEventPers(thePers,thEvent);
 		Persona tempPers= new Persona(thePers.getNome(),thePers.getCognome(),thePers.getEmail(),thePers.getUsername(),thePers.getPassword(),thePers.getAdmin());
-		personDAO.savePerson(tempPers);
-		
+		personDAO.savePerson(tempPers);	
 
 		theModel.addAttribute("person",tempPers);
 		}
@@ -314,11 +313,11 @@ public class PersonController {
 	public String sendRequest(@RequestParam("theId1") int theId1, 
 							  @RequestParam("theId2") int theId2,
 							  RedirectAttributes redirectAttributes,
-							  Model theModel) {
-		
-		Persona thePers1 = personDAO.getPersonsId(theId2); 
-		Persona thePers2 = personDAO.getPersonsId(theId1);
-		
+							   Model theModel) {
+	
+		Persona thePers1 = personDAO.getPersonsId(theId1); 
+		Persona thePers2 = personDAO.getPersonsId(theId2);
+		thePers1.getAmici().add(thePers2);	
 		personDAO.savePerson(thePers1);
 		redirectAttributes.addFlashAttribute("some", thePers1);
 		return "redirect:/person/ShowPrimaryPage";  
