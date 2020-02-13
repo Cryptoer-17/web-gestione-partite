@@ -4,9 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -20,8 +22,10 @@ public class Amico implements Serializable{
 	@Column
 	private int idAmicizia;
 	
-	@Column
-	private int idPersona1;
+
+	@ManyToOne
+	@JoinColumn
+	private Persona idPersona1;
 	
 	@Column
 	private int idPersona2;
@@ -33,8 +37,7 @@ public class Amico implements Serializable{
 	private int ActionUserId;
 
 	
-	@ManyToOne
-	private Persona persona;
+	
 	
 	
 	public Amico() {
@@ -43,20 +46,19 @@ public class Amico implements Serializable{
 
 
 	
-	public Amico(int idAmicizia, int idPersona1, int idPersona2, int status, int actionUserId) {
-		this.idAmicizia = idAmicizia;
+	public Amico(Persona idPersona1, int idPersona2, int status, int actionUserId) {
 		this.idPersona1 = idPersona1;
 		this.idPersona2 = idPersona2;
-		Status = status;
-		ActionUserId = actionUserId;
+		this.Status = status;
+		this.ActionUserId = actionUserId;
 	}
 
 
-	public int getIdPersona1() {
+	public Persona getIdPersona1() {
 		return idPersona1;
 	}
 
-	public void setIdPersona1(int idPersona1) {
+	public void setIdPersona1(Persona idPersona1) {
 		this.idPersona1 = idPersona1;
 	}
 
@@ -82,6 +84,18 @@ public class Amico implements Serializable{
 
 	public void setActionUserId(int actionUserId) {
 		ActionUserId = actionUserId;
+	}
+
+
+
+	public int getIdAmicizia() {
+		return idAmicizia;
+	}
+
+
+
+	public void setIdAmicizia(int idAmicizia) {
+		this.idAmicizia = idAmicizia;
 	}
 	
 	

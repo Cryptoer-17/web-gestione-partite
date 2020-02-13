@@ -1,7 +1,9 @@
 package com.iaco2code.springdemo.entity;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -78,6 +80,15 @@ public class Persona {
 			)
 	private List<Evento> eventi;
 		
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name="amicizia",
+            joinColumns = @JoinColumn( name="idPersona"),
+            inverseJoinColumns = @JoinColumn( name="idPersona1")
+    )
+	private Set<Amico> amici = new HashSet<Amico>();
+	
 	
 	public Persona() {
 	
@@ -171,7 +182,16 @@ public class Persona {
 		this.admin = admin;
 	}
 	
+
 	
+	public Set<Amico> getAmici() {
+		return amici;
+	}
+
+	public void setAmici(Set<Amico> amici) {
+		this.amici = amici;
+	}
+
 	// add a convenience method
 	public void addEvento(Evento theEvent) {	
 		if (eventi == null) {
@@ -183,12 +203,12 @@ public class Persona {
 
 	
 	
-	/*public void addAmico(Amico thesAmi) {
+	public void addAmico(Amico thesAmi) {
 		if(this.amici == null) {
-			this.amici = new ArrayList<Amico>();
+			this.amici = new HashSet<Amico>();
 		}
 		this.amici.add(thesAmi);
-	}*/
+	}
 	
 	
 
