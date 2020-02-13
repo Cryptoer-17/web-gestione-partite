@@ -4,26 +4,24 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.iaco2code.springdemo.entity.Persona;
 
 @Entity
 @Table(name="amicizia")
 public class Amico implements Serializable{
 
 	@Id
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="idPersona1")
 	private Persona idPersona1;
 	
 	@Id
-	@ManyToOne
-	@JoinColumn(name="idPersona2")
-	private Persona idPersona2;
+	@Column
+	private int idPersona2;
 	
 	@Column
 	private int Status;
@@ -31,7 +29,7 @@ public class Amico implements Serializable{
 	@Column(name="ActionUserId")
 	private int ActionUserId;
 
-	public Amico(Persona idPersona1, Persona idPersona2, int status, int actionUserId) {
+	public Amico(Persona idPersona1, int idPersona2, int status, int actionUserId) {
 		this.idPersona1 = idPersona1;
 		this.idPersona2 = idPersona2;
 		Status = status;
@@ -46,11 +44,11 @@ public class Amico implements Serializable{
 		this.idPersona1 = idPersona1;
 	}
 
-	public Persona getIdPersona2() {
+	public int getIdPersona2() {
 		return idPersona2;
 	}
 
-	public void setIdPersona2(Persona idPersona2) {
+	public void setIdPersona2(int idPersona2) {
 		this.idPersona2 = idPersona2;
 	}
 

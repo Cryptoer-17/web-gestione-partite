@@ -318,8 +318,7 @@ public class PersonController {
 	
 		Persona thePers1 = personDAO.getPersonsId(theId1); 
 		Persona thePers2 = personDAO.getPersonsId(theId2);
-		Amico theAmis = new Amico(thePers1,thePers2,0,thePers1.getIdPersona());
-		personDAO.saveAmico(theAmis);
+		
 		redirectAttributes.addFlashAttribute("some", thePers1);
 		return "redirect:/person/ShowPrimaryPage";  
 	}

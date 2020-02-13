@@ -1,7 +1,6 @@
 package com.iaco2code.springdemo.entity;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -80,10 +79,11 @@ public class Persona {
 			)
 	private List<Evento> eventi;
 		
-
 	
 
-	
+    @OneToMany(fetch = FetchType.LAZY) 
+    @JoinColumn(name= "paren_id") 
+    private Set<Amico> amici; 
 	
 	public Persona() {
 	
@@ -192,6 +192,14 @@ public class Persona {
 	public String toString() {
 		return "Persona [idPersona=" + idPersona + ", nome=" + nome + ", cognome=" + cognome + ", email=" + email
 				+ ", username=" + username + ", password=" + password + ", admin=" + admin + "]";
+	}
+
+	public Set<Amico> getAmici() {
+		return amici;
+	}
+
+	public void setAmici(Set<Amico> amici) {
+		this.amici = amici;
 	}
 
 
