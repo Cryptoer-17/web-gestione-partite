@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.iaco2code.springdemo.dao.PersonDAO;
 import com.iaco2code.springdemo.daoevent.EventDAO;
+import com.iaco2code.springdemo.entity.Amico;
 import com.iaco2code.springdemo.entity.Evento;
 import com.iaco2code.springdemo.entity.Persona;
 import com.iaco2code.springdemo.sendemail.Code;
@@ -317,8 +318,8 @@ public class PersonController {
 	
 		Persona thePers1 = personDAO.getPersonsId(theId1); 
 		Persona thePers2 = personDAO.getPersonsId(theId2);
-/*		thePers1.getAmici().add(thePers2);	
-		personDAO.savePerson(thePers1);*/
+		Amico theAmis = new Amico(thePers1,thePers2,0,thePers1.getIdPersona());
+		personDAO.saveAmico(theAmis);
 		redirectAttributes.addFlashAttribute("some", thePers1);
 		return "redirect:/person/ShowPrimaryPage";  
 	}
