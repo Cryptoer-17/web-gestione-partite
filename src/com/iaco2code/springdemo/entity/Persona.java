@@ -15,11 +15,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Pattern.Flag;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -81,6 +80,7 @@ public class Persona {
 			)
 	private List<Evento> eventi;
 		
+<<<<<<< Updated upstream
 	@ManyToMany(fetch=FetchType.EAGER,cascade={CascadeType.ALL})
 	@JoinTable(name="persona_has_persona",
 		joinColumns={@JoinColumn(name="idPersona")},
@@ -91,6 +91,9 @@ public class Persona {
 	private Set<Persona> amici_inverse = new HashSet<Persona>();
 
 	
+=======
+
+>>>>>>> Stashed changes
 	
 	
 	public Persona() {
@@ -194,6 +197,8 @@ public class Persona {
 	}
 
 	
+	
+	
 
 	public Set<Persona> getAmici() {
 		return amici;
@@ -217,9 +222,16 @@ public class Persona {
 		return "Persona [idPersona=" + idPersona + ", nome=" + nome + ", cognome=" + cognome + ", email=" + email
 				+ ", username=" + username + ", password=" + password + ", admin=" + admin + "]";
 	}
-	
-	
 
+
+	
+	/*
+	public void addAmico(Amico theamis) {
+		if(this.amici==null) {
+			this.amici = new HashSet<Amico>();
+		}
+		this.amici.add(theamis);
+	}*/
 	
 	
 	

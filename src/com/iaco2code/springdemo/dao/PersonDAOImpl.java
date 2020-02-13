@@ -154,13 +154,14 @@ public class PersonDAOImpl implements PersonDAO {
 			return false;
 		else return true;
 	}
+	
 	@Override
 	@Transactional
 	public List<Persona> getPersonSendRequest(int idCurrentPers) {
 		//get current session
 		Session currentSession= sessionFactory.getCurrentSession();				
 		//retrive the person with query
-		Query<Persona> theQuery = currentSession.createQuery("from Persona where idPersona !='"+idCurrentPers+"'");
+		Query<Persona> theQuery = currentSession.createQuery("select p from Persona p join p.idPersona1 e",Persona.class);
 		try {
 		List<Persona> thePerson = theQuery.getResultList();
 		return thePerson;
@@ -169,6 +170,19 @@ public class PersonDAOImpl implements PersonDAO {
 			return null;	
 		}
 	}
+<<<<<<< Updated upstream
+=======
+	
+	@Override
+	@Transactional
+	public void saveAmico(Amico theAmico) {
+		//get current session
+		Session currentSession= sessionFactory.getCurrentSession();		
+		//save the person finally LOL
+		currentSession.saveOrUpdate(theAmico);	
+		
+	}
+>>>>>>> Stashed changes
 
 
 	

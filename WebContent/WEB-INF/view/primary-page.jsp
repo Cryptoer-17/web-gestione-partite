@@ -128,13 +128,7 @@
 				</tr>
 				<c:forEach var="tempallPers" items="${allPerson}">
 				<form:form action="sendRequest" method="GET">
-					<tr>
-						<td > ${tempallPers.nome}&nbsp</td>
-						<td> ${tempallPers.cognome}</td>
-						<td><input type="submit" value="invia richiesta"  class="add-button"/></td>
-						<td><input type="text" value="${person.idPersona}" name="theId1" style="width:25px;"/></td>
-						<td><input type="text" value="${tempallPers.idPersona}" name="theId2" style="width:25px;"/><td>
-					</tr>	
+					${tempallPers.idPersona1}
 					</form:form>			
 				</c:forEach>	
 				</tbody>

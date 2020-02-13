@@ -336,6 +336,8 @@ public class PersonController {
 		List<Persona> list = new ArrayList<Persona>();
 		list.add(thePers);
 		if(thePers!=null) {
+			
+			personDAO.saveAmico(new Amico(thePers,1,0,3));
 			redirectAttrs.addFlashAttribute("some", thePers);
 			return "redirect:/person/ShowPrimaryPage";  
 		}
@@ -374,8 +376,8 @@ public class PersonController {
 				
 			
 			//get list of person how can know
-			List<Persona> persons = personDAO.getPersonSendRequest(theId);
-			theModel.addAttribute("allPerson",persons);
+/*			List<Persona> persons = personDAO.getPersonSendRequest(theId);	
+			theModel.addAttribute("allPerson",persons);*/
 			
 		 return "primary-page";
 	 }
@@ -417,9 +419,9 @@ public class PersonController {
 			
 			
 			//get list people from DAO
-			List<Persona> persone = personDAO.getPersonSendRequest(theId);	
+	/*		List<Persona> persone = personDAO.getPersonSendRequest(theId);	
 			//add to the list at the model
-			theModel.addAttribute("allPerson",persone); 
+			theModel.addAttribute("allPerson",persone); */
 			
 		 return "primary-page";
 	 }
