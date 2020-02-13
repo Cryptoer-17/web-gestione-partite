@@ -116,19 +116,21 @@
 	
 	<div id="right" style="overflow:hidden">
 		<div id="list-person" style="margin-left:30px">
-		
 				<table>
 				<tbody>
 				<tr><h6 style="font-family:cursive">Diventa amico di persone</h6></tr>
 				<tr><h6 style="font-family:cursive">per organizzare eventi</h6></tr>
-				<tr></tr>
 				<tr>
 					<th>Nome</th>
 					<th>Cognome</th>
 				</tr>
 				<c:forEach var="tempallPers" items="${allPerson}">
 				<form:form action="sendRequest" method="GET">
-					${tempallPers.idPersona1}
+					<tr><td>${tempallPers.nome}</td>
+					<td>${tempallPers.cognome}</td>
+					<td><input type="text" name="theId1" value="${person.idPersona}" style="width:10px;" "/></td>
+					<td><input type="text" name="theId2" value="${tempallPers.idPersona}" style="width:10px;""/></td>
+					<td><input type="submit" value="Invia Richiesta" /><td><tr>
 					</form:form>			
 				</c:forEach>	
 				</tbody>

@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -14,12 +14,15 @@ import javax.persistence.Table;
 @Table(name="amicizia")
 public class Amico implements Serializable{
 
-	@Id
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="idPersona1")
-	private Persona idPersona1;
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column
+	private int idAmicizia;
+	
+	@Column
+	private int idPersona1;
+	
 	@Column
 	private int idPersona2;
 	
@@ -29,18 +32,31 @@ public class Amico implements Serializable{
 	@Column(name="ActionUserId")
 	private int ActionUserId;
 
-	public Amico(Persona idPersona1, int idPersona2, int status, int actionUserId) {
+	
+	@ManyToOne
+	private Persona persona;
+	
+	
+	public Amico() {
+		
+	}
+
+
+	
+	public Amico(int idAmicizia, int idPersona1, int idPersona2, int status, int actionUserId) {
+		this.idAmicizia = idAmicizia;
 		this.idPersona1 = idPersona1;
 		this.idPersona2 = idPersona2;
 		Status = status;
 		ActionUserId = actionUserId;
 	}
 
-	public Persona getIdPersona1() {
+
+	public int getIdPersona1() {
 		return idPersona1;
 	}
 
-	public void setIdPersona1(Persona idPersona1) {
+	public void setIdPersona1(int idPersona1) {
 		this.idPersona1 = idPersona1;
 	}
 

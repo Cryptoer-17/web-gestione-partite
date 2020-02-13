@@ -162,7 +162,7 @@ public class PersonDAOImpl implements PersonDAO {
 		//get current session
 		Session currentSession= sessionFactory.getCurrentSession();				
 		//retrive the person with query
-		Query<Persona> theQuery = currentSession.createQuery("select p from Persona p join p.amici e",Persona.class);
+		Query<Persona> theQuery = currentSession.createQuery("from Persona",Persona.class);
 		try {
 		List<Persona> thePerson = theQuery.getResultList();
 		return thePerson;

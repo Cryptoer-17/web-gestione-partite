@@ -1,6 +1,7 @@
 package com.iaco2code.springdemo.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -318,7 +319,8 @@ public class PersonController {
 	
 		Persona thePers1 = personDAO.getPersonsId(theId1); 
 		Persona thePers2 = personDAO.getPersonsId(theId2);
-		
+	/*	Amico thesAmi = new Amico(thePers1.getIdPersona(),thePers2.getIdPersona(),0,3);
+		personDAO.saveAmico(thesAmi);*/
 		redirectAttributes.addFlashAttribute("some", thePers1);
 		return "redirect:/person/ShowPrimaryPage";  
 	}

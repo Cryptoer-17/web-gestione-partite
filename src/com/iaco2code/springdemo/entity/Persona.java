@@ -2,7 +2,6 @@ package com.iaco2code.springdemo.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -80,11 +79,6 @@ public class Persona {
 	private List<Evento> eventi;
 		
 	
-
-    @OneToMany(fetch = FetchType.LAZY) 
-    @JoinColumn(name= "paren_id") 
-    private Set<Amico> amici; 
-	
 	public Persona() {
 	
 	}
@@ -108,6 +102,7 @@ public class Persona {
 		this.admin = admin;
 	}
 
+	
 	public int getIdPersona() {
 		return idPersona;
 	}
@@ -175,7 +170,8 @@ public class Persona {
 	public void setAdmin(int admin) {
 		this.admin = admin;
 	}
-
+	
+	
 	// add a convenience method
 	public void addEvento(Evento theEvent) {	
 		if (eventi == null) {
@@ -187,6 +183,14 @@ public class Persona {
 
 	
 	
+	/*public void addAmico(Amico thesAmi) {
+		if(this.amici == null) {
+			this.amici = new ArrayList<Amico>();
+		}
+		this.amici.add(thesAmi);
+	}*/
+	
+	
 
 	@Override
 	public String toString() {
@@ -194,23 +198,9 @@ public class Persona {
 				+ ", username=" + username + ", password=" + password + ", admin=" + admin + "]";
 	}
 
-	public Set<Amico> getAmici() {
-		return amici;
-	}
-
-	public void setAmici(Set<Amico> amici) {
-		this.amici = amici;
-	}
 
 
-	
-	/*
-	public void addAmico(Amico theamis) {
-		if(this.amici==null) {
-			this.amici = new HashSet<Amico>();
-		}
-		this.amici.add(theamis);
-	}*/
+
 	
 	
 	
