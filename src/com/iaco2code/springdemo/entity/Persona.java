@@ -80,20 +80,9 @@ public class Persona {
 			)
 	private List<Evento> eventi;
 		
-<<<<<<< Updated upstream
-	@ManyToMany(fetch=FetchType.EAGER,cascade={CascadeType.ALL})
-	@JoinTable(name="persona_has_persona",
-		joinColumns={@JoinColumn(name="idPersona")},
-		inverseJoinColumns={@JoinColumn(name="idPersona2")})
-	private Set<Persona> amici = new HashSet<Persona>();
-
-	@ManyToMany(mappedBy="amici")
-	private Set<Persona> amici_inverse = new HashSet<Persona>();
 
 	
-=======
 
->>>>>>> Stashed changes
 	
 	
 	public Persona() {
@@ -198,24 +187,6 @@ public class Persona {
 
 	
 	
-	
-
-	public Set<Persona> getAmici() {
-		return amici;
-	}
-
-	public void setAmici(Set<Persona> amici) {
-		this.amici = amici;
-	}
-
-
-	public Set<Persona> getAmici_inverse() {
-		return amici_inverse;
-	}
-
-	public void setAmici_inverse(Set<Persona> amici_inverse) {
-		this.amici_inverse = amici_inverse;
-	}
 
 	@Override
 	public String toString() {

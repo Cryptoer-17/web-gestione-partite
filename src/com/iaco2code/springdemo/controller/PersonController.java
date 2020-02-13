@@ -317,8 +317,8 @@ public class PersonController {
 	
 		Persona thePers1 = personDAO.getPersonsId(theId1); 
 		Persona thePers2 = personDAO.getPersonsId(theId2);
-		thePers1.getAmici().add(thePers2);	
-		personDAO.savePerson(thePers1);
+/*		thePers1.getAmici().add(thePers2);	
+		personDAO.savePerson(thePers1);*/
 		redirectAttributes.addFlashAttribute("some", thePers1);
 		return "redirect:/person/ShowPrimaryPage";  
 	}
@@ -337,7 +337,6 @@ public class PersonController {
 		list.add(thePers);
 		if(thePers!=null) {
 			
-			personDAO.saveAmico(new Amico(thePers,1,0,3));
 			redirectAttrs.addFlashAttribute("some", thePers);
 			return "redirect:/person/ShowPrimaryPage";  
 		}

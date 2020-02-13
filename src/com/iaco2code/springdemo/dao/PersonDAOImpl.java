@@ -11,6 +11,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.iaco2code.springdemo.entity.Amico;
 import com.iaco2code.springdemo.entity.Evento;
 import com.iaco2code.springdemo.entity.Persona;
 
@@ -161,7 +162,7 @@ public class PersonDAOImpl implements PersonDAO {
 		//get current session
 		Session currentSession= sessionFactory.getCurrentSession();				
 		//retrive the person with query
-		Query<Persona> theQuery = currentSession.createQuery("select p from Persona p join p.idPersona1 e",Persona.class);
+		Query<Persona> theQuery = currentSession.createQuery("from Persona",Persona.class);
 		try {
 		List<Persona> thePerson = theQuery.getResultList();
 		return thePerson;
@@ -170,8 +171,7 @@ public class PersonDAOImpl implements PersonDAO {
 			return null;	
 		}
 	}
-<<<<<<< Updated upstream
-=======
+
 	
 	@Override
 	@Transactional
@@ -182,7 +182,7 @@ public class PersonDAOImpl implements PersonDAO {
 		currentSession.saveOrUpdate(theAmico);	
 		
 	}
->>>>>>> Stashed changes
+
 
 
 	

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.iaco2code.springdemo.entity.Amico;
 import com.iaco2code.springdemo.entity.Evento;
 import com.iaco2code.springdemo.entity.Persona;
 
@@ -32,4 +33,6 @@ public interface PersonDAO {
 	public boolean checkifPersonIsAssoc(int idPers, int idEvent);
 
 	public List<Persona> getPersonSendRequest(int idCurrentPers);
+	
+	public void saveAmico(Amico theAmico);
 }
