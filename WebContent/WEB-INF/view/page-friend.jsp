@@ -30,6 +30,9 @@
 		</div>
 	</div>
 	<div id="container">
+	
+	 
+	</div>
 	<div id="lista-stato-attesa" style="width:400px;float:left">
 	<br>
 	<c:if test="${not empty listPersAttes}">

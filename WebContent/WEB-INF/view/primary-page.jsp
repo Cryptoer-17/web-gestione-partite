@@ -13,7 +13,7 @@
 </head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <body>
-
+<br>
 <div id="wrapper">
 		<div id="header">
 			<h2>Prossimi eventi</h2>
@@ -23,7 +23,10 @@
 	
 	<div id="container">
 		<div id="content">
-
+		<div id="notification" >
+	<button type="button" class="btn btn-primary" style="width:50px;height:30px;font-size:small;padding:0px 0px 0px 0px;margin-left:750px">
+	<img style="height:20px" src='<c:url value="/resources/notification.png" ></c:url>' /><span class="badge badge-light">4</span>
+	</button>
 		
 	
 		<form:form method="GET" modelAttribute="evento">

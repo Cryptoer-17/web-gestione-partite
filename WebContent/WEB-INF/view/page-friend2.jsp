@@ -32,7 +32,7 @@
 	<div id="content-list-person" style="margin-left:600px">
 	Diventa amico di persone
 	per organizzare eventi
-	<div id="list-person" style="overflow:scroll;height:200px;width:320px">
+	<div id="list-person" style="overflow:scroll;height:200px;width:320px;margin-left:750px">
 				<table>
 				<tbody>
 				<tr>
