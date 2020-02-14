@@ -215,7 +215,7 @@ public class PersonDAOImpl implements PersonDAO {
 		//get current session
 				Session currentSession= sessionFactory.getCurrentSession();				
 				//retrive the person with query
-				Query<Amico> theQuery = currentSession.createQuery("from Amico where (idPersona2='"+idCurrentPers+"' or idPersona1='"+idCurrentPers+"') AND Status=0");
+				Query<Amico> theQuery = currentSession.createQuery("from Amico where idPersona1='"+idCurrentPers+"' AND Status=0");
 				try {
 				List<Amico> thePerson = theQuery.getResultList();
 				List <Integer> viewIdListPers= new ArrayList<Integer>();

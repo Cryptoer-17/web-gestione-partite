@@ -20,6 +20,8 @@
 		<br>
 	
 </head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 <body>
 
 	<div id="wrapper">
@@ -28,22 +30,22 @@
 		</div>
 	</div>
 	<div id="container">
-	<div id="lista-stato-attesa">
-	
+	<div id="lista-stato-attesa" style="width:400px;float:left">
+	<br>
 	<c:if test="${not empty listPersAttes}">
-	<div id="list-person" style="width:350px;float:left">
-	<i><h2 style="font-size:22px;line-height:5px">Lista di persone che devono accettare </h2></i>
-	<i><h2 style="font-size:22px;height:10px">la tua richiesta di amicizia </h2></i>
+	<i><h2 style="font-size:22px;font-family:fantasy">Lista di persone che devono accettare </h2></i>
+	<i><h2 style="font-size:22px;height:14px;font-family:fantasy">la tua richiesta di amicizia </h2></i>
+	<div id="list-person" style="margin-top:40px;overflow:scroll;width:300px;height:200px" >
 	<table>
 		<tbody>
 		<tr>
-			<th style="float:left">Nome</th>
-			<th>Cognome</th>
+			<th style="float:left;font-family:initial;font-size:35px;width:110px">Nome</th>
+			<th style="font-family:initial;font-size:35px">Cognome</th>
 		</tr>
-		<c:forEach var="tempallPersAtt" items="${listPersAttes}">
-		<tr>
-		<td>${tempallPersAtt.nome}</td>
-		<td>${tempallPersAtt.cognome}</td>
+		<c:forEach var="tempallPersAtt" items="${listPersAttes}" >
+		<tr >
+		<td style="font-family:initial;font-size:21px">${tempallPersAtt.nome}</td>
+		<td style="font-family:initial;font-size:21px">${tempallPersAtt.cognome}</td>
 		</tr>
 		</c:forEach>
 		</tbody>
@@ -58,19 +60,19 @@
 	
 	
 	<div id="content-list-person" style="margin-left:500px">
-	<h2 style="font-family:cursive">Diventa amico di persone</h2>
+	<h2 style="font-family:cursive;height:50px">Diventa amico di persone</h2>
 	<h2 style="font-family:cursive;line-height:0px">per organizzare eventi</h2>
-	<div id="list-person" style="overflow:scroll;height:200px;width:320px">
+	<div id="list-person" style="overflow:scroll;height:200px;width:400px;margin-top:40px">
 				<table>
 				<tbody>
 				<tr>
-					<th style="float:left">Nome</th>
-					<th>Cognome</th>
+					<th style="float:left;font-family:initial;font-size:30px;width:110px">Nome</th>
+					<th style="font-family:initial;font-size:30px">Cognome</th>
 				</tr>
 				<c:forEach var="tempallPers" items="${allPerson}">
 				<form:form action="saveAmico" method="GET">
-					<tr><td>${tempallPers.nome}</td>
-					<td>${tempallPers.cognome}</td>
+					<tr><td style="font-family:initial;font-size:21px">${tempallPers.nome}</td>
+					<td style="font-family:initial;font-size:21px">${tempallPers.cognome}</td>
 					<td><input type="text" name="theId1" value="${persona1.idPersona}" style="width:10px;" "/></td>
 					<td><input type="text" name="theId2" value="${tempallPers.idPersona}" style="width:10px;""/></td>
 					<td><input type="submit" value="Invia Richiesta" /><td><tr>
