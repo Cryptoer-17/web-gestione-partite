@@ -23,11 +23,16 @@
 	
 	<div id="container">
 		<div id="content">
-		<div id="notification" >
-	<button type="button" class="btn btn-primary" style="width:50px;height:30px;font-size:small;padding:0px 0px 0px 0px;margin-left:750px">
+		
+	<form:form action="pageFriend" method="GET">
+	<div id="notification" >
+	<button type="submit" class="btn btn-primary" style="width:50px;height:30px;font-size:small;padding:0px 0px 0px 0px;margin-left:750px">
 	<img style="height:20px" src='<c:url value="/resources/notification.png" ></c:url>' /><span class="badge badge-light">4</span>
 	</button>
-		
+	<input type="text" name="theId1" value="${person.idPersona}" style="width:10px;" "/>
+	</div>	
+	</form:form>
+	
 	
 		<form:form method="GET" modelAttribute="evento">
 		 <br>
