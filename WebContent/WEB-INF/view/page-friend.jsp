@@ -59,7 +59,7 @@
 	<c:if test="${empty listPersAttes}">
 	<div id="lista-stato-attesa" style="width:400px;float:left">
 	<br>
-	<i><h2 style="font-size:22px;font-family:fantasy">Tutte le richieste d'amicizia che hai inviato sono andate a buon fine.</h2></i>
+	<i><h2 style="font-size:22px;font-family:fantasy">Tutte le richieste d'amicizia che hai inviato, sono andate a buon fine.</h2></i>
 	</div>
 	</c:if>
 	
@@ -67,8 +67,8 @@
 	
 	
 	<div id="content-list-person" style="margin-left:500px;margin-top:30px">
-	<h2 style="font-family:cursive;height:50px">Diventa amico di persone</h2>
-	<h2 style="font-family:cursive;line-height:0px">per organizzare eventi</h2>
+	<h2 style="font-family:monospace;height:50px">Diventa amico di persone</h2>
+	<h2 style="font-family:monospace;line-height:0px">per organizzare eventi</h2>
 	<div id="list-person" style="overflow:scroll;height:200px;width:400px;margin-top:20px">
 				<table>
 				<tbody>
@@ -93,6 +93,7 @@
 	
 	<div id="richieste da accettare">
 	<c:if test="${not empty richiesteDaAccett}">
+	<i><h2 style="font-size:22px;font-family:fantasy">Devi accettare la richiesta d'amicizia da parte di queste persone</h2></i>
 	<div id="list-person-da-accett" style="margin-top:20px;overflow:scroll;width:300px;height:200px" >
 	<table>
 		<tbody>
