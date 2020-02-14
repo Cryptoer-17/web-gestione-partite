@@ -270,9 +270,8 @@ public class PersonController {
 		//add the list to the model
 		theModel.addAttribute("allPerson",persons);*/
 		
-		List<Persona> persons = personDAO.getPersonSendRequest(thePers.getIdPersona());
-		theModel.addAttribute("allPerson",persons);
-		
+		int lastNotify = personDAO.getLastIdNotify(thePers.getIdPersona());
+		theModel.addAttribute("lastNotify",lastNotify);
 		return "primary-page";
 	}
 	

@@ -213,25 +213,47 @@ public class PersonDAOImpl implements PersonDAO {
 	@Transactional
 	public List<Persona> getAttempList(int idCurrentPers) {
 		//get current session
-				Session currentSession= sessionFactory.getCurrentSession();				
-				//retrive the person with query
-				Query<Amico> theQuery = currentSession.createQuery("from Amico where idPersona1='"+idCurrentPers+"' AND Status=0");
-				try {
-				List<Amico> thePerson = theQuery.getResultList();
-				List <Integer> viewIdListPers= new ArrayList<Integer>();
-				for(Amico tempAmi : thePerson) {
-					if(tempAmi.getIdPersona1().getIdPersona()==idCurrentPers) {
-						viewIdListPers.add(tempAmi.getIdPersona2().getIdPersona());
-					}
-					else viewIdListPers.add(tempAmi.getIdPersona1().getIdPersona());
-				}
-				Query<Persona> theQuery2 = currentSession.createQuery("from Persona p where p.idPersona in (:ids) AND p.idPersona!='"+idCurrentPers+"'").setParameterList("ids", viewIdListPers);
-				List<Persona> thePersonList = theQuery2.getResultList();
-				return thePersonList;
-				}
-				catch(NoResultException nre) {
-					return null;	
-				}
+		Session currentSession= sessionFactory.getCurrentSession();				
+		//retrive the person with query
+		Query<Amico> theQuery = currentSession.createQuery("from Amico where idPersona1='"+idCurrentPers+"' AND Status=0");
+		try {
+		List<Amico> thePerson = theQuery.getResultList();
+		List <Integer> viewIdListPers= new ArrayList<Integer>();
+		for(Amico tempAmi : thePerson) {
+			if(tempAmi.getIdPersona1().getIdPersona()==idCurrentPers) {
+				viewIdListPers.add(tempAmi.getIdPersona2().getIdPersona());
+			}
+		}
+		Query<Persona> theQuery2 = currentSession.createQuery("from Persona p where p.idPersona in (:ids) AND p.idPersona!='"+idCurrentPers+"'").setParameterList("ids", viewIdListPers);
+		List<Persona> thePersonList = theQuery2.getResultList();
+		return thePersonList;
+		}
+		catch(NoResultException nre) {
+			return null;	
+		}
+	}
+	
+    @Override
+	@Transactional
+	public int getLastIdNotify(int idPersona) {
+		Session currentSession= sessionFactory.getCurrentSession();				
+		//retrive the person with query
+		Query<Amico> theQuery = currentSession.createQuery("from Amico where idPersona1='"+idPersona+"' AND Status=0");
+		try {
+		List<Amico> thePerson = theQuery.getResultList();
+		List <Integer> viewIdListPers= new ArrayList<Integer>();
+		int i = 0;
+		for(Amico tempAmi : thePerson) {
+			if(tempAmi.getIdPersona1().getIdPersona()==idPersona) {
+				viewIdListPers.add(tempAmi.getIdPersona2().getIdPersona());
+				i++;
+			}
+		}
+		return i;
+		}
+		catch(NoResultException nre) {
+			return 0;	
+		}	
 	}
 
 

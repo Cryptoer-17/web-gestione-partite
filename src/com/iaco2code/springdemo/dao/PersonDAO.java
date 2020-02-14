@@ -39,5 +39,7 @@ public interface PersonDAO {
 	public List<Persona> getProvaPersone(int idPersona);
 
 	public List<Persona> getAttempList(int idPersona);
+
+	public int getLastIdNotify(int idPersona);
 	
 }
