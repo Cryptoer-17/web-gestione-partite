@@ -422,7 +422,11 @@ public class PersonController {
 		 Persona thePers1 = personDAO.getPersonsId(theId1); 
 		 theModel.addAttribute("persona1",thePers1);
 		
-		 
+
+		int lastNotify = personDAO.getLastIdNotify(theId1);
+		theModel.addAttribute("lastNotify",lastNotify);
+	 
+		
 		 List<Persona> attempList = personDAO.getAttempList(thePers1.getIdPersona());
 		 theModel.addAttribute("listPersAttes",attempList);
 		 

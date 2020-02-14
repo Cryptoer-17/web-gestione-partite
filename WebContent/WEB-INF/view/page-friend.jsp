@@ -36,8 +36,9 @@
 	<div id="lista-stato-attesa" style="width:400px;float:left">
 	<br>
 	<c:if test="${not empty listPersAttes}">
-	<i><h2 style="font-size:22px;font-family:fantasy">Lista di persone che devono accettare </h2></i>
-	<i><h2 style="font-size:22px;height:14px;font-family:fantasy">la tua richiesta di amicizia </h2></i>
+	<i><h2 style="font-size:22px;font-family:fantasy">Hai ancora ${lastNotify} amicizie da accettare</h2></i>
+	<i><h2 style="font-size:22px;font-family:fantasy">Lista di persone che devono accettare la tua richiesta di amicizia </h2></i>
+	
 	<div id="list-person" style="margin-top:40px;overflow:scroll;width:300px;height:200px" >
 	<table>
 		<tbody>
