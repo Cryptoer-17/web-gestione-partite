@@ -1,7 +1,6 @@
 package com.iaco2code.springdemo.controller;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -72,6 +71,27 @@ public class PersonController {
 		
 		return "redirect:/person/ShowPrimaryPage";
 	}
+	
+	
+	@GetMapping("/saveAmico")
+	public String saveAmico(Model theModel,@RequestParam("theId1") int theId1,@RequestParam("theId2") int theId2) {
+		
+		Persona thePers1 = personDAO.getPersonsId(theId1);
+		 theModel.addAttribute("persona1",thePers1);
+		
+
+		Persona thePers2 = personDAO.getPersonsId(theId2); 
+		 
+		 Amico theAmi = new Amico (thePers1,thePers2,0,thePers1.getIdPersona());
+		 personDAO.saveAmico(theAmi); 
+		 
+		 
+		 List<Persona> persons = personDAO.getPersonSendRequest(thePers1.getIdPersona());
+	     theModel.addAttribute("allPerson",persons);
+		 
+		return "page-friend2";
+	}
+	
 	
 	@GetMapping("/saveEvent")
 	public String saveEvent(@ModelAttribute("evento") Evento theEvent,
@@ -384,6 +404,22 @@ public class PersonController {
 			theModel.addAttribute("allPerson",persons);*/
 			
 		 return "primary-page";
+	 }
+	 
+	 @GetMapping("pageFriend")
+	 public String pageFriend(Model theModel,@RequestParam("theId1") int theId1) {
+		 
+		 Persona thePers1 = personDAO.getPersonsId(theId1); 
+		 theModel.addAttribute("persona1",thePers1);
+		
+		 
+		 
+		 
+		 List<Persona> persons = personDAO.getPersonSendRequest(thePers1.getIdPersona());
+	     theModel.addAttribute("allPerson",persons);
+		 
+		 
+		 return "page-friend";
 	 }
 	 
 	 @GetMapping("/removeDaoEvent")
