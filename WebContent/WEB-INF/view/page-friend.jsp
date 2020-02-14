@@ -102,6 +102,7 @@
 			<th style="font-family:initial;font-size:30px">Cognome</th>
 		</tr>
 		<c:forEach var="tempallPersDaAccett" items="${richiesteDaAccett}" >
+		<form:form action="acceptAmico" method="GET">
 		<tr >
 		<td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona1.nome}</td>
 		<td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona1.cognome}</td>
@@ -109,13 +110,14 @@
 		<td><input type="text" name="theId2" value="${tempallPersDaAccett.idPersona1.idPersona}" style="width:10px;""/></td>
 		<td><input type="submit" value="Accetta" /><td><tr>
 		</tr>
+		</form:form>
 		</c:forEach>
 		</tbody>
 	</table>
 	</div>
 	</c:if>
 	<c:if test="${empty richiesteDaAccett}">
-	<i><h2 style="font-size:22px;font-family:fantasy">Non hai richieste d'amicizia da altre persone.</h2></i>
+	<i><h2 style="font-size:22px;font-family:fantasy">Non hai richieste d'amicizia da accettare.</h2></i>
 	</c:if>
 	</div>
 	

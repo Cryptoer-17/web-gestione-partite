@@ -43,5 +43,6 @@ public interface PersonDAO {
 	public int getLastIdNotify(int idPersona);
 
 	public List<Amico> tempListDaAccett(int theId1);
+
 	
 }

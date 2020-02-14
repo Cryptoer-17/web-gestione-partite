@@ -440,6 +440,26 @@ public class PersonController {
 		 return "page-friend";
 	 }
 	 
+	 
+	 
+	 //id1 persona attuale
+	 //id2 persona che ha inviatola richiesta precedent
+	 @GetMapping("acceptAmico")
+	 public String acceptAmico(Model theModel,@RequestParam("theId1") int theId1,@RequestParam("theId2") int theId2) {
+		 
+		 Persona thePers1 = personDAO.getPersonsId(theId1);
+		 theModel.addAttribute("persona1",thePers1);
+		 
+		 Persona thPers2 = personDAO.getPersonsId(theId2);
+		 Amico theAmi = new Amico(thePers1,thPers2,1,thePers1.getIdPersona());
+		 personDAO.saveAmico(theAmi);
+		 
+		 List<Persona> persons = personDAO.getPersonSendRequest(thePers1.getIdPersona());
+	     theModel.addAttribute("allPerson",persons);
+		 
+		 return "page-friend2";
+	 }
+	 
 	 @GetMapping("/removeDaoEvent")
 	 public String removeDaoEvent(Model thModel,
 			 						@RequestParam("removeEvent") int theIdEvent,
