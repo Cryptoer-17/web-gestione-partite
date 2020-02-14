@@ -62,7 +62,7 @@
 	<i><h2 style="font-size:22px;font-family:fantasy">Tutte le richieste d'amicizia che hai inviato, sono andate a buon fine.</h2></i>
 	</div>
 	</c:if>
-	
+	</div>
 	
 	
 	
@@ -78,8 +78,8 @@
 				</tr>
 				<c:forEach var="tempallPers" items="${allPerson}">
 				<form:form action="saveAmico" method="GET">
-					<tr><td style="font-family:initial;font-size:21px">${tempallPers.nome}</td>
-					<td style="font-family:initial;font-size:21px">${tempallPers.cognome}</td>
+					<tr><td style="font-family:sans-serif;font-size:21px">${tempallPers.nome}</td>
+					<td style="font-family:sans-serif;font-size:21px">${tempallPers.cognome}</td>
 					<td><input type="text" name="theId1" value="${persona1.idPersona}" style="width:10px;" "/></td>
 					<td><input type="text" name="theId2" value="${tempallPers.idPersona}" style="width:10px;""/></td>
 					<td><input type="submit" value="Invia Richiesta" /><td><tr>
@@ -103,8 +103,11 @@
 		</tr>
 		<c:forEach var="tempallPersDaAccett" items="${richiesteDaAccett}" >
 		<tr >
-		<td style="font-family:initial;font-size:21px">${tempallPersDaAccett.idPersona1.nome}</td>
-		<td style="font-family:initial;font-size:21px">${tempallPersDaAccett.idPersona1.cognome}</td>
+		<td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona1.nome}</td>
+		<td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona1.cognome}</td>
+		<td><input type="text" name="theId1" value="${persona1.idPersona}" style="width:10px;" "/></td>
+		<td><input type="text" name="theId2" value="${tempallPersDaAccett.idPersona1.idPersona}" style="width:10px;""/></td>
+		<td><input type="submit" value="Accetta" /><td><tr>
 		</tr>
 		</c:forEach>
 		</tbody>
