@@ -4,9 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,7 +17,7 @@ public class Amico implements Serializable{
 	
 	@Id
 	@ManyToOne
-	@JoinColumn
+	@JoinColumn(name="idPersona1")
 	private Persona idPersona1;
 	
 	@Id
@@ -45,9 +42,6 @@ public class Amico implements Serializable{
 		Status = status;
 		ActionUserId = actionUserId;
 	}
-
-
-
 
 
 
