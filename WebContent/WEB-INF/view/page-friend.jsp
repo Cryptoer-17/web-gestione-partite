@@ -32,12 +32,11 @@
 	<div id="container">
 	
 	 
+	<c:if test="${not empty listPersAttes}">
+	<i><h2 style="font-size:22px;font-family:fantasy">Hai ancora ${lastNotify} amicizie che devono essere accettate da queste persone</h2></i>
+	<i><h2 style="font-size:22px;font-family:fantasy">Ecco la lista delle persone </h2></i>
 	
 	<div id="lista-stato-attesa" style="width:400px;float:left">
-	<br>
-	<c:if test="${not empty listPersAttes}">
-	<i><h2 style="font-size:22px;font-family:fantasy">Hai ancora ${lastNotify} amicizie da accettare</h2></i>
-	<i><h2 style="font-size:22px;font-family:fantasy">Lista di persone che devono accettare la tua richiesta di amicizia </h2></i>
 	
 	<div id="list-person" style="margin-top:40px;overflow:scroll;width:300px;height:200px" >
 	<table>
@@ -63,7 +62,7 @@
 	
 	
 	
-	<div id="content-list-person" style="margin-left:500px">
+	<div id="content-list-person" style="margin-left:500px;margin-top:30px">
 	<h2 style="font-family:cursive;height:50px">Diventa amico di persone</h2>
 	<h2 style="font-family:cursive;line-height:0px">per organizzare eventi</h2>
 	<div id="list-person" style="overflow:scroll;height:200px;width:400px;margin-top:40px">

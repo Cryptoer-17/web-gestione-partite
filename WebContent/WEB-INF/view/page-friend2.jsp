@@ -29,7 +29,7 @@
 	</div>
 	<div id="container">
 	
-	<div id="content-list-person" style="margin-left:600px">
+	<div id="content-list-person" style="margin-left:600px;margin-top: 30px;">
 	Diventa amico di persone
 	per organizzare eventi
 	<div id="list-person" style="overflow:scroll;height:200px;width:320px;margin-left:750px">
