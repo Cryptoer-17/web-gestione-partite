@@ -84,7 +84,13 @@
 	
 	
 	
-	
+	<c:url var="addNewDistribution" value="/person/linkListFriendPrimary">
+		    	<c:param name="theId" value="${persona1.idPersona}" /> 
+	</c:url>			
+			<p>
+				<a href="${addNewDistribution}">Torna indietro</a>
+			</p>
+			
 	</div>
 
 

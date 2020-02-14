@@ -240,6 +240,17 @@ public class PersonController {
 	}
 	
 	
+	@GetMapping("/linkListFriendPrimary")
+	public String linkListFriendPrimary (@RequestParam("theId") int idPers,
+										Model theModel,
+										RedirectAttributes redirectAttributes) {
+		System.out.println(idPers);
+		Persona thePers = personDAO.getPersonsId(idPers);
+		redirectAttributes.addFlashAttribute("some", thePers);
+		return "redirect:/person/ShowPrimaryPage";
+	}
+	
+	
 	@GetMapping("/ShowPrimaryPage")
 	public String ShowPrimaryPage (Model theModel/*,@PathVariable("person") int person*/) {
 		
