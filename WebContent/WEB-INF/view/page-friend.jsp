@@ -57,9 +57,12 @@
 	</div>
 	</c:if>
 	<c:if test="${empty listPersAttes}">
-	Non hai amicizie in stato di attesa
-	</c:if>
+	<div id="lista-stato-attesa" style="width:400px;float:left">
+	<br>
+	<i><h2 style="font-size:22px;font-family:fantasy">Tutte le richieste d'amicizia che hai inviato sono andate a buon fine.</h2></i>
 	</div>
+	</c:if>
+	
 	
 	
 	
@@ -88,7 +91,29 @@
 		</div>
 		</div>
 	
-	
+	<div id="richieste da accettare">
+	<c:if test="${not empty richiesteDaAccett}">
+	<div id="list-person-da-accett" style="margin-top:20px;overflow:scroll;width:300px;height:200px" >
+	<table>
+		<tbody>
+		<tr>
+			<th style="float:left;font-family:initial;font-size:35px;width:110px">Nome</th>
+			<th style="font-family:initial;font-size:30px">Cognome</th>
+		</tr>
+		<c:forEach var="tempallPersDaAccett" items="${richiesteDaAccett}" >
+		<tr >
+		<td style="font-family:initial;font-size:21px">${tempallPersDaAccett.idPersona1.nome}</td>
+		<td style="font-family:initial;font-size:21px">${tempallPersDaAccett.idPersona1.cognome}</td>
+		</tr>
+		</c:forEach>
+		</tbody>
+	</table>
+	</div>
+	</c:if>
+	<c:if test="${empty richiesteDaAccett}">
+	<i><h2 style="font-size:22px;font-family:fantasy">Non hai richieste d'amicizia da altre persone.</h2></i>
+	</c:if>
+	</div>
 	
 	<c:url var="addNewDistribution" value="/person/linkListFriendPrimary">
 		    	<c:param name="theId" value="${persona1.idPersona}" /> 

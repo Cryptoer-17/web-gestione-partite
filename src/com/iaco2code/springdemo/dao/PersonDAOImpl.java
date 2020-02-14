@@ -238,13 +238,13 @@ public class PersonDAOImpl implements PersonDAO {
 	public int getLastIdNotify(int idPersona) {
 		Session currentSession= sessionFactory.getCurrentSession();				
 		//retrive the person with query
-		Query<Amico> theQuery = currentSession.createQuery("from Amico where idPersona1='"+idPersona+"' AND Status=0");
+		Query<Amico> theQuery = currentSession.createQuery("from Amico where idPersona2='"+idPersona+"' AND Status=0");
 		try {
 		List<Amico> thePerson = theQuery.getResultList();
 		List <Integer> viewIdListPers= new ArrayList<Integer>();
 		int i = 0;
 		for(Amico tempAmi : thePerson) {
-			if(tempAmi.getIdPersona1().getIdPersona()==idPersona) {
+			if(tempAmi.getIdPersona2().getIdPersona()==idPersona) {
 				viewIdListPers.add(tempAmi.getIdPersona2().getIdPersona());
 				i++;
 			}
@@ -253,6 +253,21 @@ public class PersonDAOImpl implements PersonDAO {
 		}
 		catch(NoResultException nre) {
 			return 0;	
+		}	
+	}
+    
+	@Override
+	@Transactional
+	public List<Amico> tempListDaAccett(int theId1) {
+		Session currentSession= sessionFactory.getCurrentSession();				
+		//retrive the person with query
+		Query<Amico> theQuery = currentSession.createQuery("from Amico where idPersona2='"+theId1+"' AND Status=0");
+		try {
+		List<Amico> thePerson = theQuery.getResultList();
+		return thePerson;
+		}
+		catch(NoResultException nre) {
+			return null;	
 		}	
 	}
 
