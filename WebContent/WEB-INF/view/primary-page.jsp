@@ -115,7 +115,7 @@
 	</form:form>
 	
 	<div id="right" style="overflow:hidden">
-		<div id="list-person" style="margin-left:30px">
+		<div id="list-person" style="margin-left:30px;overflow:scroll;height:400px;width:300px">
 				<table>
 				<tbody>
 				<tr><h6 style="font-family:cursive">Diventa amico di persone</h6></tr>

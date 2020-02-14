@@ -80,15 +80,15 @@ public class Persona {
 			)
 	private List<Evento> eventi;
 		
-
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name="amicizia",
-            joinColumns = @JoinColumn( name="idPersona"),
-            inverseJoinColumns = @JoinColumn( name="idPersona1")
-    )
-	private Set<Amico> amici = new HashSet<Amico>();
-	
+//
+//    @OneToMany(fetch = FetchType.EAGER)
+//    @JoinTable(
+//            name="amicizia",
+//            joinColumns = @JoinColumn( name="idPersona"),
+//            inverseJoinColumns = @JoinColumn( name="idPersona1")
+//    )
+//	private Set<Amico> amici = new HashSet<Amico>();
+//	
 	
 	public Persona() {
 	
@@ -184,13 +184,13 @@ public class Persona {
 	
 
 	
-	public Set<Amico> getAmici() {
+	/*public Set<Amico> getAmici() {
 		return amici;
 	}
 
 	public void setAmici(Set<Amico> amici) {
 		this.amici = amici;
-	}
+	}*/
 
 	// add a convenience method
 	public void addEvento(Evento theEvent) {	
@@ -203,12 +203,12 @@ public class Persona {
 
 	
 	
-	public void addAmico(Amico thesAmi) {
+	/*public void addAmico(Amico thesAmi) {
 		if(this.amici == null) {
 			this.amici = new HashSet<Amico>();
 		}
 		this.amici.add(thesAmi);
-	}
+	}*/
 	
 	
 
