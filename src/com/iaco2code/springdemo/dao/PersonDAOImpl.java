@@ -1,5 +1,6 @@
 package com.iaco2code.springdemo.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -162,10 +163,19 @@ public class PersonDAOImpl implements PersonDAO {
 		//get current session
 		Session currentSession= sessionFactory.getCurrentSession();				
 		//retrive the person with query
-		Query<Persona> theQuery = currentSession.createQuery("from Persona",Persona.class);
+		Query<Amico> theQuery = currentSession.createQuery("from Amico where idPersona2='"+idCurrentPers+"' or idPersona1='"+idCurrentPers+"'");
 		try {
-		List<Persona> thePerson = theQuery.getResultList();
-		return thePerson;
+		List<Amico> thePerson = theQuery.getResultList();
+		List <Integer> viewIdListPers= new ArrayList<Integer>();
+		for(Amico tempAmi : thePerson) {
+			if(tempAmi.getIdPersona1().getIdPersona()==idCurrentPers) {
+				viewIdListPers.add(tempAmi.getIdPersona2().getIdPersona());
+			}
+			else viewIdListPers.add(tempAmi.getIdPersona1().getIdPersona());
+		}
+		Query<Persona> theQuery2 = currentSession.createQuery("from Persona p where p.idPersona not in (:ids) AND p.idPersona!='"+idCurrentPers+"'").setParameterList("ids", viewIdListPers);
+		List<Persona> thePersonList = theQuery2.getResultList();
+		return thePersonList;
 		}
 		catch(NoResultException nre) {
 			return null;	
@@ -181,6 +191,22 @@ public class PersonDAOImpl implements PersonDAO {
 		//save the person finally LOL
 		currentSession.saveOrUpdate(theAmico);	
 		
+	}
+	
+	@Override
+	@Transactional
+	public List<Persona> getProvaPersone(int idPersona) {
+		//get current session
+				Session currentSession= sessionFactory.getCurrentSession();				
+				//retrive the person with query
+				Query<Persona> theQuery = currentSession.createQuery("from Persona where idPersona!="+idPersona+"");
+				try {
+				List<Persona> thePerson = theQuery.getResultList();
+				return thePerson;
+				}
+				catch(NoResultException nre) {
+					return null;	
+				}
 	}
 
 

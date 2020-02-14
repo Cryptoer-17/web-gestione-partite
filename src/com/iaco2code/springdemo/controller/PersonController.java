@@ -235,8 +235,11 @@ public class PersonController {
 
 		
 		//get list person from DAO
-		List<Persona> persons = personDAO.getPersonSendRequest(thePers.getIdPersona());
+/*		List<Amico> persons = personDAO.getPersonSendRequest(thePers.getIdPersona());
 		//add the list to the model
+		theModel.addAttribute("allPerson",persons);*/
+		
+		List<Persona> persons = personDAO.getPersonSendRequest(thePers.getIdPersona());
 		theModel.addAttribute("allPerson",persons);
 		
 		return "primary-page";
@@ -319,8 +322,8 @@ public class PersonController {
 	
 		Persona thePers1 = personDAO.getPersonsId(theId1); 
 		Persona thePers2 = personDAO.getPersonsId(theId2);
-		Amico thesAmi = new Amico(thePers1,thePers2.getIdPersona(),0,thePers1.getIdPersona());
-		personDAO.saveAmico(thesAmi);
+		
+		
 		redirectAttributes.addFlashAttribute("some", thePers1);
 		return "redirect:/person/ShowPrimaryPage";  
 	}

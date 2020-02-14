@@ -21,8 +21,9 @@ public class Amico implements Serializable{
 	private Persona idPersona1;
 	
 	@Id
-	@Column
-	private int idPersona2;
+	@ManyToOne
+	@JoinColumn(name="idPersona2")
+	private Persona idPersona2;
 	
 	@Column
 	private int Status;
@@ -36,7 +37,7 @@ public class Amico implements Serializable{
 		
 	}
 
-	public Amico(Persona idPersona1, int idPersona2, int status, int actionUserId) {
+	public Amico(Persona idPersona1, Persona idPersona2, int status, int actionUserId) {
 		this.idPersona1 = idPersona1;
 		this.idPersona2 = idPersona2;
 		Status = status;
@@ -62,7 +63,7 @@ public class Amico implements Serializable{
 
 
 
-	public int getIdPersona2() {
+	public Persona getIdPersona2() {
 		return idPersona2;
 	}
 
@@ -70,7 +71,7 @@ public class Amico implements Serializable{
 
 
 
-	public void setIdPersona2(int idPersona2) {
+	public void setIdPersona2(Persona idPersona2) {
 		this.idPersona2 = idPersona2;
 	}
 
