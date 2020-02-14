@@ -42,8 +42,8 @@
 		</tr>
 		<c:forEach var="tempallPersAtt" items="${listPersAttes}">
 		<tr>
-		<td>${tempallPersAtt.nome}
-			${tempallPersAtt.cognome}</td>
+		<td>${tempallPersAtt.nome}</td>
+		<td>${tempallPersAtt.cognome}</td>
 		</tr>
 		</c:forEach>
 		</tbody>
