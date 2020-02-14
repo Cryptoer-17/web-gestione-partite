@@ -30,13 +30,13 @@
 	<div id="container">
 	
 	<div id="content-list-person" style="margin-left:600px">
-	<h2 style="font-family:cursive;margin-block-end:0.1em">Diventa amico di persone</h2>
-	<h2 style="font-family:cursive;margin-block-start:0.1em">per organizzare eventi</h2>
+	Diventa amico di persone
+	per organizzare eventi
 	<div id="list-person" style="overflow:scroll;height:200px;width:320px">
 				<table>
 				<tbody>
 				<tr>
-					<th>Nome</th>
+					<th style="float:left">Nome</th>
 					<th>Cognome</th>
 				</tr>
 				<c:forEach var="tempallPers" items="${allPerson}">

@@ -413,6 +413,8 @@ public class PersonController {
 		 theModel.addAttribute("persona1",thePers1);
 		
 		 
+		 List<Persona> attempList = personDAO.getAttempList(thePers1.getIdPersona());
+		 theModel.addAttribute("listPersAttes",attempList);
 		 
 		 
 		 List<Persona> persons = personDAO.getPersonSendRequest(thePers1.getIdPersona());

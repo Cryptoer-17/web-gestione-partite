@@ -37,5 +37,7 @@ public interface PersonDAO {
 	public void saveAmico(Amico theAmico);
 
 	public List<Persona> getProvaPersone(int idPersona);
+
+	public List<Persona> getAttempList(int idPersona);
 	
 }

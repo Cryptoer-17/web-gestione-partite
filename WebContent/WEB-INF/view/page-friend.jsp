@@ -31,7 +31,24 @@
 	<div id="lista-stato-attesa">
 	
 	<c:if test="${not empty listPersAttes}">
-	
+	<div id="list-person" style="width:350px;float:left">
+	<i><h2 style="font-size:22px;line-height:5px">Lista di persone che devono accettare </h2></i>
+	<i><h2 style="font-size:22px;height:10px">la tua richiesta di amicizia </h2></i>
+	<table>
+		<tbody>
+		<tr>
+			<th style="float:left">Nome</th>
+			<th>Cognome</th>
+		</tr>
+		<c:forEach var="tempallPersAtt" items="${listPersAttes}">
+		<tr>
+		<td>${tempallPersAtt.nome}
+			${tempallPersAtt.cognome}</td>
+		</tr>
+		</c:forEach>
+		</tbody>
+	</table>
+	</div>
 	</c:if>
 	<c:if test="${empty listPersAttes}">
 	Non hai amicizie in stato di attesa
@@ -40,14 +57,14 @@
 	
 	
 	
-	<div id="content-list-person" style="margin-left:600px">
-	<h2 style="font-family:cursive;margin-block-end:0.1em">Diventa amico di persone</h2>
-	<h2 style="font-family:cursive;margin-block-start:0.1em">per organizzare eventi</h2>
+	<div id="content-list-person" style="margin-left:500px">
+	<h2 style="font-family:cursive">Diventa amico di persone</h2>
+	<h2 style="font-family:cursive;line-height:0px">per organizzare eventi</h2>
 	<div id="list-person" style="overflow:scroll;height:200px;width:320px">
 				<table>
 				<tbody>
 				<tr>
-					<th>Nome</th>
+					<th style="float:left">Nome</th>
 					<th>Cognome</th>
 				</tr>
 				<c:forEach var="tempallPers" items="${allPerson}">
