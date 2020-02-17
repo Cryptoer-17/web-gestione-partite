@@ -47,7 +47,7 @@
 	
 	<div id="lista-stato-attesa" style="width:400px;float:left">
 	
-	<div id="list-person" style="margin-top:20px;overflow:scroll;width:410px;height:200px" >
+	<div id="list-person" style="margin-top:20px;overflow:scroll;width:410px;height:245px" >
 	<table>
 		<tbody>
 		<tr>
@@ -67,17 +67,17 @@
 	<c:if test="${empty listPersAttes}">
 	<div id="lista-stato-attesa" style="width:400px;float:left">
 	<br>
-	<i><h2 style="font-size:22px;font-family:fantasy">Tutte le richieste d'amicizia che hai inviato, sono andate a buon fine.</h2></i>
+	<i><h2 style="font-size:22px;font-family:fantasy">Non hai nessuna tua richiesta che deve essere accettate da un'altra persona.</h2></i>
 	</div>
 	</c:if>
 	</div>
 	
 	
 	
-	<div id="content-list-person" style="margin-left:450px;margin-top:30px;width:470px">
+	<div id="content-list-person" style="margin-left:450px;width:470px">
 	<h2 style="font-family:monospace;height:50px">Diventa amico di persone</h2>
 	<h2 style="font-family:monospace;line-height:0px">per organizzare eventi</h2>
-	<div id="list-person" style="overflow:scroll;height:200px;width:400px;margin-top:20px">
+	<div id="list-person" style="overflow:scroll;height:200px;width:400px">
 				<table>
 				<tbody>
 				<tr>
@@ -99,7 +99,7 @@
 		</div>
 		</div>
 	
-	<div id="richieste da accettare" >
+	<div id="richieste da accettare" style="margin-top:20px;float:left;width:450px;">
 	<c:if test="${not empty richiesteDaAccett}">
 	<i><h2 style="font-size:22px;font-family:fantasy">Devi accettare la richiesta d'amicizia da parte di queste persone</h2></i>
 	<div id="list-person-da-accett" style="margin-top:20px;overflow:scroll;width:410px;height:200px" >
@@ -114,12 +114,13 @@
 		<tr>
 		<td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona1.nome}</td>
 		<td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona1.cognome}</td>
+		
+		<td><input type="submit" value="Accetta" /><td>
+		</form:form>
 		<form:form action="blockAmico" method="GET">
 		<td><input type="text" name="theId1" value="${persona1.idPersona}" style="width:10px;" "/></td>
 		<td><input type="text" name="theId2" value="${tempallPersDaAccett.idPersona1.idPersona}" style="width:10px;""/></td>
 		<td><input type="submit" value="Blocca" /><td>
-		</form:form>
-		<td><input type="submit" value="Accetta" /><td></tr>
 		</tr>
 		</form:form>
 		</c:forEach>
@@ -131,7 +132,11 @@
 	<i><h2 style="font-size:22px;font-family:fantasy">Non hai richieste d'amicizia da accettare.</h2></i>
 	</c:if>
 	</div>
+	<div id="right-block">
+	aaaa
+	</div>
 	
+	<br>
 	<c:url var="addNewDistribution" value="/person/linkListFriendPrimary">
 		    	<c:param name="theId" value="${persona1.idPersona}" /> 
 	</c:url>			
@@ -139,7 +144,7 @@
 				<a href="${addNewDistribution}">Torna indietro</a>
 			</p>
 			
-	</div>
+	</div>	
 
 
 </body>

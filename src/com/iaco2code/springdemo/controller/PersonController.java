@@ -85,9 +85,22 @@ public class PersonController {
 		 Amico theAmi = new Amico (thePers1,thePers2,0,thePers1.getIdPersona());
 		 personDAO.saveAmico(theAmi); 
 		 
+		 int lastNotify = personDAO.getLastIdNotify(theId1);
+			theModel.addAttribute("lastNotify",lastNotify);
 		 
-		 List<Persona> persons = personDAO.getPersonSendRequest(thePers1.getIdPersona());
-	     theModel.addAttribute("allPerson",persons);
+			List<Amico> tempListDaAcc = personDAO.tempListDaAccett(theId1);
+			theModel.addAttribute("richiesteDaAccett",tempListDaAcc);
+		 
+		 
+			 List<Persona> attempList = personDAO.getAttempList(thePers1.getIdPersona());
+			 theModel.addAttribute("listPersAttes",attempList);
+			 
+			 
+			 List<Persona> persons = personDAO.getPersonSendRequest(thePers1.getIdPersona());
+		     theModel.addAttribute("allPerson",persons);
+		     
+		     int countAllPersonAccept = personDAO.countAllPersonAccept(theId1);
+				theModel.addAttribute("countAllPersonAccept",countAllPersonAccept);
 		 
 		return "page-friend2";
 	}
@@ -229,8 +242,38 @@ public class PersonController {
 	}
 	
 	@GetMapping("/blockAmico")
-	public String blockAmico(Model theModel){
-		return "";
+	public String blockAmico(Model theModel,@RequestParam("theId1") int theId1,@RequestParam("theId2") int theId2){
+		Persona thePers1 = personDAO.getPersonsId(theId1);
+		 theModel.addAttribute("persona1",thePers1);
+		
+
+		Persona thePers2 = personDAO.getPersonsId(theId2); 
+		
+		 Amico theAmi = new Amico (thePers2,thePers1,3,thePers2.getIdPersona());
+		 personDAO.saveAmico(theAmi); 
+		
+		 
+		 int lastNotify = personDAO.getLastIdNotify(theId1);
+			theModel.addAttribute("lastNotify",lastNotify);
+		 
+			List<Amico> tempListDaAcc = personDAO.tempListDaAccett(theId1);
+			theModel.addAttribute("richiesteDaAccett",tempListDaAcc);
+		 
+		 
+		
+			 List<Persona> attempList = personDAO.getAttempList(thePers1.getIdPersona());
+			 theModel.addAttribute("listPersAttes",attempList);
+			 
+			 
+			 List<Persona> persons = personDAO.getPersonSendRequest(thePers1.getIdPersona());
+		     theModel.addAttribute("allPerson",persons);
+		     
+		     int countAllPersonAccept = personDAO.countAllPersonAccept(theId1);
+				theModel.addAttribute("countAllPersonAccept",countAllPersonAccept);
+			
+			
+	     
+		return "page-friend2";
 	}
 	
 	@GetMapping("/linkListEventPrimary")
