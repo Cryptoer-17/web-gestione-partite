@@ -179,7 +179,7 @@ public class PersonDAOImpl implements PersonDAO {
 		return thePersonList;
 		}
 		else {
-			Query<Persona> theQuery3 = currentSession.createQuery("from Persona");
+			Query<Persona> theQuery3 = currentSession.createQuery("from Persona where idPersona != '"+idCurrentPers+"'");
 			List<Persona> thePersonList2 = theQuery3.getResultList();
 			return thePersonList2;
 		} 
@@ -312,6 +312,14 @@ public class PersonDAOImpl implements PersonDAO {
 		catch(NoResultException nre) {
 			return null;	
 		}	
+	}
+	
+	@Override
+	@Transactional
+	public void removeAmico(Amico theAmi) {
+		Session currentSession= sessionFactory.getCurrentSession();				
+		//remove the amis on table
+		currentSession.remove(theAmi);
 	}
 	
 	

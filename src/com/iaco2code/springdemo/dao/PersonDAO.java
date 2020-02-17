@@ -48,5 +48,7 @@ public interface PersonDAO {
 
 	public List<Amico> getPersonsBlock(int idPersona);
 
+	public void removeAmico(Amico theAmi);
+
 	
 }

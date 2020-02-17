@@ -273,7 +273,7 @@ public class PersonController {
 			
 			
 				List<Amico> personsBlock = personDAO.getPersonsBlock(thePers1.getIdPersona());
-				theModel.addAttribute("countAllPersonBlock",personsBlock);
+				theModel.addAttribute("listAllPersonBlock",personsBlock);
 				
 				
 		return "page-friend2";
@@ -453,7 +453,7 @@ public class PersonController {
 		 return "primary-page";
 	 }
 	 
-	 @GetMapping("pageFriend")
+	 @GetMapping("/pageFriend")
 	 public String pageFriend(Model theModel,@RequestParam("theId1") int theId1) {
 		 
 		 Persona thePers1 = personDAO.getPersonsId(theId1); 
@@ -477,9 +477,51 @@ public class PersonController {
 			theModel.addAttribute("countAllPersonAccept",countAllPersonAccept);
 		 System.out.println(countAllPersonAccept);
 		 
+		 
+		 List<Amico> listPersBlock = personDAO.getPersonsBlock(theId1);
+		 theModel.addAttribute("listAllPersonBlock",listPersBlock);
+		 
 		 return "page-friend";
 	 }
 	 
+	 @GetMapping("/notSendRequest")
+	 public String notSendRequest(Model theModel,@RequestParam("theId1") int theId1,@RequestParam("theId2") int theId2) {
+		 
+			Persona thePers1 = personDAO.getPersonsId(theId1);
+			 theModel.addAttribute("persona1",thePers1);
+			
+
+			Persona thePers2 = personDAO.getPersonsId(theId2); 
+			
+			 Amico theAmi = new Amico (thePers1,thePers2,0,thePers1.getIdPersona());
+			 personDAO.removeAmico(theAmi); 
+			
+			 
+			 int lastNotify = personDAO.getLastIdNotify(theId1);
+				theModel.addAttribute("lastNotify",lastNotify);
+			 
+				List<Amico> tempListDaAcc = personDAO.tempListDaAccett(theId1);
+				theModel.addAttribute("richiesteDaAccett",tempListDaAcc);
+			 
+			 
+			
+				 List<Persona> attempList = personDAO.getAttempList(thePers1.getIdPersona());
+				 theModel.addAttribute("listPersAttes",attempList);
+				 
+				 
+				 List<Persona> persons = personDAO.getPersonSendRequest(thePers1.getIdPersona());
+			     theModel.addAttribute("allPerson",persons);
+			     
+			     int countAllPersonAccept = personDAO.countAllPersonAccept(theId1);
+					theModel.addAttribute("countAllPersonAccept",countAllPersonAccept);
+				
+				
+					List<Amico> personsBlock = personDAO.getPersonsBlock(thePers1.getIdPersona());
+					theModel.addAttribute("countAllPersonBlock",personsBlock);
+					
+					
+		 return "page-friend2";
+	 }
 	 
 	 //errore inseriisce due cose
 	 //id1 persona attuale

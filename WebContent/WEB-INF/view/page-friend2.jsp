@@ -55,11 +55,17 @@
 			<th style="font-family:initial;font-size:30px">Cognome</th>
 		</tr>
 		<c:forEach var="tempallPersAtt" items="${listPersAttes}" >
+		<form:form action="notSendRequest" method="GET">
 		<tr >
 		<td style="font-family:initial;font-size:21px">${tempallPersAtt.nome}</td>
 		<td style="font-family:initial;font-size:21px">${tempallPersAtt.cognome}</td>
+		<td><input type="text" name="theId1" value="${persona1.idPersona}" style="width:10px;" "/></td>
+		<td><input type="text" name="theId2" value="${tempallPersAtt.idPersona}" style="width:10px;" "/></td>
+		<td><input type="submit" value="Non inviare richiesta" /></td>
 		</tr>
+		</form:form>
 		</c:forEach>
+
 		</tbody>
 	</table>
 	
