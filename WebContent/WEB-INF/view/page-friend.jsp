@@ -129,20 +129,20 @@
 		<c:forEach var="tempallPersDaAccett" items="${richiesteDaAccett}" >
 		<form:form action="acceptAmico" method="GET">
 		<tr>
-		<td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona1.nome}</td>
-		<td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona1.cognome}</td>
+		<td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona2.nome}</td>
+		<td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona2.cognome}</td>
 		<td><input type="text" name="theId1" value="${persona1.idPersona}" style="width:10px;" "/></td>
-		<td><input type="text" name="theId2" value="${tempallPersDaAccett.idPersona1.idPersona}" style="width:10px;""/></td>
+		<td><input type="text" name="theId2" value="${tempallPersDaAccett.idPersona2.idPersona}" style="width:10px;""/></td>
 		<td><input type="submit" value="Accetta" /><td>
 		</form:form>
 		<form:form action="blockAmico" method="GET">
 		<td><input type="text" name="theId1" value="${persona1.idPersona}" style="width:10px;" "/></td>
-		<td><input type="text" name="theId2" value="${tempallPersDaAccett.idPersona1.idPersona}" style="width:10px;""/></td>
+		<td><input type="text" name="theId2" value="${tempallPersDaAccett.idPersona2.idPersona}" style="width:10px;""/></td>
 		<td><input type="submit" value="Blocca" /><td>
 		</form:form>
 		<form:form action="rifiutaRichiestaAmico" method="GET">
 		<td><input type="text" name="theId1" value="${persona1.idPersona}" style="width:10px;" "/></td>
-		<td><input type="text" name="theId2" value="${tempallPersDaAccett.idPersona1.idPersona}" style="width:10px;""/></td>
+		<td><input type="text" name="theId2" value="${tempallPersDaAccett.idPersona2.idPersona}" style="width:10px;""/></td>
 		<td><input type="submit" value="Rifiuta richiesta" /><td>
 		</tr>
 		</form:form>
@@ -175,10 +175,10 @@
 				</tr>
 				<c:forEach var="tempallPersDaAccett" items="${listAllPersonBlock}">
 				<form:form action="sbloccaAmico" method="GET">
-					<tr><td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona1.nome}</td>
-					<td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona1.cognome}</td>
+					<tr><td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona2.nome}</td>
+					<td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona2.cognome}</td>
 					<td><input type="text" name="theId1" value="${persona1.idPersona}" style="width:10px;" "/></td>
-					<td><input type="text" name="theId2" value="${tempallPersDaAccett.idPersona1.idPersona}" style="width:10px;""/></td>
+					<td><input type="text" name="theId2" value="${tempallPersDaAccett.idPersona2.idPersona}" style="width:10px;""/></td>
 					<td><input type="submit" value="Sblocca" /><td><tr>
 					</form:form>			
 				</c:forEach>	

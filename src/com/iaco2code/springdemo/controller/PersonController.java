@@ -249,7 +249,7 @@ public class PersonController {
 
 		Persona thePers2 = personDAO.getPersonsId(theId2); 
 		
-		 Amico theAmi = new Amico (thePers2,thePers1,3,thePers1.getIdPersona());
+		 Amico theAmi = new Amico (thePers1,thePers2,3,thePers1.getIdPersona());
 		 personDAO.saveAmico(theAmi); 
 		
 		 
@@ -514,10 +514,11 @@ public class PersonController {
 			     
 			     int countAllPersonAccept = personDAO.countAllPersonAccept(theId1);
 					theModel.addAttribute("countAllPersonAccept",countAllPersonAccept);
-				
-				
-					 List<Amico> listPersBlock = personDAO.getPersonsBlock(theId1);
-					 theModel.addAttribute("listAllPersonBlock",listPersBlock);
+				 System.out.println(countAllPersonAccept);
+				 
+				 
+				 List<Amico> listPersBlock = personDAO.getPersonsBlock(theId1);
+				 theModel.addAttribute("listAllPersonBlock",listPersBlock);
 					
 		 return "page-friend2";
 	 }
@@ -576,8 +577,8 @@ public class PersonController {
 		 Persona thePers1 = personDAO.getPersonsId(theId1);
 		 theModel.addAttribute("persona1",thePers1);
 		 
-		 Persona thPers2 = personDAO.getPersonsId(theId2);
-		 Amico theAmi = new Amico(thPers2,thePers1,0,thePers1.getIdPersona());
+		 Persona thePers2 = personDAO.getPersonsId(theId2);
+		 Amico theAmi = new Amico(thePers1,thePers2,0,thePers1.getIdPersona());
 		 personDAO.saveAmico(theAmi);
 		 
 		 int lastNotify = personDAO.getLastIdNotify(theId1);
