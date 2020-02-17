@@ -532,8 +532,8 @@ public class PersonController {
 		 Persona thePers1 = personDAO.getPersonsId(theId1);
 		 theModel.addAttribute("persona1",thePers1);
 		 
-		 Persona thPers2 = personDAO.getPersonsId(theId2);
-		 Amico theAmi = new Amico(thPers2,thePers1,1,thePers1.getIdPersona());
+		 Persona thePers2 = personDAO.getPersonsId(theId2);
+		 Amico theAmi = new Amico(thePers1,thePers2,1,thePers1.getIdPersona());
 		 personDAO.saveAmico(theAmi);
 		 
 		 int lastNotify = personDAO.getLastIdNotify(theId1);
