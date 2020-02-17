@@ -488,12 +488,25 @@ public class PersonController {
 		 theModel.addAttribute("persona1",thePers1);
 		 
 		 Persona thPers2 = personDAO.getPersonsId(theId2);
-		 Amico theAmi = new Amico(thePers1,thPers2,1,thePers1.getIdPersona());
+		 Amico theAmi = new Amico(thPers2,thePers1,1,thePers1.getIdPersona());
 		 personDAO.saveAmico(theAmi);
 		 
-		 List<Persona> persons = personDAO.getPersonSendRequest(thePers1.getIdPersona());
-	     theModel.addAttribute("allPerson",persons);
+		 int lastNotify = personDAO.getLastIdNotify(theId1);
+			theModel.addAttribute("lastNotify",lastNotify);
 		 
+			List<Amico> tempListDaAcc = personDAO.tempListDaAccett(theId1);
+			theModel.addAttribute("richiesteDaAccett",tempListDaAcc);
+			
+			 List<Persona> attempList = personDAO.getAttempList(thePers1.getIdPersona());
+			 theModel.addAttribute("listPersAttes",attempList);
+			 
+			 
+			 List<Persona> persons = personDAO.getPersonSendRequest(thePers1.getIdPersona());
+		     theModel.addAttribute("allPerson",persons);
+		     
+		     int countAllPersonAccept = personDAO.countAllPersonAccept(theId1);
+				theModel.addAttribute("countAllPersonAccept",countAllPersonAccept);
+				
 		 return "page-friend2";
 	 }
 	 

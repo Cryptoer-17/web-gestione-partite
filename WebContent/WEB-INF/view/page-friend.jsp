@@ -120,7 +120,8 @@
 		<tr>
 		<td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona1.nome}</td>
 		<td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona1.cognome}</td>
-		
+		<td><input type="text" name="theId1" value="${persona1.idPersona}" style="width:10px;" "/></td>
+		<td><input type="text" name="theId2" value="${tempallPersDaAccett.idPersona1.idPersona}" style="width:10px;""/></td>
 		<td><input type="submit" value="Accetta" /><td>
 		</form:form>
 		<form:form action="blockAmico" method="GET">
@@ -139,9 +140,14 @@
 	</c:if>
 	</div>
 	<div id="right-block">
-	aaaa
-	</div>
+	<c:if test="${empty richiesteBloccate}">
 	
+	</c:if>
+	
+	</div>
+	<c:if test="${not empty richiesteBloccate}">
+	
+	</c:if>
 	<br>
 	<c:url var="addNewDistribution" value="/person/linkListFriendPrimary">
 		    	<c:param name="theId" value="${persona1.idPersona}" /> 
