@@ -271,6 +271,26 @@ public class PersonDAOImpl implements PersonDAO {
 		}	
 	}
 	
+	@Override
+	@Transactional
+	public int countAllPersonAccept(int theId1) {
+		//get current session
+				Session currentSession= sessionFactory.getCurrentSession();				
+				//retrive the person with query
+				Query<Amico> theQuery = currentSession.createQuery("from Amico where idPersona1='"+theId1+"' AND Status=0");
+				try {
+				List<Amico> thePerson = theQuery.getResultList();
+				int i = 0;
+				for(Amico tempAmi : thePerson) {
+					i++;
+				}
+				return i;
+				}
+				catch(NoResultException nre) {
+					return 0;	
+				}
+	}
+	
 	
 
 

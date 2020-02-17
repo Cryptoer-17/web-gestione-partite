@@ -34,12 +34,20 @@
 	 
 	<c:if test="${not empty listPersAttes}">
 	<br>
-	<i><h2 style="font-size:22px;font-family:fantasy">Hai ancora ${lastNotify} amicizie che devono essere accettate da queste persone</h2></i>
+	
+	<c:if test="${countAllPersonAccept == '1'}">
+	<i><h2 style="font-size:22px;font-family:fantasy">Hai ancora ${countAllPersonAccept} amicizia che deve essere accettata da questa persona</h2></i>
+	<i><h2 style="font-size:22px;font-family:fantasy">Ecco la persona </h2></i>
+	</c:if>
+	<c:if test="${countAllPersonAccept != '1'}">
+	<i><h2 style="font-size:22px;font-family:fantasy">Hai ancora ${countAllPersonAccept} amicizie che devono essere accettate da queste persone</h2></i>
 	<i><h2 style="font-size:22px;font-family:fantasy">Ecco la lista delle persone </h2></i>
+	</c:if>
+
 	
 	<div id="lista-stato-attesa" style="width:400px;float:left">
 	
-	<div id="list-person" style="margin-top:20px;overflow:scroll;width:300px;height:200px" >
+	<div id="list-person" style="margin-top:20px;overflow:scroll;width:410px;height:200px" >
 	<table>
 		<tbody>
 		<tr>
@@ -66,7 +74,7 @@
 	
 	
 	
-	<div id="content-list-person" style="margin-left:500px;margin-top:30px">
+	<div id="content-list-person" style="margin-left:450px;margin-top:30px;width:470px">
 	<h2 style="font-family:monospace;height:50px">Diventa amico di persone</h2>
 	<h2 style="font-family:monospace;line-height:0px">per organizzare eventi</h2>
 	<div id="list-person" style="overflow:scroll;height:200px;width:400px;margin-top:20px">
@@ -91,10 +99,10 @@
 		</div>
 		</div>
 	
-	<div id="richieste da accettare">
+	<div id="richieste da accettare" >
 	<c:if test="${not empty richiesteDaAccett}">
 	<i><h2 style="font-size:22px;font-family:fantasy">Devi accettare la richiesta d'amicizia da parte di queste persone</h2></i>
-	<div id="list-person-da-accett" style="margin-top:20px;overflow:scroll;width:300px;height:200px" >
+	<div id="list-person-da-accett" style="margin-top:20px;overflow:scroll;width:410px;height:200px" >
 	<table>
 		<tbody>
 		<tr>
@@ -103,12 +111,15 @@
 		</tr>
 		<c:forEach var="tempallPersDaAccett" items="${richiesteDaAccett}" >
 		<form:form action="acceptAmico" method="GET">
-		<tr >
+		<tr>
 		<td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona1.nome}</td>
 		<td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona1.cognome}</td>
+		<form:form action="blockAmico" method="GET">
 		<td><input type="text" name="theId1" value="${persona1.idPersona}" style="width:10px;" "/></td>
 		<td><input type="text" name="theId2" value="${tempallPersDaAccett.idPersona1.idPersona}" style="width:10px;""/></td>
-		<td><input type="submit" value="Accetta" /><td><tr>
+		<td><input type="submit" value="Blocca" /><td>
+		</form:form>
+		<td><input type="submit" value="Accetta" /><td></tr>
 		</tr>
 		</form:form>
 		</c:forEach>

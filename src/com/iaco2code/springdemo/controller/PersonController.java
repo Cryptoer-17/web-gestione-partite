@@ -228,7 +228,10 @@ public class PersonController {
 		return "list-person";
 	}
 	
-	
+	@GetMapping("/blockAmico")
+	public String blockAmico(Model theModel){
+		return "";
+	}
 	
 	@GetMapping("/linkListEventPrimary")
 	public String linkListEventPrimary (@RequestParam("theId") int idPers,
@@ -344,19 +347,7 @@ public class PersonController {
 		return "list-person";
 	}
 	
-	@GetMapping("sendRequest")
-	public String sendRequest(@RequestParam("theId1") int theId1, 
-							  @RequestParam("theId2") int theId2,
-							  RedirectAttributes redirectAttributes,
-							   Model theModel) {
-	
-		Persona thePers1 = personDAO.getPersonsId(theId1); 
-		Persona thePers2 = personDAO.getPersonsId(theId2);
-		
-		
-		redirectAttributes.addFlashAttribute("some", thePers1);
-		return "redirect:/person/ShowPrimaryPage";  
-	}
+
 	
 	
 	 @PostMapping("/confirmPerson")
@@ -435,13 +426,16 @@ public class PersonController {
 		 
 		 List<Persona> persons = personDAO.getPersonSendRequest(thePers1.getIdPersona());
 	     theModel.addAttribute("allPerson",persons);
-		 
+	     
+	     int countAllPersonAccept = personDAO.countAllPersonAccept(theId1);
+			theModel.addAttribute("countAllPersonAccept",countAllPersonAccept);
+		 System.out.println(countAllPersonAccept);
 		 
 		 return "page-friend";
 	 }
 	 
 	 
-	 
+	 //errore inseriisce due cose
 	 //id1 persona attuale
 	 //id2 persona che ha inviatola richiesta precedent
 	 @GetMapping("acceptAmico")

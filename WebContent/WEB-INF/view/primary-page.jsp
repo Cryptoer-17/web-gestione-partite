@@ -124,12 +124,7 @@
 	
 	<div id="right" style="overflow:hidden">
 		
-		<div>
-		<form:form action="pageFriend" method="GET">
-		<input type="text" name="theId1" value="${person.idPersona}" style="width:10px;" "/>
-		<input type="submit" value="Vai alla tua area amicizia" />
-		</form:form>
-		</div>
+		
 	
 	
 	</div>

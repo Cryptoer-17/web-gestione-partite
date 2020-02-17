@@ -44,5 +44,7 @@ public interface PersonDAO {
 
 	public List<Amico> tempListDaAccett(int theId1);
 
+	public int countAllPersonAccept(int theId1);
+
 	
 }
