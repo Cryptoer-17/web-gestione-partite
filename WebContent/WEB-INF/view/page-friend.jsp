@@ -152,9 +152,9 @@
 	
 	</c:if>
 	
-	<div id="list-person-block" style="overflow:scroll;height:200px;width:400px;margin-left:50px;">
-	<c:if test="${not empty listAllPersonBlock}">
 	
+	<c:if test="${not empty listAllPersonBlock}">
+	<div id="list-person-block" style="overflow:scroll;height:200px;width:400px;margin-left:50px;">
 	<h2 style="font-family:monospace;height:50px">Lista di persone bloccate</h2>
 	
 		<table>
