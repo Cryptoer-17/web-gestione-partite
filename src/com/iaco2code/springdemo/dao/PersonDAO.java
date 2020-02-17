@@ -46,5 +46,7 @@ public interface PersonDAO {
 
 	public int countAllPersonAccept(int theId1);
 
+	public List<Amico> getPersonsBlock(int idPersona);
+
 	
 }

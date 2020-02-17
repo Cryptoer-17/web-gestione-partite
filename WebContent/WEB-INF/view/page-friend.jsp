@@ -71,7 +71,7 @@
 	
 	<c:if test="${empty listPersAttes}">
 	<div id="lista-stato-attesa" style="width:400px;float:left" >
-	<br>
+	<br><br><br><br><br><br><br>
 	<i><h2 style="font-size:22px;font-family:fantasy">Non hai nessuna tua richiesta che deve essere accettate da un'altra persona.</h2></i>
 	</div>
 	</c:if>
@@ -136,17 +136,20 @@
 	</div>
 	</c:if>
 	<c:if test="${empty richiesteDaAccett}">
+	<br><br><br>
 	<i><h2 style="font-size:22px;font-family:fantasy">Non hai richieste d'amicizia da accettare.</h2></i>
 	</c:if>
 	</div>
 	<div id="right-block">
-	<c:if test="${empty richiesteBloccate}">
+	<c:if test="${empty countAllPersonBlock}">
 	
 	</c:if>
 	
 	</div>
-	<c:if test="${not empty richiesteBloccate}">
-	
+	<c:if test="${not empty countAllPersonBlock}">
+	<c:forEach var="tempallPersDaAccett" items="${countAllPersonBlock}" >
+	${tempallPersDaAccett.idPersona1.nome}
+	</c:forEach>
 	</c:if>
 	<br>
 	<c:url var="addNewDistribution" value="/person/linkListFriendPrimary">

@@ -167,6 +167,7 @@ public class PersonDAOImpl implements PersonDAO {
 		try {
 		List<Amico> thePerson = theQuery.getResultList();
 		List <Integer> viewIdListPers= new ArrayList<Integer>();
+		if(!thePerson.isEmpty()) {
 		for(Amico tempAmi : thePerson) {
 			if(tempAmi.getIdPersona1().getIdPersona()==idCurrentPers) {
 				viewIdListPers.add(tempAmi.getIdPersona2().getIdPersona());
@@ -176,6 +177,13 @@ public class PersonDAOImpl implements PersonDAO {
 		Query<Persona> theQuery2 = currentSession.createQuery("from Persona p where p.idPersona not in (:ids) AND p.idPersona!='"+idCurrentPers+"'").setParameterList("ids", viewIdListPers);
 		List<Persona> thePersonList = theQuery2.getResultList();
 		return thePersonList;
+		}
+		else {
+			Query<Persona> theQuery3 = currentSession.createQuery("from Persona");
+			List<Persona> thePersonList2 = theQuery3.getResultList();
+			return thePersonList2;
+		} 
+	
 		}
 		catch(NoResultException nre) {
 			return null;	
@@ -289,6 +297,21 @@ public class PersonDAOImpl implements PersonDAO {
 				catch(NoResultException nre) {
 					return 0;	
 				}
+	}
+	
+	@Override
+	@Transactional
+	public List<Amico> getPersonsBlock(int idPersona) {
+		Session currentSession= sessionFactory.getCurrentSession();				
+		//retrive the person with query
+		Query<Amico> theQuery = currentSession.createQuery("from Amico where ActionUserId='"+idPersona+"' AND Status=3");
+		try {
+		List<Amico> thePerson = theQuery.getResultList();
+		return thePerson;
+		}
+		catch(NoResultException nre) {
+			return null;	
+		}	
 	}
 	
 	

@@ -272,7 +272,10 @@ public class PersonController {
 				theModel.addAttribute("countAllPersonAccept",countAllPersonAccept);
 			
 			
-	     
+				List<Amico> personsBlock = personDAO.getPersonsBlock(thePers1.getIdPersona());
+				theModel.addAttribute("countAllPersonBlock",personsBlock);
+				
+				
 		return "page-friend2";
 	}
 	
