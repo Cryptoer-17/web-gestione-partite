@@ -50,5 +50,7 @@ public interface PersonDAO {
 
 	public void removeAmico(Amico theAmi);
 
+	public Amico checkifAmisExist(int theId1, int theId2);
+
 	
 }

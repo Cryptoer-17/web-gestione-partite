@@ -82,9 +82,18 @@ public class PersonController {
 
 		Persona thePers2 = personDAO.getPersonsId(theId2); 
 		 
+		
+		Amico thesAmi = personDAO.checkifAmisExist(theId1,theId2);
+		if(thesAmi == null) {
 		 Amico theAmi = new Amico (thePers2,thePers1,0,thePers1.getIdPersona());
 		 personDAO.saveAmico(theAmi); 
-		 
+		}
+		else {
+			Amico theAmi2 = new Amico(thePers1,thePers2,2,thePers1.getIdPersona());
+			personDAO.removeAmico(theAmi2);
+			Amico theNewAmi = new Amico (thePers2,thePers1,0,thePers1.getIdPersona());
+			personDAO.saveAmico(theNewAmi); 
+		}
 		 int lastNotify = personDAO.getLastIdNotify(theId1);
 			theModel.addAttribute("lastNotify",lastNotify);
 		 
@@ -101,7 +110,8 @@ public class PersonController {
 			
 				 List<Amico> listPersBlock = personDAO.getPersonsBlock(theId1);
 				 theModel.addAttribute("listAllPersonBlock",listPersBlock);
-		 
+		
+		
 		return "page-friend2";
 	}
 	
@@ -609,8 +619,8 @@ public class PersonController {
 		 Persona thePers1 = personDAO.getPersonsId(theId1);
 		 theModel.addAttribute("persona1",thePers1);
 		 
-		 Persona thPers2 = personDAO.getPersonsId(theId2);
-		 Amico theAmi = new Amico(thPers2,thePers1,2,thePers1.getIdPersona());
+		 Persona thePers2 = personDAO.getPersonsId(theId2);
+		 Amico theAmi = new Amico(thePers1,thePers2,2,thePers1.getIdPersona());
 		 personDAO.saveAmico(theAmi);
 		 
 		 int lastNotify = personDAO.getLastIdNotify(theId1);

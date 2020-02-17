@@ -163,7 +163,7 @@ public class PersonDAOImpl implements PersonDAO {
 		//get current session
 		Session currentSession= sessionFactory.getCurrentSession();				
 		//retrive the person with query
-		Query<Amico> theQuery = currentSession.createQuery("from Amico where (idPersona2='"+idCurrentPers+"' or idPersona1='"+idCurrentPers+"') AND Status != 2");
+		Query<Amico> theQuery = currentSession.createQuery("from Amico where (idPersona2="+idCurrentPers+" or idPersona1="+idCurrentPers+") AND (Status=1 or Status=3 or Status=0)");
 		try {
 		List<Amico> thePerson = theQuery.getResultList();
 		List <Integer> viewIdListPers= new ArrayList<Integer>();
@@ -316,6 +316,21 @@ public class PersonDAOImpl implements PersonDAO {
 		Session currentSession= sessionFactory.getCurrentSession();				
 		//remove the amis on table
 		currentSession.remove(theAmi);
+	}
+	
+	@Override
+	@Transactional
+	public Amico checkifAmisExist(int theId1, int theId2) {
+		Session currentSession= sessionFactory.getCurrentSession();				
+		//retrive the person with query
+		Query<Amico> theQuery = currentSession.createQuery("from Amico where idPersona1='"+theId1+"' AND idPersona2 ='"+theId2+"'");
+		try {
+		Amico thePerson = theQuery.getSingleResult();
+		return thePerson;
+		}
+		catch(NoResultException nre) {
+			return null;	
+		}	
 	}
 	
 	
