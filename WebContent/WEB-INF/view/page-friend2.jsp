@@ -31,23 +31,23 @@
 	</div>
 	<div id="container">
 	
-	 <div id="lista-stato-attesa" style="width:400px;float:left">
+	 <div id="lista-stato-attesa" style="width:400px">
 	<c:if test="${not empty listPersAttes}">
 	<br>
 	
 	<c:if test="${countAllPersonAccept == '1'}">
-	<i><h2 style="font-size:22px;font-family:fantasy">Hai ancora ${countAllPersonAccept} amicizia che deve essere accettata da questa persona</h2></i>
-	<i><h2 style="font-size:22px;font-family:fantasy">Ecco la persona </h2></i>
+	<i><h2 style="font-size:22px;font-family:fantasy">Hai ancora ${countAllPersonAccept} amicizia che deve essere accettata da questa persona.</h2></i>
+	<i><h2 style="font-size:22px;font-family:fantasy">Ecco la persona: </h2></i>
 	</c:if>
 	<c:if test="${countAllPersonAccept != '1'}">
-	<i><h2 style="font-size:22px;font-family:fantasy">Hai ancora ${countAllPersonAccept} amicizie che devono essere accettate da queste persone</h2></i>
-	<i><h2 style="font-size:22px;font-family:fantasy">Ecco la lista delle persone </h2></i>
+	<i><h2 style="font-size:22px;font-family:fantasy">Hai ancora ${countAllPersonAccept} amicizie che devono essere accettate da queste persone.</h2></i>
+	<i><h2 style="font-size:22px;font-family:fantasy">Ecco la lista delle persone: </h2></i>
 	</c:if>
 
 	
 	
 	
-	<div id="list-person" style="margin-top:20px;overflow:scroll;width:410px;height:245px" >
+	<div id="list-person" style="margin-top:20px;overflow:scroll;width:410px;height:245px;float:left" >
 	<table>
 		<tbody>
 		<tr>
@@ -76,7 +76,7 @@
 	
 	
 	<c:if test="${empty listPersAttes}">
-	<div id="lista-stato-attesa" style="width:400px;float:left" >
+	<div id="lista-stato-attesa" style="width:410px;height:245px;margin-top:20px;float:left" >
 	<br><br><br><br><br><br><br>
 	<i><h2 style="font-size:22px;font-family:fantasy">Non hai nessuna tua richiesta che deve essere accettate da un'altra persona.</h2></i>
 	</div>
@@ -86,7 +86,7 @@
 	
 	
 	
-	<div id="content-list-person" style="margin-left:450px;width:470px;padding-top:110px">
+	<div id="content-list-person" style="margin-left:450px;width:470px;">
 	<h2 style="font-family:monospace;height:50px">Diventa amico di persone</h2>
 	<h2 style="font-family:monospace;line-height:0px">per organizzare eventi</h2>
 	<div id="list-person" style="overflow:scroll;height:200px;width:400px">
@@ -111,10 +111,10 @@
 		</div>
 		</div>
 	
-	<div id="richieste da accettare" style="margin-top:20px;width:450px;">
+	<div id="richieste da accettare" style="width:400px;float:left;height:200px;">
 	<c:if test="${not empty richiesteDaAccett}">
 	<i><h2 style="font-size:22px;font-family:fantasy">Devi accettare la richiesta d'amicizia da parte di queste persone</h2></i>
-	<div id="list-person-da-accett" style="margin-top:20px;overflow:scroll;width:410px;height:200px" >
+	<div id="list-person-da-accett" style="margin-top:20px;overflow:scroll;width:400px;height:200px" >
 	<table>
 		<tbody>
 		<tr>
@@ -142,21 +142,41 @@
 	</div>
 	</c:if>
 	<c:if test="${empty richiesteDaAccett}">
+	<div id="list-person-da-accett" style="width:400px;height:200px;float:left" >
 	<br><br><br>
 	<i><h2 style="font-size:22px;font-family:fantasy">Non hai richieste d'amicizia da accettare.</h2></i>
 	</c:if>
 	</div>
-	<div id="right-block">
-	<c:if test="${empty countAllPersonBlock}">
+	<div id="right-block" style="width:400px;margin-left:400px">
+	<c:if test="${empty listAllPersonBlock}">
 	
 	</c:if>
 	
+	<div id="list-person-block" style="overflow:scroll;height:200px;width:400px;margin-left:50px;">
+	<c:if test="${not empty listAllPersonBlock}">
+	
+	<h2 style="font-family:monospace;height:50px">Lista di persone bloccate</h2>
+	
+		<table>
+				<tbody>
+				<tr>
+					<th style="float:left;font-family:initial;font-size:30px;width:110px">Nome</th>
+					<th style="font-family:initial;font-size:30px">Cognome</th>
+				</tr>
+				<c:forEach var="tempallPersDaAccett" items="${listAllPersonBlock}">
+				<form:form action="sbloccaAmico" method="GET">
+					<tr><td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona2.nome}</td>
+					<td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona2.cognome}</td>
+					<td><input type="text" name="theId1" value="${persona1.idPersona}" style="width:10px;" "/></td>
+					<td><input type="text" name="theId2" value="${tempallPersDaAccett.idPersona2.idPersona}" style="width:10px;""/></td>
+					<td><input type="submit" value="Sblocca" /><td><tr>
+					</form:form>			
+				</c:forEach>	
+				</tbody>
+			</table>
+	</c:if>
 	</div>
-	<c:if test="${not empty countAllPersonBlock}">
-	<c:forEach var="tempallPersDaAccett" items="${countAllPersonBlock}" >
-	${tempallPersDaAccett.idPersona1.nome}
-	</c:forEach>
-	</c:if>
+	</div>
 	<br>
 	<c:url var="addNewDistribution" value="/person/linkListFriendPrimary">
 		    	<c:param name="theId" value="${persona1.idPersona}" /> 

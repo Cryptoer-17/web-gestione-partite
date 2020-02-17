@@ -88,10 +88,6 @@ public class PersonController {
 		 int lastNotify = personDAO.getLastIdNotify(theId1);
 			theModel.addAttribute("lastNotify",lastNotify);
 		 
-			List<Amico> tempListDaAcc = personDAO.tempListDaAccett(theId1);
-			theModel.addAttribute("richiesteDaAccett",tempListDaAcc);
-		 
-		 
 			 List<Persona> attempList = personDAO.getAttempList(thePers1.getIdPersona());
 			 theModel.addAttribute("listPersAttes",attempList);
 			 
@@ -101,6 +97,10 @@ public class PersonController {
 		     
 		     int countAllPersonAccept = personDAO.countAllPersonAccept(theId1);
 				theModel.addAttribute("countAllPersonAccept",countAllPersonAccept);
+			
+			
+				 List<Amico> listPersBlock = personDAO.getPersonsBlock(theId1);
+				 theModel.addAttribute("listAllPersonBlock",listPersBlock);
 		 
 		return "page-friend2";
 	}
@@ -272,8 +272,8 @@ public class PersonController {
 				theModel.addAttribute("countAllPersonAccept",countAllPersonAccept);
 			
 			
-				List<Amico> personsBlock = personDAO.getPersonsBlock(thePers1.getIdPersona());
-				theModel.addAttribute("listAllPersonBlock",personsBlock);
+				 List<Amico> listPersBlock = personDAO.getPersonsBlock(theId1);
+				 theModel.addAttribute("listAllPersonBlock",listPersBlock);
 				
 				
 		return "page-friend2";
@@ -516,9 +516,8 @@ public class PersonController {
 					theModel.addAttribute("countAllPersonAccept",countAllPersonAccept);
 				
 				
-					List<Amico> personsBlock = personDAO.getPersonsBlock(thePers1.getIdPersona());
-					theModel.addAttribute("countAllPersonBlock",personsBlock);
-					
+					 List<Amico> listPersBlock = personDAO.getPersonsBlock(theId1);
+					 theModel.addAttribute("listAllPersonBlock",listPersBlock);
 					
 		 return "page-friend2";
 	 }
@@ -551,6 +550,9 @@ public class PersonController {
 		     
 		     int countAllPersonAccept = personDAO.countAllPersonAccept(theId1);
 				theModel.addAttribute("countAllPersonAccept",countAllPersonAccept);
+				
+				 List<Amico> listPersBlock = personDAO.getPersonsBlock(theId1);
+				 theModel.addAttribute("listAllPersonBlock",listPersBlock);	
 				
 		 return "page-friend2";
 	 }
