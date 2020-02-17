@@ -31,7 +31,7 @@
 	</div>
 	<div id="container">
 	
-	 
+	 <div id="lista-stato-attesa" style="width:400px;float:left">
 	<c:if test="${not empty listPersAttes}">
 	<br>
 	
@@ -45,7 +45,7 @@
 	</c:if>
 
 	
-	<div id="lista-stato-attesa" style="width:400px;float:left">
+	
 	
 	<div id="list-person" style="margin-top:20px;overflow:scroll;width:410px;height:245px" >
 	<table>
@@ -64,17 +64,19 @@
 	</table>
 	
 	</div>
-	</div>
 	</c:if>
 	
 	
+	
+	
 	<c:if test="${empty listPersAttes}">
-	<div id="lista-stato-attesa" style="width:400px;float:left">
+	<div id="lista-stato-attesa" style="width:400px" >
 	<br>
 	<i><h2 style="font-size:22px;font-family:fantasy">Non hai nessuna tua richiesta che deve essere accettate da un'altra persona.</h2></i>
 	</div>
 	</c:if>
 	</div>
+	
 	
 	
 	
