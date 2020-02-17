@@ -113,7 +113,12 @@
 	
 	<div id="richieste da accettare" style="width:400px;float:left;height:200px;">
 	<c:if test="${not empty richiesteDaAccett}">
-	<i><h2 style="font-size:22px;font-family:fantasy">Devi accettare la richiesta d'amicizia da parte di queste persone</h2></i>
+	<c:if test="${lastNotify == '1'}">
+	<i><h2 style="font-size:22px;font-family:fantasy">Devi accettare la richiesta d'amicizia da parte di questa persona</h2></i>
+	</c:if>
+	<c:if test="${lastNotify != '1'}">
+	<i><h2 style="font-size:22px;font-family:fantasy">Devi accettare le richieste d'amicizia da parte di queste persone</h2></i>
+	</c:if>
 	<div id="list-person-da-accett" style="margin-top:20px;overflow:scroll;width:400px;height:200px" >
 	<table>
 		<tbody>
@@ -165,10 +170,10 @@
 				</tr>
 				<c:forEach var="tempallPersDaAccett" items="${listAllPersonBlock}">
 				<form:form action="sbloccaAmico" method="GET">
-					<tr><td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona2.nome}</td>
-					<td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona2.cognome}</td>
+					<tr><td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona1.nome}</td>
+					<td style="font-family:sans-serif;font-size:21px">${tempallPersDaAccett.idPersona1.cognome}</td>
 					<td><input type="text" name="theId1" value="${persona1.idPersona}" style="width:10px;" "/></td>
-					<td><input type="text" name="theId2" value="${tempallPersDaAccett.idPersona2.idPersona}" style="width:10px;""/></td>
+					<td><input type="text" name="theId2" value="${tempallPersDaAccett.idPersona1.idPersona}" style="width:10px;""/></td>
 					<td><input type="submit" value="Sblocca" /><td><tr>
 					</form:form>			
 				</c:forEach>	

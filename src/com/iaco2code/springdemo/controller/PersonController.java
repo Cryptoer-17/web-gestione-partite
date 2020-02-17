@@ -249,7 +249,7 @@ public class PersonController {
 
 		Persona thePers2 = personDAO.getPersonsId(theId2); 
 		
-		 Amico theAmi = new Amico (thePers2,thePers1,3,thePers2.getIdPersona());
+		 Amico theAmi = new Amico (thePers2,thePers1,3,thePers1.getIdPersona());
 		 personDAO.saveAmico(theAmi); 
 		
 		 
