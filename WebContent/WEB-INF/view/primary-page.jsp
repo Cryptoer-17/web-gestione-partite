@@ -128,15 +128,15 @@
 	Non hai amici ):
 	</c:if>
 	<c:if test="${not empty listaAmici}">
-		<table>
+		<table style="border-collapse:collapse,border: 1px solid black;">
 				<tr>
-					<th >Nome &nbsp &nbsp &nbsp &nbsp &nbsp </th>
-					<th>Cognome &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</th>		
+					<th style="border: 1px solid black;padding: 4px;">Nome &nbsp &nbsp &nbsp &nbsp &nbsp </th>
+					<th style="border: 1px solid black;padding: 4px;">Cognome &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</th>		
 				</tr>		
 		<c:forEach var="tempFriendList" items="${listaAmici}">
 		<tr>
-						 <td>${tempFriendList.nome}</td>
-						 <td>${tempFriendList.cognome}</td>
+						 <td style="border: 1px solid black;padding: 4px;">${tempFriendList.nome}</td>
+						 <td style="border: 1px solid black;padding: 4px;">${tempFriendList.cognome}</td>
 		</tr>					
 		</c:forEach>
 		</table>
