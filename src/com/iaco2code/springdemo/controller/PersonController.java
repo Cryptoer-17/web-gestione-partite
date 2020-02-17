@@ -602,6 +602,12 @@ public class PersonController {
 				return "page-friend2";
 	 }
 	 
+	 
+	 @GetMapping("/rifiutaRichiestaAmico")
+	 public String rifiutarichiestaAmico(Model theModel,@RequestParam("theId1") int theId1,@RequestParam("theId2") int theId2) {
+		 return "";
+	 }
+	 
 	 @GetMapping("/removeEvent")
 	 public String removeEvent(Model theModel,@RequestParam("theId") int theId) {
 		 

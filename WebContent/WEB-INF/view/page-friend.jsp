@@ -139,6 +139,11 @@
 		<td><input type="text" name="theId1" value="${persona1.idPersona}" style="width:10px;" "/></td>
 		<td><input type="text" name="theId2" value="${tempallPersDaAccett.idPersona1.idPersona}" style="width:10px;""/></td>
 		<td><input type="submit" value="Blocca" /><td>
+		</form:form>
+		<form:form action="rifiutaRichiestaAmico" method="GET">
+		<td><input type="text" name="theId1" value="${persona1.idPersona}" style="width:10px;" "/></td>
+		<td><input type="text" name="theId2" value="${tempallPersDaAccett.idPersona1.idPersona}" style="width:10px;""/></td>
+		<td><input type="submit" value="Rifiuta richiesta" /><td>
 		</tr>
 		</form:form>
 		</c:forEach>
@@ -149,7 +154,7 @@
 	<c:if test="${empty richiesteDaAccett}">
 	<div id="list-person-da-accett" style="width:400px;height:200px;float:left" >
 	<br><br><br>
-	<i><h2 style="font-size:22px;font-family:fantasy">Non hai richieste d'amicizia da accettare.</h2></i>
+	<i><h2 style="font-size:22px;font-family:fantasy">Non hai richieste d'amicizia che devi accettare.</h2></i>
 	</c:if>
 	</div>
 	<div id="right-block" style="width:400px;margin-left:400px">
