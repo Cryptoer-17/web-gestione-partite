@@ -249,7 +249,7 @@ public class PersonDAOImpl implements PersonDAO {
 	public int getLastIdNotify(int idPersona) {
 		Session currentSession= sessionFactory.getCurrentSession();				
 		//retrive the person with query
-		Query<Amico> theQuery = currentSession.createQuery("from Amico where idPersona2='"+idPersona+"' AND Status=0");
+		Query<Amico> theQuery = currentSession.createQuery("from Amico where idPersona1='"+idPersona+"' AND Status=0");
 		try {
 		List<Amico> thePerson = theQuery.getResultList();
 		List <Integer> viewIdListPers= new ArrayList<Integer>();
@@ -272,7 +272,7 @@ public class PersonDAOImpl implements PersonDAO {
 	public List<Amico> tempListDaAccett(int theId1) {
 		Session currentSession= sessionFactory.getCurrentSession();				
 		//retrive the person with query
-		Query<Amico> theQuery = currentSession.createQuery("from Amico where idPersona2='"+theId1+"' AND Status=0");
+		Query<Amico> theQuery = currentSession.createQuery("from Amico where idPersona1='"+theId1+"' AND Status=0");
 		try {
 		List<Amico> thePerson = theQuery.getResultList();
 		return thePerson;
