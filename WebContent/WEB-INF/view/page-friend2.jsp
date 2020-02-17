@@ -29,7 +29,7 @@
 			<h2>Area Amicizie</h2>
 		</div>
 	</div>
-	<div id="container" >
+	<div id="container">
 	
 	 
 	<c:if test="${not empty listPersAttes}">
@@ -45,10 +45,9 @@
 	</c:if>
 
 	
-	<div id="lista-stato-attesa" style="width:400px;float:left" >
+	<div id="lista-stato-attesa" style="width:400px;float:left">
 	
 	<div id="list-person" style="margin-top:20px;overflow:scroll;width:410px;height:245px" >
-	
 	<table>
 		<tbody>
 		<tr>
@@ -63,12 +62,14 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	</div>
 	
+	</div>
+	</div>
+	</c:if>
 	
 	
 	<c:if test="${empty listPersAttes}">
-	<div id="lista-stato-attesa" style="width:400px;float:left" >
+	<div id="lista-stato-attesa" style="width:400px;float:left">
 	<br>
 	<i><h2 style="font-size:22px;font-family:fantasy">Non hai nessuna tua richiesta che deve essere accettate da un'altra persona.</h2></i>
 	</div>
@@ -76,13 +77,11 @@
 	</div>
 	
 	
-
 	
-	
-	<div id="content-list-person" style="margin-left:450px;width:470px" >
+	<div id="content-list-person" style="margin-left:450px;width:470px">
 	<h2 style="font-family:monospace;height:50px">Diventa amico di persone</h2>
 	<h2 style="font-family:monospace;line-height:0px">per organizzare eventi</h2>
-	<div id="list-person" style="overflow:scroll;height:200px;width:400px" >
+	<div id="list-person" style="overflow:scroll;height:200px;width:400px">
 				<table>
 				<tbody>
 				<tr>
@@ -104,7 +103,7 @@
 		</div>
 		</div>
 	
-	<div id="richieste da accettare" style="margin-top:20px" >
+	<div id="richieste da accettare" style="margin-top:20px;float:left;width:450px;">
 	<c:if test="${not empty richiesteDaAccett}">
 	<i><h2 style="font-size:22px;font-family:fantasy">Devi accettare la richiesta d'amicizia da parte di queste persone</h2></i>
 	<div id="list-person-da-accett" style="margin-top:20px;overflow:scroll;width:410px;height:200px" >
@@ -137,7 +136,11 @@
 	<i><h2 style="font-size:22px;font-family:fantasy">Non hai richieste d'amicizia da accettare.</h2></i>
 	</c:if>
 	</div>
+	<div id="right-block">
+	aaaa
+	</div>
 	
+	<br>
 	<c:url var="addNewDistribution" value="/person/linkListFriendPrimary">
 		    	<c:param name="theId" value="${persona1.idPersona}" /> 
 	</c:url>			
@@ -145,7 +148,7 @@
 				<a href="${addNewDistribution}">Torna indietro</a>
 			</p>
 			
-	</div>
+	</div>	
 
 
 </body>

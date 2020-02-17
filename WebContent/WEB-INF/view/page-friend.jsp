@@ -62,8 +62,12 @@
 		</c:forEach>
 		</tbody>
 	</table>
+	
+	</div>
 	</div>
 	</c:if>
+	
+	
 	<c:if test="${empty listPersAttes}">
 	<div id="lista-stato-attesa" style="width:400px;float:left">
 	<br>
