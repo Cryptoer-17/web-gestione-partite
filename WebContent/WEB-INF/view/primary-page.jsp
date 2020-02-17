@@ -123,10 +123,24 @@
 	</form:form>
 	
 	<div id="right" style="overflow:hidden">
-		
-		
 	
-	
+	<c:if test="${ empty listaAmici}">
+	Non hai amici ):
+	</c:if>
+	<c:if test="${not empty listaAmici}">
+		<table>
+				<tr>
+					<th >Nome &nbsp &nbsp &nbsp &nbsp &nbsp </th>
+					<th>Cognome &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</th>		
+				</tr>		
+		<c:forEach var="tempFriendList" items="${listaAmici}">
+		<tr>
+						 <td>${tempFriendList.nome}</td>
+						 <td>${tempFriendList.cognome}</td>
+		</tr>					
+		</c:forEach>
+		</table>
+		</c:if>		
 	</div>
 		
 		

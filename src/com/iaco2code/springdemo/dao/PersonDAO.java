@@ -52,5 +52,7 @@ public interface PersonDAO {
 
 	public Amico checkifAmisExist(int theId1, int theId2);
 
+	public List<Persona> getListFriend(int idPersona);
+
 	
 }

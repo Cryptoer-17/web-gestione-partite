@@ -333,6 +333,32 @@ public class PersonDAOImpl implements PersonDAO {
 		}	
 	}
 	
+	@Override
+	@Transactional
+	public List<Persona> getListFriend(int idPersona) {
+		Session currentSession= sessionFactory.getCurrentSession();				
+		//retrive the person with query
+		Query<Amico> theQuery = currentSession.createQuery("from Amico where (idPersona1='"+idPersona+"' or idPersona2='"+idPersona+"') AND Status=1");
+		try {
+		List<Amico> thePerson = theQuery.getResultList();
+		List <Integer> viewIdListPers= new ArrayList<Integer>();
+		for(Amico tempAmi : thePerson) {
+			if(tempAmi.getIdPersona2().getIdPersona()==idPersona) {
+				viewIdListPers.add(tempAmi.getIdPersona1().getIdPersona());
+			}
+			else {
+				viewIdListPers.add(tempAmi.getIdPersona2().getIdPersona());
+			}
+		}
+		Query<Persona> theQuery2 = currentSession.createQuery("from Persona p where p.idPersona in (:ids) AND p.idPersona!='"+idPersona+"'").setParameterList("ids", viewIdListPers);
+		List<Persona> thePersonList = theQuery2.getResultList();
+		return thePersonList;
+		}
+		catch(NoResultException nre) {
+			return null;	
+		}	
+	}
+	
 	
 
 

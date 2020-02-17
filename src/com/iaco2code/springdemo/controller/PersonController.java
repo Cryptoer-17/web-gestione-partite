@@ -324,10 +324,8 @@ public class PersonController {
 		theModel.addAttribute("eventi",events);
 
 		
-		//get list person from DAO
-/*		List<Amico> persons = personDAO.getPersonSendRequest(thePers.getIdPersona());
-		//add the list to the model
-		theModel.addAttribute("allPerson",persons);*/
+		List<Persona> listaAmici = personDAO.getListFriend(thePers.getIdPersona());
+		theModel.addAttribute("listaAmici",listaAmici);
 		
 		int lastNotify = personDAO.getLastIdNotify(thePers.getIdPersona());
 		theModel.addAttribute("lastNotify",lastNotify);
