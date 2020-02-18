@@ -20,7 +20,7 @@
 	Inserisci il codice che ti è stato inviato nell'email.<br><br>
 	
 	<form:form action="confirmCode" modelAttribute="person" method="POST">
-		Codice:<input type="text"  name="theCodeUser"><br><br>
+		Codice:<input type="text"  name="theCodeUser" style="border:1px solid black"><br><br>
 		
 			<p> Se stai riscontrando un errore, controlla il codice inserito</p>	
 	

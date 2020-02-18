@@ -18,9 +18,7 @@
 		  rel="stylesheet"
 		  href="${pageContext.request.contextPath}/resources/css/style2.css "/>
 		<br>
-		
-		
-		
+			
 	
 </head>
 <body>

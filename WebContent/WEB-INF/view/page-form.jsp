@@ -32,37 +32,36 @@
 		
 		
 			
-			<table>
+			<table style="border-spacing:7px;">
 				<tbody>
 					<tr>
-						<label>First name:(*)</label>
-						<form:input path="nome"/>
+						<td><label style="border: 1px solid black;padding:5px;">First name:(*)</label></td>
+						<td><form:input path="nome" style="border: 1px solid black;padding:5px;"/></td>
 						<form:errors path="nome" cssClass="error" />
 					</tr>
 					<tr>
-						<td><label>Last name:(*)</label><td>
-						<form:input path="cognome" />
+						<td><label style="border: 1px solid black;padding:5px;">Last name:(*)</label></td>
+						<td><form:input path="cognome" style="border: 1px solid black;padding:5px;"/></td>
 						<form:errors path="cognome" cssClass="error" />
 					</tr>
 					<tr>
-						<td><label>Email:(*)</label><td>
-						<form:input path="email" />
+						<td><label style="border: 1px solid black;padding:5px;">Email:(*)</label></td>
+						<td><form:input path="email" style="border: 1px solid black;padding:5px;"/></td>
 						<form:errors path="email" cssClass="error" />
 					</tr>
 					<tr>
-						<td><label>Username:(*)</label><td>
-						<form:input path="username" />
+						<td><label style="border: 1px solid black;padding:5px;">Username:(*)</label></td>
+						<td><form:input path="username" style="border: 1px solid black;padding:5px;"/></td>
 						<form:errors path="username" cssClass="error" />
 					</tr>
 					<tr>
-						<td><label>Password:(*)</label><td>
-						<form:input path="password" />
+						<td><label style="border: 1px solid black;padding:5px;">Password:(*)</label></td>
+						<td><form:input path="password" style="border: 1px solid black;padding:5px;"/></td>
 						<form:errors path="password" cssClass="error" />
 					</tr>
 					
 					
 					<tr>
-						<td><label></label><td>
 						<td><input type="submit" value="Save" class="save"/></td>
 					</tr>
 					
