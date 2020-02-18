@@ -492,6 +492,11 @@ public class PersonController {
 		 return "page-friend";
 	 }
 	 
+	 @GetMapping("/messaggia")
+	 public String messaggio (Model theModel,@RequestParam("theId1") int theId1,@RequestParam("theId2") int theId2) {
+		 return "page-friend2";
+	 }
+	 
 	 @GetMapping("/notSendRequest")
 	 public String notSendRequest(Model theModel,@RequestParam("theId1") int theId1,@RequestParam("theId2") int theId2) {
 		 

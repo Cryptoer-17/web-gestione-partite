@@ -130,25 +130,48 @@
 	<c:if test="${not empty listaAmici}">
 		<table style="border-collapse:collapse,border: 1px solid black;">
 				<tr>
-					<th style="border: 1px solid black;padding: 4px;">Nome &nbsp &nbsp &nbsp &nbsp &nbsp </th>
-					<th style="border: 1px solid black;padding: 4px;">Cognome &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</th>		
+					<th style="border: 1px solid black;padding: 4px;">Nome &nbsp &nbsp &nbsp  </th>
+					<th style="border: 1px solid black;padding: 4px;">Cognome &nbsp &nbsp &nbsp  </th>
+					<th style="border: 1px solid black;padding: 4px;">Messaggia &nbsp &nbsp &nbsp</th>	
 				</tr>		
 		<c:forEach var="tempFriendList" items="${listaAmici}">
+		<form:form action="messaggia" method="GET">
 		<tr>
 						 <td style="border: 1px solid black;padding: 4px;">${tempFriendList.nome}</td>
 						 <td style="border: 1px solid black;padding: 4px;">${tempFriendList.cognome}</td>
-		</tr>					
+						 <td style="border: 1px solid black;padding: 4px;"><input type="submit" value="Messaggia" style="background-color: #74d426cf;"><td>
+						 <input type="text" name="theId1" value="${person.idPersona}" style="width:10px;" "/>
+						  <input type="text" name="theId2" value="${tempFriendList.idPersona}" style="width:10px;" "/>
+						 
+		</tr>				
+		</form:form>	
 		</c:forEach>
 		</table>
-		</c:if>		
-	</div>
+		</c:if>	
+		
+			<div id="right-top" >
+			<c:if test="${not empty messaggioChat}">
+			</c:if>
+			<c:if test="${empty messaggioChat}">
+			aaa
+			</c:if>
+			
+			
+			</div>
 		
 		
-	
-		
-		
+			
 		</div>
 		
+		
+		
+		
+	</div>
+	
+	
+	
+	
+	
 	</div>
 
 

@@ -187,6 +187,7 @@
 	</c:if>
 	</div>
 	</div>
+	
 	<br>
 	<c:url var="addNewDistribution" value="/person/linkListFriendPrimary">
 		    	<c:param name="theId" value="${persona1.idPersona}" /> 
