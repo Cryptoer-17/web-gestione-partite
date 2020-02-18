@@ -33,10 +33,10 @@
 	
 	
 	<form:form action="confirmPerson" modelAttribute="person" method="POST">
-		Username:<input type="text" name="theUserPers" >
+		Username:<input type="text" name="theUserPers" style="border:1px solid black">
 		<br><br>
-		Password:<input type="text"  name="theUserPass"><br><br>
-		<input type="submit" name="Submit" value="Submit" cssClass="button"/>
+		Password:<input type="text"  name="theUserPass" style="border:1px solid black"><br><br>
+		<input type="submit" name="Submit" value="Submit" cssClass="button" />
 	</form:form>
 
 	<p> Inserire correttamente i dati.</p>

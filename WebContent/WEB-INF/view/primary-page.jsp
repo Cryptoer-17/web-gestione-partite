@@ -122,10 +122,10 @@
 	</div>	
 	</form:form>
 	
-	<div id="right" style="overflow:hidden">
+	<div id="right" style="width:400px;margin-left:400px;font-family:cursive">
 	
 	<c:if test="${ empty listaAmici}">
-	Non hai amici ):
+	(!!) Non hai ancora amici, puoi aggiungerli cliccando <br> sull'icona in alto della campanellina.
 	</c:if>
 	<c:if test="${not empty listaAmici}">
 		<table style="border-collapse:collapse,border: 1px solid black;">
